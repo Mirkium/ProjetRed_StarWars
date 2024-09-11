@@ -2,8 +2,10 @@ package Sauvegarde
 
 import (
 	"fmt"
+	"os"
+	"os/exec"
+	"runtime"
 )
-
 
 const (
 	Reset   = "\033[0m"
@@ -17,8 +19,6 @@ const (
 )
 
 var Personnage Perso
-
-
 
 func CreatePerso() {
 	fmt.Println(" ▓  █ ▄ ▀ ■  ║")
@@ -37,8 +37,6 @@ func CreatePerso() {
 	fmt.Println("")
 	fmt.Println("")
 }
-
-
 
 func clearScreen() {
 	var cmd *exec.Cmd

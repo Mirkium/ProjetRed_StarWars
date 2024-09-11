@@ -13,3 +13,18 @@ type Perso struct {
 	Inventaire  struct{}
 	classe      struct{}
 }
+
+//========================================INVENTAIRE======================================
+
+type Item struct {
+	Name        string
+	Valeur      int
+	Description string
+}
+
+type ItemPacket struct {
+	Objet    Item
+	Quantite int
+}
+
+//var test ItemPacket
