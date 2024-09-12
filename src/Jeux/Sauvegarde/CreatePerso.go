@@ -20,9 +20,11 @@ const (
 )
 
 var Personnage Perso
+var Arme Weapon
+var Armor Armure
 
 func CreatePerso() {
-	fmt.Println(" ▓  █ ▄ ▀ ■  ║")
+	var choix string
 	fmt.Println(Yellow, "        ▄▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀█     █▀▀▀▀▀█        █▀▀▀▀▀▀▀▀▀▄         █▀▀▀▀█     █▀▀▀█     █▀▀▀▀█   █▀▀▀▀▀█        █▀▀▀▀▀▀▀▀▀▄      ▄▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀█")
 	fmt.Println(Yellow, "       █                            █    █   ▄   █       █   █▀▀▄   █         █    █   █     █   █    █   █   ▄   █       █   █▀▀▄   █    █                █")
 	fmt.Println(Yellow, "        ▀▄    ▀█▀▀▀▀▀▀▀▀▀█   █▀▀▀▀▀▀▀   █   █ █   █      █   ▀▀▀  ▄▀           █    █ █       █ █    █   █   █ █   █      █   ▀▀▀  ▄▀      ▀▄    ▀█▀▀▀▀▀▀▀▀▀")
@@ -37,15 +39,56 @@ func CreatePerso() {
 	fmt.Println("                              ", gray, "█", Reset, "                                ", Cyan, "1 -  ", Yellow, "NEW  GAME", Reset, "                                       ", gray, "█", Reset)
 	fmt.Println("                              ", Red, "█", Reset, "                                                                                           ", Red, "█", Reset)
 	fmt.Println("                              ", Red, "█", Reset, "                                                                                           ", Red, "█", Reset)
-	fmt.Println("                              ", Red, "█", Reset, "                                ", Cyan, "2 -  ",  Yellow, "SAVE GAME", Reset, "                                       ", Red, "█", Reset)
+	fmt.Println("                              ", Red, "█", Reset, "                                ", Cyan, "2 -  ", Yellow, "SAVE GAME", Reset, "                                       ", Red, "█", Reset)
 	fmt.Println("                              ", Red, "█", Reset, "                                                                                           ", Red, "█", Reset)
 	fmt.Println("                              ", Red, "█", Reset, "                                                                                           ", Red, "█", Reset)
-	fmt.Println("                              ", Red, "█", Reset, "                                ", Cyan, "3 -  ",  Yellow, "  QUIT", Reset, "                                          ", Red, "█", Reset)
+	fmt.Println("                              ", Red, "█", Reset, "                                ", Cyan, "3 -  ", Yellow, "  QUIT", Reset, "                                          ", Red, "█", Reset)
 	fmt.Println("                              ", Red, "█                                                                                               █", Reset)
 	fmt.Println("                              ", Red, "█                                                                                               █", Reset)
 	fmt.Println("                              ", Red, "█                                                                                               █", Reset)
 	fmt.Println("                              ", Red, "█                                                                                               █", Reset)
+	fmt.Scanln(&choix)
+	switch choix {
+	case "1":
+		clearScreen()
+		CaracteristiquePerso()
+	case "2":
+		clearScreen()
+		ChargeGame()
+	case "3":
+		var choixQuit string
+		clearScreen()
+		fmt.Println("Do you want a quit game ?")
+		fmt.Println("  1 - yes    2 - no")
+		fmt.Scanln(&choixQuit)
+		switch choixQuit {
+		case "1":
+			break
+		case "2":
+			clearScreen()
+			CreatePerso()
+		}
+	}
 }
+
+func CaracteristiquePerso() {
+	var name string
+	fmt.Print("Write your name : ")
+	fmt.Scanln(&name)
+	Personnage.Name = name
+	clearScreen()
+	var choixWay string
+	fmt.Println("    	       ", Yellow, "CHOOSE YOUR WAY !", Reset)
+	fmt.Println(" (1) ", Cyan, "Republic", Reset, "                  (2) ", Red, "Empire", Reset)
+	fmt.Scanln(&choixWay)
+	switch choixWay {
+	case "1":
+		Republic()
+	case "2":
+		SithEmpire()
+	}
+}
+
 
 func clearScreen() {
 	var cmd *exec.Cmd

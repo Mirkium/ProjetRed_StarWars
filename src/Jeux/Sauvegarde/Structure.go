@@ -14,6 +14,19 @@ type Perso struct {
 	classe      struct{}
 }
 
+type Weapon struct {
+	Name string
+	DamageBonus int
+	PvBonus int
+	Color string
+}
+
+type Armure struct {
+	Name string
+	DamageBonus int
+	PvBonus int
+}
+
 //========================================INVENTAIRE======================================
 
 type Item struct {
