@@ -74,6 +74,7 @@ func CreatePerso() {
 
 func CaracteristiquePerso() {
 	var name string
+	
 	fmt.Print("Write your name : ")
 	fmt.Scanln(&name)
 	Personnage.Name = name
@@ -89,7 +90,6 @@ func CaracteristiquePerso() {
 		SithEmpire()
 	}
 }
-
 
 func clearScreen() {
 	var cmd *exec.Cmd

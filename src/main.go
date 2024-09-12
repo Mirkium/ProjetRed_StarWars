@@ -12,13 +12,10 @@ import (
 )
 
 func main() {
-	objet1 := save.ItemPacket{save.Sabre_laser, 1}
-	objet2 := save.ItemPacket{save.Casque, 2}
+	//objet1 := save.ItemPacket{save.Sabre_laser, 1}
+	//objet2 := save.ItemPacket{save.Casque, 2}
 	save.CreatePerso()
-	save.Ajout_Item(objet1)
-	save.Ajout_Item(objet1)
-	save.Ajout_Item(objet2)
-	save.RegardeStat()
+	
 	switch save.Campagne.Name {
 	case "Jedi Knight":
 		chevalierJedi.JediKnight()

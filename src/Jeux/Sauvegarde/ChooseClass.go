@@ -1,7 +1,9 @@
 package Sauvegarde
 
 import (
+	"encoding/json"
 	"fmt"
+	"os"
 )
 
 func Republic() {
@@ -48,6 +50,19 @@ func Republic() {
 		Personnage.CoteForce = 0
 		Personnage.Credit = 0
 	}
+	filePath := "Save.json"
+
+	file, err := os.ReadFile(filePath)
+	if err != nil {
+		fmt.Println("Erreur lors de la lecture du fichier:", err)
+		return
+	}
+
+	err = json.Unmarshal(file, &Personnage)
+	if err != nil {
+		fmt.Println("Erreur lors du décodage JSON:", err)
+		return
+	}
 }
 
 func SithEmpire() {
@@ -93,5 +108,18 @@ func SithEmpire() {
 		Personnage.Level = 1
 		Personnage.CoteForce = 0
 		Personnage.Credit = 0
+	}
+	filePath := "Save.json"
+
+	file, err := os.ReadFile(filePath)
+	if err != nil {
+		fmt.Println("Erreur lors de la lecture du fichier:", err)
+		return
+	}
+	fmt.Println(Personnage)
+	err = json.Unmarshal(file, &Personnage)
+	if err != nil {
+		fmt.Println("Erreur lors du décodage JSON:", err)
+		return
 	}
 }
