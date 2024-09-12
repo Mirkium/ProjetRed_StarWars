@@ -1,1 +1,5 @@
 package assassinsith
+
+func SithAssassin() {
+	
+}

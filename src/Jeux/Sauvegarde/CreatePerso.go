@@ -22,6 +22,7 @@ const (
 var Personnage Perso
 var Arme Weapon
 var Armor Armure
+var Campagne classe
 
 func CreatePerso() {
 	var choix string
