@@ -1,1 +1,5 @@
 package consulairejedi
+
+func JediConsular() {
+	
+}
