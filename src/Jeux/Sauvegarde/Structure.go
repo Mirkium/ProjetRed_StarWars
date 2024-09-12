@@ -8,7 +8,7 @@ type Perso struct {
 	Force           int
 	CoteForce       int
 	Credit          int
-	abilitieDefault []string
+	abilitieDefault Abilite
 	Weapon          struct{}
 	Armure          struct{}
 	Inventaire      struct{}
@@ -31,7 +31,15 @@ type Armure struct {
 type classe struct {
 	Name    string
 	energie int
-	abilite []string
+	abilite []Abilite
+}
+
+//=========================================Abilite<=================================
+
+type Abilite struct {
+	Name        string
+	EnergieCost int
+	Dammage     int
 }
 
 //=========================================MOB=======================================
@@ -42,9 +50,9 @@ type Mob struct {
 	PV_actuelle int
 	Damage      int
 	Armor       int
-	abilitie    []string
+	abilitie    []Abilite
 	drop        map[ItemPacket]int
-	xp          int
+	xpDrop      int
 }
 
 //========================================INVENTAIRE======================================
