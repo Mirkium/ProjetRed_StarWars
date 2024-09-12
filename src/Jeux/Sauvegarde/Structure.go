@@ -44,6 +44,7 @@ type Mob struct {
 	Armor       int
 	abilitie    []string
 	drop        map[ItemPacket]int
+	xp          int
 }
 
 //========================================INVENTAIRE======================================
