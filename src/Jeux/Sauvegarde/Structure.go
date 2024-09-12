@@ -8,6 +8,7 @@ type Perso struct {
 	Force           int
 	CoteForce       int
 	Credit          int
+	Xp_Actu         int
 	abilitieDefault Abilite
 	Weapon          struct{}
 	Armure          struct{}
@@ -50,9 +51,9 @@ type Mob struct {
 	PV_actuelle int
 	Damage      int
 	Armor       int
-	abilitie    []Abilite
-	drop        map[ItemPacket]int
-	xpDrop      int
+	Abilitie    []Abilite
+	Drop        map[ItemPacket]int
+	XpDrop      int
 }
 
 //========================================INVENTAIRE======================================
