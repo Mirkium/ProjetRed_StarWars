@@ -2,7 +2,6 @@ package main
 
 import (
 	save "Game/Jeux/Sauvegarde"
-	"fmt"
 	//game "Game/Jeux/GamePlay"
 	//marchand "Game/Jeux/GamePlay/Marchand"
 	//forgeron "Game/Jeux/GamePlay/Forgeron"
@@ -19,9 +18,5 @@ func main() {
 	save.Ajout_Item(objet1)
 	save.Ajout_Item(objet1)
 	save.Ajout_Item(objet2)
-	save.DisplayInventaire()
-	fmt.Println("\nTest delete\n")
-	save.Enlever_Item(save.Casque, 2)
-	save.DisplayInventaire()
-	save.Selectionner()
+	save.RegardeStat()
 }
