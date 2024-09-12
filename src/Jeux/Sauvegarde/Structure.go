@@ -34,6 +34,18 @@ type classe struct {
 	abilite []string
 }
 
+//=========================================MOB=======================================
+
+type Mob struct {
+	Name        string
+	PV_max      int
+	PV_actuelle int
+	Damage      int
+	Armor       int
+	abilitie    []string
+	drop        map[ItemPacket]int
+}
+
 //========================================INVENTAIRE======================================
 
 type Item struct {
