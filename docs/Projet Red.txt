@@ -1,0 +1,44 @@
+Projet Red :  
+
+Etape 1 :
+
+- Création du personnage
+- Les classes
+- Combat tour par tour
+- montée de niveau
+- inventaire
+- marchand
+- forgeron
+- système de pouvoir de heal & dommage
+
+Etape 2 :
+
+- Sauvegarde
+- texte couleur
+- sabre couleur
+- musique  		
+
+
+Etape 3 :
+
+- TEST
+
+
+Les 2 premiers jours :
+
+Groupe : Mise en place du système d'une réunion checkout tous les jours, création des différents dossiers + fichier, mise en place des tâches à faire sur trello.  
+
+Tibo : exercice pour se perfectionner afin de bien réussir le code des marchands, commencement du code des marchands pour le projet red.
+
+Adrien : Inventaire (interaction, description des objets, etc) ; début du code pour le système de niveau et de combat.
+
+Alexandre : Menu de démarrage, système de création de personnage avec les classes, début du code du système de sauvegarde.
+
+
+Tâche pour Vendredi/Lundi :
+
+Tibo : Marchand d'Item + Marchand d'Arme
+
+Adrien : Finir le système de level up/Combat + bugFix Inventaire + commencement de la campagne Chevalier Jedi
+
+Alexandre : Finir système de de sauvegarde + commencement de la campagne guerrier sith

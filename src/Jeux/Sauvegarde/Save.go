@@ -7,16 +7,15 @@ import (
 	"os"
 )
 
-
 type Partie struct {
-	Id 	   int    `json:"id"`
+	Id     int    `json:"id"`
 	Name   string `json:"name"`
-	Joueur Perso `json:"Joueur"`
+	Joueur Perso  `json:"Joueur"`
 }
 
 func Verif() bool {
 	// Chemin vers le fichier JSON
-	filePath := "Sauvegarde.json"
+	filePath := "./Save.json"
 
 	// Vérifier si le fichier existe
 	if _, err := os.Stat(filePath); os.IsNotExist(err) {
@@ -51,32 +50,32 @@ func Verif() bool {
 }
 
 func ChargeGame() {
-	filePath := "Sauvegarde.json"
+	filePath := "Save.json"
 
 	file, err := ioutil.ReadFile(filePath)
 	if err != nil {
 		fmt.Println("Erreur lors de la lecture du fichier:", err)
-		return 
+		return
 	}
 
 	var partie []Partie
 	err = json.Unmarshal(file, &partie)
 	if err != nil {
 		fmt.Println("Erreur lors du décodage JSON:", err)
-		return 
+		return
 	}
 
 	clearScreen()
 	fmt.Println(Blue, "      SAUVEGARDE", Reset)
 	fmt.Println("_________________________")
-	var table[] int
+	var table []int
 	var choixSauvegarde int
-	for k := 1 ; k<len(partie)+1 ; k++ {
+	for k := 1; k < len(partie)+1; k++ {
 		fmt.Println(k, "- ", partie[k].Name)
 		table = append(table, k)
 	}
 	fmt.Scanln(&choixSauvegarde)
-	for L := 1 ; L<len(table)+1 ; L++ {
+	for L := 1; L < len(table)+1; L++ {
 		if choixSauvegarde == table[L] {
 
 		}
