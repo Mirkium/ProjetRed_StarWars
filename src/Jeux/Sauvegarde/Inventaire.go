@@ -57,17 +57,17 @@ func DisplayInventaire() {
 	/*
 		Affiche les diiferents item
 	*/
-	clearScreen()
+	ClearScreen()
 	i := 1
 	fmt.Println(" ========================Inventaire=========================")
 	for index, element := range Inventaire {
-		fmt.Printf("|Index : %d | Item :  %s | Quantité : %s |\n", i, formatage(index.Objet.Name, 16), formatage(string(element+48), 4))
+		fmt.Printf("|Index : %d | Item :  %s | Quantité : %s |\n", i, Formatage(index.Objet.Name, 16), Formatage(string(element+48), 4))
 		i++
 	}
 	fmt.Println(" ===========================================================")
 }
 
-func formatage(c string, z int) string {
+func Formatage(c string, z int) string {
 	res := ""
 	l := len(c)
 	n := (z - l) / 2
@@ -86,7 +86,7 @@ func formatage(c string, z int) string {
 
 func formatagePrix(prix int) string {
 	res := strconv.Itoa(prix)
-	return formatage(res+" credits", 16)
+	return Formatage(res+" credits", 16)
 }
 
 func DisplayInventaireIndex(index1 int) {
@@ -96,11 +96,11 @@ func DisplayInventaireIndex(index1 int) {
 		i := 1
 		for index, element := range Inventaire {
 			if index1 == i {
-				clearScreen()
+				ClearScreen()
 				fmt.Println(" ========================Inventaire=========================")
 				fmt.Println("|--------------------------Name-----------------------------|")
 				fmt.Println("|                                                           |")
-				fmt.Println("|                    " + formatage(index.Objet.Name, 16) + "                     |")
+				fmt.Println("|                    " + Formatage(index.Objet.Name, 16) + "                     |")
 				fmt.Println("|                                                           |")
 				fmt.Println("|-----------------------Description-------------------------|")
 				fmt.Println("|                                                           |")
@@ -112,7 +112,7 @@ func DisplayInventaireIndex(index1 int) {
 				fmt.Println("|                                                           |")
 				fmt.Println("|------------------------Quantites--------------------------|")
 				fmt.Println("|                                                           |")
-				fmt.Println("|                          " + formatage(strconv.Itoa(element), 3) + "                           |")
+				fmt.Println("|                          " + Formatage(strconv.Itoa(element), 3) + "                           |")
 				fmt.Println("|                                                           |")
 				fmt.Println(" ===========================================================")
 				//fmt.Printf("Item :  %s, Quantité : %d\n", index.Objet.Name, element)
