@@ -51,14 +51,14 @@ func CreatePerso() {
 	fmt.Scanln(&choix)
 	switch choix {
 	case "1":
-		clearScreen()
+		ClearScreen()
 		CaracteristiquePerso()
 	case "2":
-		clearScreen()
+		ClearScreen()
 		ChargeGame()
 	case "3":
 		var choixQuit string
-		clearScreen()
+		ClearScreen()
 		fmt.Println("Do you want a quit game ?")
 		fmt.Println("  1 - yes    2 - no")
 		fmt.Scanln(&choixQuit)
@@ -66,7 +66,7 @@ func CreatePerso() {
 		case "1":
 			break
 		case "2":
-			clearScreen()
+			ClearScreen()
 			CreatePerso()
 		}
 	}
@@ -74,11 +74,11 @@ func CreatePerso() {
 
 func CaracteristiquePerso() {
 	var name string
-	
+
 	fmt.Print("Write your name : ")
 	fmt.Scanln(&name)
 	Personnage.Name = name
-	clearScreen()
+	ClearScreen()
 	var choixWay string
 	fmt.Println("    	       ", Yellow, "CHOOSE YOUR WAY !", Reset)
 	fmt.Println(" (1) ", Cyan, "Republic", Reset, "                  (2) ", Red, "Empire", Reset)
@@ -91,7 +91,7 @@ func CaracteristiquePerso() {
 	}
 }
 
-func clearScreen() {
+func ClearScreen() {
 	var cmd *exec.Cmd
 	// Détecter le système d'exploitation
 	switch runtime.GOOS {

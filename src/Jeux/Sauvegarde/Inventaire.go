@@ -57,7 +57,7 @@ func DisplayInventaire() {
 	/*
 		Affiche les diiferents item
 	*/
-	clearScreen()
+	ClearScreen()
 	i := 1
 	fmt.Println(" ========================Inventaire=========================")
 	for index, element := range Inventaire {
@@ -96,7 +96,7 @@ func DisplayInventaireIndex(index1 int) {
 		i := 1
 		for index, element := range Inventaire {
 			if index1 == i {
-				clearScreen()
+				ClearScreen()
 				fmt.Println(" ========================Inventaire=========================")
 				fmt.Println("|--------------------------Name-----------------------------|")
 				fmt.Println("|                                                           |")
