@@ -53,7 +53,7 @@ type Mob struct {
 	Damage      int
 	Armor       int
 	Abilitie    []Abilite
-	Drop        map[ItemPacket]int
+	Drop        map[Item]int
 	XpDrop      int
 }
 
@@ -63,11 +63,7 @@ type Item struct {
 	Name        string
 	Valeur      int
 	Description string
-}
-
-type ItemPacket struct {
-	Objet    Item
-	Quantite int
+	Quantite    int
 }
 
 //var test ItemPacket
