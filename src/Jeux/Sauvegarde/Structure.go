@@ -10,10 +10,10 @@ type Perso struct {
 	Credit          int
 	Xp_Actu         int
 	AbilitieDefault Abilite
-	Weapon          struct{}
-	Armure          struct{}
-	Inventaire      struct{}
-	Classe          classe
+	//Weapon          struct{}
+	//Armure          struct{}
+	//Inventaire      struct{}
+	Classe classe
 }
 
 type Weapon struct {
@@ -50,7 +50,6 @@ type Mob struct {
 	Name        string
 	PV_max      int
 	PV_actuelle int
-	Damage      int
 	Armor       int
 	Abilitie    []Abilite
 	Drop        map[Item]int
