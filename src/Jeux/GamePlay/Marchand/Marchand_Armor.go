@@ -126,7 +126,7 @@ func MarchandArmor(Credit int, CoteForce int) {
 	item03 := Armor{"Jedi Battle Armor",
 		20,
 		1,
-		0,
+		5000,
 		"During the Sith Wars, the Jedi were forced to take on greater protection. These were unique armors, fashioned for each Jedi."}
 	item04 := Armor{"Gungan Personal Energy Shield",
 		2000,

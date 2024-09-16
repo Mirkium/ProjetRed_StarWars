@@ -10,7 +10,7 @@ type Perso struct {
 	Credit          int
 	Xp_Actu         int
 	AbilitieDefault Abilite
-	Weapon          struct{}
+	Weapon          []Weapon
 	Armure          struct{}
 	Inventaire      struct{}
 	Classe          classe
