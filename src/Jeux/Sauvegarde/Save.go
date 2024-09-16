@@ -44,7 +44,7 @@ func Verif() bool {
 		return false
 	} else {
 		fmt.Println("Partie trouver")
-		clearScreen()
+		ClearScreen()
 		return true
 	}
 }
@@ -65,7 +65,7 @@ func ChargeGame() {
 		return
 	}
 
-	clearScreen()
+	ClearScreen()
 	fmt.Println(Blue, "      SAUVEGARDE", Reset)
 	fmt.Println("_________________________")
 	var table []int

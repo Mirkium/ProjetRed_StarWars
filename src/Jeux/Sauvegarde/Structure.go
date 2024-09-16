@@ -9,11 +9,11 @@ type Perso struct {
 	CoteForce       int
 	Credit          int
 	Xp_Actu         int
-	abilitieDefault Abilite
+	AbilitieDefault Abilite
 	Weapon          struct{}
 	Armure          struct{}
 	Inventaire      struct{}
-	classe          struct{}
+	Classe          classe
 }
 
 type Weapon struct {
@@ -31,8 +31,8 @@ type Armure struct {
 
 type classe struct {
 	Name    string
-	energie int
-	abilite []Abilite
+	Energie int
+	Abilite []Abilite
 }
 
 //=========================================Abilite<=================================
@@ -41,6 +41,7 @@ type Abilite struct {
 	Name        string
 	EnergieCost int
 	Dammage     int
+	Heal        int
 }
 
 //=========================================MOB=======================================
