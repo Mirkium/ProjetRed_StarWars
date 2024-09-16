@@ -9,11 +9,11 @@ type Perso struct {
 	CoteForce       int
 	Credit          int
 	Xp_Actu         int
-	abilitieDefault Abilite
+	AbilitieDefault Abilite
 	Weapon          struct{}
 	Armure          struct{}
 	Inventaire      struct{}
-	classe          struct{}
+	Classe          classe
 }
 
 type Weapon struct {
@@ -31,8 +31,8 @@ type Armure struct {
 
 type classe struct {
 	Name    string
-	energie int
-	abilite []Abilite
+	Energie int
+	Abilite []Abilite
 }
 
 //=========================================Abilite<=================================
@@ -41,6 +41,7 @@ type Abilite struct {
 	Name        string
 	EnergieCost int
 	Dammage     int
+	Heal        int
 }
 
 //=========================================MOB=======================================
@@ -52,7 +53,7 @@ type Mob struct {
 	Damage      int
 	Armor       int
 	Abilitie    []Abilite
-	Drop        map[ItemPacket]int
+	Drop        map[Item]int
 	XpDrop      int
 }
 
@@ -62,11 +63,7 @@ type Item struct {
 	Name        string
 	Valeur      int
 	Description string
-}
-
-type ItemPacket struct {
-	Objet    Item
-	Quantite int
+	Quantite    int
 }
 
 //var test ItemPacket

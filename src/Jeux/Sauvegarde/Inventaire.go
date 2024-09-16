@@ -5,28 +5,27 @@ import (
 	"strconv"
 )
 
-var Inventaire map[ItemPacket]int = make(map[ItemPacket]int)
+var Inventaire []Item
 
-func Ajout_Item(Objet ItemPacket) {
+func Ajout_Item(Objet Item, quantite int) {
 	/*
 		Rajoute un item si il n'existe pas déja
 		sinon rajoute la quantite.
 		Verifie si l'inventaire est complet egalement
 	*/
-	if len(Inventaire) >= 9 {
-		fmt.Println("L'inventaire est complets")
+	AlreadyExiste := false
+	for _, ele := range Inventaire {
+		if Objet.Name == ele.Name {
+			AlreadyExiste = true
+			ele.Quantite += Objet.Quantite
+			return
+		}
+	}
+	if len(Inventaire) >= 9 && !AlreadyExiste {
+		fmt.Println("L'inventaire est complet")
+		return
 	} else {
-		IsFind := false
-		for key := range Inventaire {
-			if key.Objet.Name == Objet.Objet.Name {
-				Inventaire[Objet] += Objet.Quantite
-				IsFind = true
-				break
-			}
-		}
-		if !IsFind {
-			Inventaire[Objet] = Objet.Quantite
-		}
+		Inventaire = append(Inventaire, Objet)
 	}
 }
 
@@ -35,15 +34,18 @@ func Enlever_Item(Objet Item, Quantite int) {
 		Retire la quantite d'item demande et le supprime si <= 0
 		Ne fais rien si l'item n'existe pas.
 	*/
-	for key, value := range Inventaire {
-		if key.Objet == Objet {
-			if value-Quantite <= 0 {
-				delete(Inventaire, key)
+	for index, element := range Inventaire {
+		if element.Name == Objet.Name {
+			if element.Quantite-Objet.Quantite <= 0 {
+				Inventaire = append(Inventaire[:index], Inventaire[index+1:]...)
+				return
 			} else {
-				Inventaire[key] -= Quantite
+				element.Quantite -= Objet.Quantite
+				return
 			}
 		}
 	}
+	fmt.Println("L'item n'a pas été trouvé")
 }
 
 func Stats(Objet Item) string {
@@ -60,14 +62,14 @@ func DisplayInventaire() {
 	ClearScreen()
 	i := 1
 	fmt.Println(" ========================Inventaire=========================")
-	for index, element := range Inventaire {
-		fmt.Printf("|Index : %d | Item :  %s | Quantité : %s |\n", i, formatage(index.Objet.Name, 16), formatage(string(element+48), 4))
+	for _, element := range Inventaire {
+		fmt.Printf("|Index : %d | Item :  %s | Quantité : %s |\n", i, Formatage(element.Name, 16), Formatage(strconv.Itoa(element.Quantite), 4))
 		i++
 	}
 	fmt.Println(" ===========================================================")
 }
 
-func formatage(c string, z int) string {
+func Formatage(c string, z int) string {
 	res := ""
 	l := len(c)
 	n := (z - l) / 2
@@ -86,7 +88,7 @@ func formatage(c string, z int) string {
 
 func formatagePrix(prix int) string {
 	res := strconv.Itoa(prix)
-	return formatage(res+" credits", 16)
+	return Formatage(res+" credits", 16)
 }
 
 func DisplayInventaireIndex(index1 int) {
@@ -94,25 +96,25 @@ func DisplayInventaireIndex(index1 int) {
 		fmt.Println("Index trop grand")
 	} else {
 		i := 1
-		for index, element := range Inventaire {
+		for _, element := range Inventaire {
 			if index1 == i {
 				ClearScreen()
 				fmt.Println(" ========================Inventaire=========================")
 				fmt.Println("|--------------------------Name-----------------------------|")
 				fmt.Println("|                                                           |")
-				fmt.Println("|                    " + formatage(index.Objet.Name, 16) + "                     |")
+				fmt.Println("|                    " + Formatage(element.Name, 16) + "                     |")
 				fmt.Println("|                                                           |")
 				fmt.Println("|-----------------------Description-------------------------|")
 				fmt.Println("|                                                           |")
-				fmt.Println("|   " + index.Objet.Description)
+				fmt.Println("|   " + element.Description)
 				fmt.Println("|                                                           |")
 				fmt.Println("---------------------------Prix-----------------------------|")
 				fmt.Println("|                                                           |")
-				fmt.Println("|                     " + formatagePrix(index.Objet.Valeur) + "                    |")
+				fmt.Println("|                     " + formatagePrix(element.Valeur) + "                    |")
 				fmt.Println("|                                                           |")
 				fmt.Println("|------------------------Quantites--------------------------|")
 				fmt.Println("|                                                           |")
-				fmt.Println("|                          " + formatage(strconv.Itoa(element), 3) + "                           |")
+				fmt.Println("|                          " + Formatage(strconv.Itoa(element.Quantite), 3) + "                           |")
 				fmt.Println("|                                                           |")
 				fmt.Println(" ===========================================================")
 				//fmt.Printf("Item :  %s, Quantité : %d\n", index.Objet.Name, element)
@@ -134,9 +136,9 @@ func Vendre(index int, quantite int) {
 		if let >= '0' && let <= '9' {
 			//DisplayInventaireIndex(int(let - 48))
 			i := 1
-			for key := range Inventaire {
+			for _, key := range Inventaire {
 				if index == i {
-					Enlever_Item(key.Objet, quantite)
+					Enlever_Item(key, quantite)
 					//return value * quantite
 				}
 			}

@@ -19,7 +19,7 @@ func Republic() {
 	switch choix {
 	case "1":
 		Campagne.Name = "Jedi Knight"
-		Campagne.energie = 0
+		Campagne.Energie = 0
 		Arme.Name = "electric saber"
 		Arme.DamageBonus = 5
 		Arme.PvBonus = 0
@@ -35,7 +35,7 @@ func Republic() {
 		Personnage.Credit = 0
 	case "2":
 		Campagne.Name = "Jedi Consular"
-		Campagne.energie = 10
+		Campagne.Energie = 10
 		Arme.Name = "electric stick"
 		Arme.DamageBonus = 5
 		Arme.PvBonus = 0
@@ -78,7 +78,7 @@ func SithEmpire() {
 	switch choix {
 	case "1":
 		Campagne.Name = "Sith Warrior"
-		Campagne.energie = 0
+		Campagne.Energie = 0
 		Arme.Name = "electric saber"
 		Arme.DamageBonus = 5
 		Arme.PvBonus = 0
@@ -94,7 +94,7 @@ func SithEmpire() {
 		Personnage.Credit = 0
 	case "2":
 		Campagne.Name = "Sith Assassin"
-		Campagne.energie = 10
+		Campagne.Energie = 10
 		Arme.Name = "electric stick"
 		Arme.DamageBonus = 5
 		Arme.PvBonus = 0
