@@ -19,6 +19,7 @@ func main() {
 	save.Ajout_Item(objet1)
 	save.Ajout_Item(objet2)
 	save.RegardeStat()*/
+	
 	marchand.Marchand(save.Personnage.Credit, save.Personnage.CoteForce)
 	marchand.MarchandArmor(save.Personnage.Credit, save.Personnage.CoteForce)
 	/*switch save.Campagne.Name {
