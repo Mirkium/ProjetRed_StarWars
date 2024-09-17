@@ -1,4 +1,4 @@
-package main
+package Fight
 
 import (
 	save "Game/Jeux/Sauvegarde"
