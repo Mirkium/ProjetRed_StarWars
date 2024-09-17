@@ -11,12 +11,20 @@ type Perso struct {
 	Xp_Actu         int
 	AbilitieDefault Abilite
 	Weapon          struct{}
+	SecondaryWeapon struct{}
 	Armure          struct{}
 	Inventaire      struct{}
 	Classe          classe
 }
 
 type Weapon struct {
+	Name        string
+	DamageBonus int
+	PvBonus     int
+	Color       string
+}
+
+type SecondaryWeapon struct {
 	Name        string
 	DamageBonus int
 	PvBonus     int

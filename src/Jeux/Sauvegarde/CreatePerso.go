@@ -21,6 +21,7 @@ const (
 
 var Personnage Perso
 var Arme Weapon
+var ArmeSecondaire SecondaryWeapon
 var Armor Armure
 var Campagne classe
 

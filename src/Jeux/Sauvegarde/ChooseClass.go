@@ -20,7 +20,6 @@ func Republic() {
 	case "1":
 		Campagne.Name = "Jedi Knight"
 		Campagne.Energie = 0
-		Arme.Name = "electric saber"
 		Arme.DamageBonus = 5
 		Arme.PvBonus = 0
 		Arme.Color = "Jaune"
@@ -36,7 +35,6 @@ func Republic() {
 	case "2":
 		Campagne.Name = "Jedi Consular"
 		Campagne.Energie = 10
-		Arme.Name = "electric stick"
 		Arme.DamageBonus = 5
 		Arme.PvBonus = 0
 		Arme.Color = "Jaune"
@@ -79,47 +77,66 @@ func SithEmpire() {
 	case "1":
 		Campagne.Name = "Sith Warrior"
 		Campagne.Energie = 0
-		Arme.Name = "electric saber"
-		Arme.DamageBonus = 5
-		Arme.PvBonus = 0
-		Arme.Color = "Jaune"
 		Armor.Name = "Tenue d'Acolyte"
 		Armor.DamageBonus = 0
 		Armor.PvBonus = 10
-		Personnage.PV_max = 1000 + Arme.PvBonus + Armor.PvBonus
-		Personnage.PV_actuelle = 1000 + Arme.PvBonus + Armor.PvBonus
-		Personnage.Force = 10 + Arme.DamageBonus + Armor.DamageBonus
+
 		Personnage.Level = 1
 		Personnage.CoteForce = 0
 		Personnage.Credit = 0
 	case "2":
 		Campagne.Name = "Sith Assassin"
 		Campagne.Energie = 10
-		Arme.Name = "electric stick"
-		Arme.DamageBonus = 5
-		Arme.PvBonus = 0
-		Arme.Color = "Jaune"
 		Armor.Name = "Tenue d'Acolyte"
 		Armor.DamageBonus = 0
 		Armor.PvBonus = 10
-		Personnage.PV_max = 1000 + Arme.PvBonus + Armor.PvBonus
-		Personnage.PV_actuelle = 1000 + Arme.PvBonus + Armor.PvBonus
-		Personnage.Force = 10 + Arme.DamageBonus + Armor.DamageBonus
 		Personnage.Level = 1
 		Personnage.CoteForce = 0
 		Personnage.Credit = 0
 	}
-	filePath := "Save.json"
+	ClearScreen()
+	var choix_weapon string
+	fmt.Println("Choose your class weapon :")
+	fmt.Println("")
+	fmt.Println("(1) One blade :")
+	fmt.Println(" []####[===========================================>")
+	fmt.Println("")
+	fmt.Println("(2) Two blade : ")
+	fmt.Println("[]####[===========================================>")
+	fmt.Println("<===========================================]####[]")
+	fmt.Println("")
+	fmt.Println("(3) Double blade : ")
+	fmt.Println("<===========================================]#####[]#####[===========================================>")
+	fmt.Scanln(&choix_weapon)
+	switch choix_weapon {
+	case "1":
+		Arme.Name = "Trainning blade"
+		Arme.DamageBonus = 10
+		Arme.PvBonus = 0
+		Arme.Color = "jaune"
+		Personnage.PV_max = 1000 + Arme.PvBonus + Armor.PvBonus
+		Personnage.PV_actuelle = 1000 + Arme.PvBonus + Armor.PvBonus
+		Personnage.Force = 10 + Arme.DamageBonus + Armor.DamageBonus
+	case "2":
+		Arme.Name = "Trainning blade"
+		Arme.DamageBonus = 10
+		Arme.PvBonus = 0
+		Arme.Color = "jaune"
+		ArmeSecondaire.Name = "Trainning blade"
+		ArmeSecondaire.DamageBonus = 10
+		ArmeSecondaire.PvBonus = 0
+		ArmeSecondaire.Color = "jaune"
+		Personnage.PV_max = 1000 + Arme.PvBonus + Armor.PvBonus + ArmeSecondaire.PvBonus
+		Personnage.PV_actuelle = 1000 + Arme.PvBonus + Armor.PvBonus + ArmeSecondaire.PvBonus
+		Personnage.Force = 10 + Arme.DamageBonus + Armor.DamageBonus + ArmeSecondaire.DamageBonus
+	case "3":
 
-	file, err := os.ReadFile(filePath)
-	if err != nil {
-		fmt.Println("Erreur lors de la lecture du fichier:", err)
-		return
-	}
-	fmt.Println(Personnage)
-	err = json.Unmarshal(file, &Personnage)
-	if err != nil {
-		fmt.Println("Erreur lors du décodage JSON:", err)
-		return
+		Arme.Name = "electric training stick"
+		Arme.DamageBonus = 10
+		Arme.PvBonus = 0
+		Arme.Color = "jaune"
+		Personnage.PV_max = 1000 + Arme.PvBonus + Armor.PvBonus
+		Personnage.PV_actuelle = 1000 + Arme.PvBonus + Armor.PvBonus
+		Personnage.Force = 10 + Arme.DamageBonus + Armor.DamageBonus
 	}
 }
