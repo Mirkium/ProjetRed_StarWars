@@ -1,51 +1,35 @@
 package marchand
 
 import (
+	save "Game/Jeux/Sauvegarde"
 	"fmt"
 )
 
-type Objects struct {
-	name        string
-	quantity    int
-	price       int
-	CoteForce   int
-	Description string
-}
 
-type march struct {
-	name    string
-	product []Objects
-}
-
-type User struct {
-	credit    int
-	coteForce int
-	bag       []Objects
-}
 
 var Utilisateur User
 
-func (m march) DisplayProduct() {
+func (m March) DisplayProduct() {
 	fmt.Println("=== Merchant ===")
 	for index, product := range m.product {
-		fmt.Printf("\t%d - %s price : %d, Remaining quantity : %d, Side of force required : %d,\n", (index + 1), product.name, product.price, product.quantity, product.CoteForce)
+		fmt.Printf("\t%d - %s price : %d, Remaining quantity : %d, Side of force required : %d,\n", (index + 1), product.Name, product.Price, product.Quantity, product.CoteForce)
 	}
 	fmt.Printf(" Remaining items: %d\n", m.MoneyRemaining())
 }
 
-func (m march) MoneyRemaining() int {
+func (m March) MoneyRemaining() int {
 	total := 0
 	for _, obj := range m.product {
-		total += obj.quantity
+		total += obj.Quantity
 	}
 	return total
 }
 
-func (m *march) DisplayMenu(u *User) {
+func (m *March) DisplayMenu(u *User) {
 	fmt.Println("List of choices : ")
 	for index, product := range m.product {
-		if product.quantity > 0 {
-			fmt.Printf("\t%d - Buy %s\n", (index + 1), product.name)
+		if product.Quantity > 0 {
+			fmt.Printf("\t%d - Buy %s\n", (index + 1), product.Name)
 		}
 	}
 	fmt.Println("Your choice?")
@@ -60,17 +44,17 @@ func (m *march) DisplayMenu(u *User) {
 
 	selectedProduct := &m.product[choix-1]
 
-	if selectedProduct.quantity <= 0 {
-		fmt.Printf("Item %s is no longer available from the merchant.\n", selectedProduct.name)
+	if selectedProduct.Quantity <= 0 {
+		fmt.Printf("Item %s is no longer available from the merchant.\n", selectedProduct.Name)
 	} else {
 		u.Buy(selectedProduct)
-		selectedProduct.quantity--
+		selectedProduct.Quantity--
 	}
 	Menu(u, m)
 }
 
-func (u *User) Buy(obj *Objects) {
-	if u.credit < obj.price {
+func (u *User) Buy(obj *save.Objects) {
+	if u.credit < obj.Price {
 		fmt.Println("Insufficient credit...")
 		return
 	}
@@ -89,54 +73,63 @@ func (u *User) Buy(obj *Objects) {
 		u.coteForce -= obj.CoteForce
 	}
 
-	u.credit -= obj.price
+	u.credit -= obj.Price
 	isFind := false
 	for index, objBag := range u.bag {
-		if objBag.name == obj.name {
+		if objBag.Name == obj.Name {
 			isFind = true
-			u.bag[index].quantity++
-			fmt.Printf("Item add : %s, quantity in inventory: %d\n", objBag.name, u.bag[index].quantity)
+			u.bag[index].Quantity++
+			fmt.Printf("Item add : %s, quantity in inventory: %d\n", objBag.Name, u.bag[index].Quantity)
 			break
 		}
 	}
 
 	if !isFind {
-		u.bag = append(u.bag, Objects{name: obj.name, quantity: 1, price: obj.price})
-		fmt.Printf("New item add in inventory : %s\n", obj.name)
+		u.bag = append(u.bag, save.Objects{Name: obj.Name, Quantity: 1, Price: obj.Price})
+		fmt.Printf("New item add in inventory : %s\n", obj.Name)
 	}
 
-	fmt.Printf("Purchase made : %s, remaining money : %d\n", obj.name, u.credit)
+	fmt.Printf("Purchase made : %s, remaining money : %d\n", obj.Name, u.credit)
 }
 
-func Menu(u *User, m *march) {
+func Menu(u *User, m *March) {
 	m.DisplayProduct()
 	m.DisplayMenu(u)
 }
 func Marchand(Credit int, CoteForce int) {
-	item01 := Objects{"kitpack",
-		5,
-		45,
-		0,
-		"Allows you to heal some of the player's missing HP."}
-	item02 := Objects{"Bandfill",
-		1,
-		20,
-		0,
-		" both wind and percussion instrument that requires great skills to master."}
-	item03 := Objects{"Hemorrhagic item",
-		20,
-		1,
-		0,
-		"allows you to create hemorrhage in the enemy who will receive the next attack, gradually removing HP"}
+	item01 := save.Objects{Name: "kitpack",
+		PvBonus:     20,
+		DamageBonus: 0,
+		Color:       "Green",
+		Quantity:    0,
+		Price:       45,
+		CoteForce:   0,
+		Description: "Allows you to heal some of the player's missing HP."}
+	item02 := save.Objects{Name: "Bandfill",
+		PvBonus:     23,
+		DamageBonus: 10,
+		Color:       "Brown",
+		Quantity:    1,
+		Price:       45,
+		CoteForce:   0,
+		Description: " both wind and percussion instrument that requires great skills to master."}
+	item03 := save.Objects{Name: "Hemorrhagic item",
+		PvBonus:     0,
+		DamageBonus: 20,
+		Color:       "Green and Purple",
+		Quantity:    1,
+		Price:       20,
+		CoteForce:   0,
+		Description: "allows you to create hemorrhage in the enemy who will receive the next attack, gradually removing HP"}
 	fmt.Println("")
-	fmt.Println(item01.name, " : ", item01.Description)
-	fmt.Println(item02.name, " : ", item02.Description)
-	fmt.Println(item03.name, " : ", item03.Description)
+	fmt.Println(item01.Name, " : ", item01.Description, item01.PvBonus, item01.DamageBonus, item01.Color)
+	fmt.Println(item02.Name, " : ", item02.Description, item02.PvBonus, item02.DamageBonus, item02.Color)
+	fmt.Println(item03.Name, " : ", item03.Description, item03.PvBonus, item03.DamageBonus, item03.Color)
 	fmt.Println("")
 	fmt.Println("credit : ", Utilisateur.credit, " | way Force : ", Utilisateur.coteForce)
 	fmt.Println("")
-	marchand := march{"Merchant", []Objects{item01, item02, item03}}
+	Marchand := March{"Merchant", []save.Objects{item01, item02, item03}}
 	Utilisateur.credit = Credit
 	Utilisateur.coteForce = CoteForce
-	Menu(&Utilisateur, &marchand)
+	Menu(&Utilisateur, &Marchand)
 }

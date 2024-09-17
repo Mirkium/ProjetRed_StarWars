@@ -23,12 +23,12 @@ func Republic() {
 		Arme.DamageBonus = 5
 		Arme.PvBonus = 0
 		Arme.Color = "Jaune"
-		Armor.Name = "Tenue de Padawan"
-		Armor.DamageBonus = 0
-		Armor.PvBonus = 10
-		Personnage.PV_max = 1000 + Arme.PvBonus + Armor.PvBonus
-		Personnage.PV_actuelle = 1000 + Arme.PvBonus + Armor.PvBonus
-		Personnage.Force = 10 + Arme.DamageBonus + Armor.DamageBonus
+		Armors.Name = "Tenue de Padawan"
+		Armors.DamageBonus = 0
+		Armors.PvBonus = 10
+		Personnage.PV_max = 1000 + Arme.PvBonus + Armors.PvBonus
+		Personnage.PV_actuelle = 1000 + Arme.PvBonus + Armors.PvBonus
+		Personnage.Force = 10 + Arme.DamageBonus + Armors.DamageBonus
 		Personnage.Level = 1
 		Personnage.CoteForce = 0
 		Personnage.Credit = 0
@@ -38,12 +38,12 @@ func Republic() {
 		Arme.DamageBonus = 5
 		Arme.PvBonus = 0
 		Arme.Color = "Jaune"
-		Armor.Name = "Tenue de Padawan"
-		Armor.DamageBonus = 0
-		Armor.PvBonus = 10
-		Personnage.PV_max = 1000 + Arme.PvBonus + Armor.PvBonus
-		Personnage.PV_actuelle = 1000 + Arme.PvBonus + Armor.PvBonus
-		Personnage.Force = 10 + Arme.DamageBonus + Armor.DamageBonus
+		Armors.Name = "Tenue de Padawan"
+		Armors.DamageBonus = 0
+		Armors.PvBonus = 10
+		Personnage.PV_max = 1000 + Arme.PvBonus + Armors.PvBonus
+		Personnage.PV_actuelle = 1000 + Arme.PvBonus + Armors.PvBonus
+		Personnage.Force = 10 + Arme.DamageBonus + Armors.DamageBonus
 		Personnage.Level = 1
 		Personnage.CoteForce = 0
 		Personnage.Credit = 0
@@ -77,9 +77,9 @@ func SithEmpire() {
 	case "1":
 		Campagne.Name = "Sith Warrior"
 		Campagne.Energie = 0
-		Armor.Name = "Tenue d'Acolyte"
-		Armor.DamageBonus = 0
-		Armor.PvBonus = 10
+		Armors.Name = "Tenue d'Acolyte"
+		Armors.DamageBonus = 0
+		Armors.PvBonus = 10
 
 		Personnage.Level = 1
 		Personnage.CoteForce = 0
@@ -87,9 +87,9 @@ func SithEmpire() {
 	case "2":
 		Campagne.Name = "Sith Assassin"
 		Campagne.Energie = 10
-		Armor.Name = "Tenue d'Acolyte"
-		Armor.DamageBonus = 0
-		Armor.PvBonus = 10
+		Armors.Name = "Tenue d'Acolyte"
+		Armors.DamageBonus = 0
+		Armors.PvBonus = 10
 		Personnage.Level = 1
 		Personnage.CoteForce = 0
 		Personnage.Credit = 0
@@ -114,9 +114,9 @@ func SithEmpire() {
 		Arme.DamageBonus = 10
 		Arme.PvBonus = 0
 		Arme.Color = "jaune"
-		Personnage.PV_max = 1000 + Arme.PvBonus + Armor.PvBonus
-		Personnage.PV_actuelle = 1000 + Arme.PvBonus + Armor.PvBonus
-		Personnage.Force = 10 + Arme.DamageBonus + Armor.DamageBonus
+		Personnage.PV_max = 1000 + Arme.PvBonus + Armors.PvBonus
+		Personnage.PV_actuelle = 1000 + Arme.PvBonus + Armors.PvBonus
+		Personnage.Force = 10 + Arme.DamageBonus + Armors.DamageBonus
 	case "2":
 		Arme.Name = "Trainning blade"
 		Arme.DamageBonus = 10
@@ -126,17 +126,17 @@ func SithEmpire() {
 		ArmeSecondaire.DamageBonus = 10
 		ArmeSecondaire.PvBonus = 0
 		ArmeSecondaire.Color = "jaune"
-		Personnage.PV_max = 1000 + Arme.PvBonus + Armor.PvBonus + ArmeSecondaire.PvBonus
-		Personnage.PV_actuelle = 1000 + Arme.PvBonus + Armor.PvBonus + ArmeSecondaire.PvBonus
-		Personnage.Force = 10 + Arme.DamageBonus + Armor.DamageBonus + ArmeSecondaire.DamageBonus
+		Personnage.PV_max = 1000 + Arme.PvBonus + Armors.PvBonus + ArmeSecondaire.PvBonus
+		Personnage.PV_actuelle = 1000 + Arme.PvBonus + Armors.PvBonus + ArmeSecondaire.PvBonus
+		Personnage.Force = 10 + Arme.DamageBonus + Armors.DamageBonus + ArmeSecondaire.DamageBonus
 	case "3":
 
 		Arme.Name = "electric training stick"
 		Arme.DamageBonus = 10
 		Arme.PvBonus = 0
 		Arme.Color = "jaune"
-		Personnage.PV_max = 1000 + Arme.PvBonus + Armor.PvBonus
-		Personnage.PV_actuelle = 1000 + Arme.PvBonus + Armor.PvBonus
-		Personnage.Force = 10 + Arme.DamageBonus + Armor.DamageBonus
+		Personnage.PV_max = 1000 + Arme.PvBonus + Armors.PvBonus
+		Personnage.PV_actuelle = 1000 + Arme.PvBonus + Armors.PvBonus
+		Personnage.Force = 10 + Arme.DamageBonus + Armors.DamageBonus
 	}
 }

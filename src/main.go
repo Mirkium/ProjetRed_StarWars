@@ -15,7 +15,7 @@ import (
 func main() {
 	//objet1 := save.ItemPacket{save.Sabre_laser, 1}
 	//objet2 := save.ItemPacket{save.Casque, 2}
-	save.CreatePerso()
+	//save.CreatePerso()
 	/*save.Ajout_Item(objet1)
 	save.Ajout_Item(objet1)
 	save.Ajout_Item(objet2)
@@ -42,5 +42,22 @@ func main() {
 		}
 	case "Sith Assassin" :
 		assassinSith.SithAssassin()
+
 	}
+	/*
+		DA := save.Abilite{"attaqua basic", 0, 10, 0}
+		DA2 := save.Abilite{"eclai de force", 0, 100, 0}
+		MC := save.Perso{"Toto", 0, 100, 100, 1, 2, 100, 0, DA, save.Personnage.Classe}
+		Mob := save.Mob{"Dark Vador", 50, 50, 0, []save.Abilite{DA2}, map[save.Item]int{}, 10}
+		Fight(&MC, &Mob, false)
+=======
+	}
+	DA := save.Abilite{"attaqua basic", 0, 10, 0}
+	DA2 := save.Abilite{"eclai de force", 0, 100, 0}
+	MC := save.Perso{"Toto", 0, 100, 100, 1, 2, 100, 0, DA, save.Personnage.Classe}
+	Mob := save.Mob{"Dark Vador", 50, 50, 0, []save.Abilite{DA2}, map[save.Item]int{}, 10}
+	Fight(&MC, &Mob, false)
+>>>>>>> 483ff21fc78e6c7864dbb022c25543abae595241
+	*/
+
 }

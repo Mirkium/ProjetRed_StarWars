@@ -10,10 +10,9 @@ type Perso struct {
 	Credit          int
 	Xp_Actu         int
 	AbilitieDefault Abilite
-	Weapon          struct{}
-	SecondaryWeapon struct{}
-	Armure          struct{}
-	Inventaire      struct{}
+	Weapon          []Weapon
+	SecondaryWeapon []Weapon
+	Armure          []Armor
 	Classe          classe
 }
 
@@ -22,6 +21,10 @@ type Weapon struct {
 	DamageBonus int
 	PvBonus     int
 	Color       string
+	Quantity    int
+	Price       int
+	CoteForce   int
+	Description string
 }
 
 type SecondaryWeapon struct {
@@ -33,14 +36,41 @@ type SecondaryWeapon struct {
 
 type Armure struct {
 	Name        string
-	DamageBonus int
 	PvBonus     int
+	DamageBonus int
+	Color       string
+	Quantity    int
+	Price       int
+	CoteForce   int
+	Description string
+}
+
+type Armor struct {
+	Name        string
+	PvBonus     int
+	DamageBonus int
+	Color       string
+	Quantity    int
+	Price       int
+	CoteForce   int
+	Description string
 }
 
 type classe struct {
 	Name    string
 	Energie int
 	Abilite []Abilite
+}
+
+type Objects struct {
+	Name        string
+	PvBonus     int
+	DamageBonus int
+	Color       string
+	Quantity    int
+	Price       int
+	CoteForce   int
+	Description string
 }
 
 //=========================================Abilite<=================================
@@ -50,6 +80,10 @@ type Abilite struct {
 	EnergieCost int
 	Dammage     int
 	Heal        int
+	Quantity    int
+	Price       int
+	CoteForce   int
+	Description string
 }
 
 //=========================================MOB=======================================
@@ -58,7 +92,6 @@ type Mob struct {
 	Name        string
 	PV_max      int
 	PV_actuelle int
-	Damage      int
 	Armor       int
 	Abilitie    []Abilite
 	Drop        map[Item]int
