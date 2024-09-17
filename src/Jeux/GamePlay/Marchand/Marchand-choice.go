@@ -7,13 +7,13 @@ import (
 
 type mar struct {
 	name    string
-	product []Weapon
+	product []save.Weapon
 }
 
 type play struct {
 	credit    int
 	coteForce int
-	bag       []Weapon
+	bag       []save.Weapon
 }
 
 func Merchantchoice(u *save.Perso, m *mar) {
@@ -35,15 +35,19 @@ func Merchantchoice(u *save.Perso, m *mar) {
 	switch choix {
 	case 1:
 		fmt.Println("Vous avez choisi de rencontrer le marchand d'armes.")
-		m := marcht{"fernuiqgrh", []Weapon{}}
+		m := marcht{"fernuiqgrh", []save.Weapon{}}
 		p := player{u.Credit, u.CoteForce, u.Weapon}
 		MenuWeapon(&p, &m)
 	case 2:
 		fmt.Println("Vous avez choisi de rencontrer le marchand d'abilités.")
-		MenuAbiliti(u, m)
+		m2 := merc{"feznog", []save.Abilite{}}
+		p2 := joue{u.Credit, u.CoteForce, u.Classe.Abilite}
+		MenuAbilitie(&p2, &m2)
 	case 3:
 		fmt.Println("Vous avez choisi de rencontrer le marchand d'armures.")
-		MenuArmor(u, m)
+		m3 := merchant{"geoiqhm", []save.Armor{}}
+		p3 := plyer{u.Credit, u.CoteForce, u.Armure}
+		MenuArmor(&p3, &m3)
 	case 4:
 		fmt.Println("Au revoir !")
 	default:

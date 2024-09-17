@@ -27,6 +27,7 @@ func main() {
 		guerrierSith.SithWarrior()
 	case "Sith Assassin" :
 		assassinSith.SithAssassin()
+<<<<<<< HEAD
 	}*/
 	/*
 		DA := save.Abilite{"attaqua basic", 0, 10, 0}
@@ -34,5 +35,13 @@ func main() {
 		MC := save.Perso{"Toto", 0, 100, 100, 1, 2, 100, 0, DA, save.Personnage.Classe}
 		Mob := save.Mob{"Dark Vador", 50, 50, 0, []save.Abilite{DA2}, map[save.Item]int{}, 10}
 		Fight(&MC, &Mob, false)
+=======
+	}
+	DA := save.Abilite{"attaqua basic", 0, 10, 0}
+	DA2 := save.Abilite{"eclai de force", 0, 100, 0}
+	MC := save.Perso{"Toto", 0, 100, 100, 1, 2, 100, 0, DA, save.Personnage.Classe}
+	Mob := save.Mob{"Dark Vador", 50, 50, 0, []save.Abilite{DA2}, map[save.Item]int{}, 10}
+	Fight(&MC, &Mob, false)
+>>>>>>> 483ff21fc78e6c7864dbb022c25543abae595241
 	*/
 }

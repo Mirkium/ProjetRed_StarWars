@@ -1,26 +1,19 @@
 package marchand
 
 import (
+	save "Game/Jeux/Sauvegarde"
 	"fmt"
 )
 
-type Weapon struct {
-	name        string
-	quantity    int
-	price       int
-	CoteForce   int
-	Description string
-}
-
 type marcht struct {
 	name    string
-	product []Weapon
+	product []save.Weapon
 }
 
 type player struct {
 	credit    int
 	coteForce int
-	bag       []Weapon
+	bag       []save.Weapon
 }
 
 var joueur player
@@ -28,7 +21,7 @@ var joueur player
 func (m marcht) DisplayProduct() {
 	fmt.Println("=== Weapon Merchant ===")
 	for index, product := range m.product {
-		fmt.Printf("\t%d - %s price : %d, Remaining quantity : %d, Side of force required : %d,\n", (index + 1), product.name, product.price, product.quantity, product.CoteForce)
+		fmt.Printf("\t%d - %s price : %d, Remaining quantity : %d, Side of force required : %d,\n", (index + 1), product.Name, product.Price, product.Quantity, product.CoteForce)
 	}
 	fmt.Printf(" Remaining items: %d\n", m.MoneyRemaining())
 }
@@ -36,7 +29,7 @@ func (m marcht) DisplayProduct() {
 func (m marcht) MoneyRemaining() int {
 	total := 0
 	for _, obj := range m.product {
-		total += obj.quantity
+		total += obj.Quantity
 	}
 	return total
 }
@@ -44,8 +37,8 @@ func (m marcht) MoneyRemaining() int {
 func (m *marcht) DisplayMenu(u *player) {
 	fmt.Println("List of choices : ")
 	for index, product := range m.product {
-		if product.quantity > 0 {
-			fmt.Printf("\t%d - Buy %s\n", (index + 1), product.name)
+		if product.Quantity > 0 {
+			fmt.Printf("\t%d - Buy %s\n", (index + 1), product.Name)
 		}
 	}
 	fmt.Println("Your choice?")
@@ -60,17 +53,17 @@ func (m *marcht) DisplayMenu(u *player) {
 
 	selectedProduct := &m.product[choix-1]
 
-	if selectedProduct.quantity <= 0 {
-		fmt.Printf("Item %s is no longer available from the merchant.\n", selectedProduct.name)
+	if selectedProduct.Quantity <= 0 {
+		fmt.Printf("Item %s is no longer available from the merchant.\n", selectedProduct.Name)
 	} else {
 		u.Buy(selectedProduct)
-		selectedProduct.quantity--
+		selectedProduct.Quantity--
 	}
 	MenuWeapon(u, m)
 }
 
-func (u *player) Buy(obj *Weapon) {
-	if u.credit < obj.price {
+func (u *player) Buy(obj *save.Weapon) {
+	if u.credit < obj.Price {
 		fmt.Println("Insufficient credit...")
 		return
 	}
@@ -89,23 +82,23 @@ func (u *player) Buy(obj *Weapon) {
 		u.coteForce -= obj.CoteForce
 	}
 
-	u.credit -= obj.price
+	u.credit -= obj.Price
 	isFind := false
 	for index, objBag := range u.bag {
-		if objBag.name == obj.name {
+		if objBag.Name == obj.Name {
 			isFind = true
-			u.bag[index].quantity++
-			fmt.Printf("Item add : %s, quantity in inventory: %d\n", objBag.name, u.bag[index].quantity)
+			u.bag[index].Quantity++
+			fmt.Printf("Item add : %s, quantity in inventory: %d\n", objBag.Name, u.bag[index].Quantity)
 			break
 		}
 	}
 
 	if !isFind {
-		u.bag = append(u.bag, Weapon{name: obj.name, quantity: 1, price: obj.price})
-		fmt.Printf("New item add in inventory : %s\n", obj.name)
+		u.bag = append(u.bag, save.Weapon{Name: obj.Name, Quantity: 1, Price: obj.Price})
+		fmt.Printf("New item add in inventory : %s\n", obj.Name)
 	}
 
-	fmt.Printf("Purchase made : %s, remaining money : %d\n", obj.name, u.credit)
+	fmt.Printf("Purchase made : %s, remaining money : %d\n", obj.Name, u.credit)
 }
 
 func MenuWeapon(u *player, m *marcht) {
@@ -113,36 +106,49 @@ func MenuWeapon(u *player, m *marcht) {
 	m.DisplayMenu(u)
 }
 func MarchandWeapon(Credit int, CoteForce int) {
-	item01 := Weapon{"LaserSaber Sith",
-		45,
-		5,
-		-50,
-		"melee weapon, This weapon requires training and its use is greatly improved when its user uses the Force."}
-	item02 := Weapon{"LaserSaber Jedi",
-		20,
-		1,
-		50,
-		" melee weapon, this weapon requires training and its use is greatly improved when its user uses the Force."}
-	item03 := Weapon{"E-11 Blaster Rifle",
-		20,
-		1,
-		0,
-		"A powerful, light and compact weapon, the E-11 was used widely throughout the galaxy for nearly a century and a half."}
-	item04 := Weapon{"Electro-Proton Bomb",
-		2000,
-		1,
-		0,
-		"Invented on behalf of the Grand Army of the Republic by Doctor Sionver Boll, the Electro-Proton Bomb released upon its explosion an electromagnetic pulse capable of destroying hundreds of Battle Droids in a few seconds.."}
+	item01 := save.Weapon{Name: "LaserSaber Sith",
+		PvBonus:     50,
+		DamageBonus: 0,
+		Color:       "Red",
+		Quantity:    5,
+		Price:       45,
+		CoteForce:   -50,
+		Description: "melee weapon, This weapon requires training and its use is greatly improved when its user uses the Force."}
+	item02 := save.Weapon{Name: "LaserSaber Jedi",
+		PvBonus:     50,
+		DamageBonus: 10,
+		Color:       "Blue",
+		Quantity:    1,
+		Price:       45,
+		CoteForce:   50,
+		Description: " melee weapon, this weapon requires training and its use is greatly improved when its user uses the Force."}
+	item03 := save.Weapon{Name: "E-11 Blaster Rifle",
+		PvBonus:     30,
+		DamageBonus: 10,
+		Color:       "Black and White",
+		Quantity:    1,
+		Price:       30,
+		CoteForce:   0,
+		Description: "A powerful, light and compact weapon, the E-11 was used widely throughout the galaxy for nearly a century and a half."}
+	item04 := save.Weapon{Name: "Electro-Proton Bomb",
+		PvBonus:     100,
+		DamageBonus: 0,
+		Color:       "Purle in explosion",
+		Quantity:    3,
+		Price:       20000,
+		CoteForce:   0,
+		Description: "Invented on behalf of the Grand Army of the Republic by Doctor Sionver Boll, the Electro-Proton Bomb released upon its explosion an electromagnetic pulse capable of destroying hundreds of Battle Droids in a few seconds.."}
 	fmt.Println("")
-	fmt.Println(item01.name, " : ", item01.Description)
-	fmt.Println(item02.name, " : ", item02.Description)
-	fmt.Println(item03.name, " : ", item03.Description)
-	fmt.Println(item04.name, " : ", item04.Description)
+	fmt.Println(item01.Name, " : ", item01.Description, item01.PvBonus, item01.DamageBonus, item01.Color)
+	fmt.Println(item02.Name, " : ", item02.Description, item02.PvBonus, item02.DamageBonus, item02.Color)
+	fmt.Println(item03.Name, " : ", item03.Description, item03.PvBonus, item03.DamageBonus, item03.Color)
+	fmt.Println(item04.Name, " : ", item04.Description, item04.PvBonus, item04.DamageBonus, item04.Color)
 	fmt.Println("")
 	fmt.Println("credit : ", Utilisateur.credit, " | way Force : ", Utilisateur.coteForce)
 	fmt.Println("")
-	marchand := marcht{"Merchant", []Weapon{item01, item02, item03}}
+	marchand := marcht{"Merchant", []save.Weapon{item01, item02, item03}}
 	Utilisateur.credit = Credit
 	Utilisateur.coteForce = CoteForce
 	MenuWeapon(&joueur, &marchand)
+
 }

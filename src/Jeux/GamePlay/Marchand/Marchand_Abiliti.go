@@ -1,51 +1,44 @@
 package marchand
 
 import (
+	save "Game/Jeux/Sauvegarde"
 	"fmt"
 )
 
-type Abiliti struct {
-	name        string
-	quantity    int
-	price       int
-	CoteForce   int
-	Description string
-}
-
-type merch struct {
+type merc struct {
 	name    string
-	product []Abiliti
+	product []save.Abilite
 }
 
-type p1 struct {
+type joue struct {
 	credit    int
 	coteForce int
-	bag       []Abiliti
+	bag       []save.Abilite
 }
 
-var joueur1 p1
+var p1 joue
 
-func (m merch) DisplayProduct() {
-	fmt.Println("=== Armor Merchant ===")
+func (m merc) DisplayProduct() {
+	fmt.Println("=== Abilitie Merchant ===")
 	for index, product := range m.product {
-		fmt.Printf("\t%d - %s price : %d, Remaining quantity : %d, Side of force required : %d,\n", (index + 1), product.name, product.price, product.quantity, product.CoteForce)
+		fmt.Printf("\t%d - %s price : %d, Remaining quantity : %d, Side of force required : %d,\n", (index + 1), product.Name, product.Price, product.Quantity, product.CoteForce)
 	}
 	fmt.Printf(" Remaining items: %d\n", m.MoneyRemaining())
 }
 
-func (m merch) MoneyRemaining() int {
+func (m merc) MoneyRemaining() int {
 	total := 0
 	for _, obj := range m.product {
-		total += obj.quantity
+		total += obj.Quantity
 	}
 	return total
 }
 
-func (m *merch) DisplayMenu(u *p1) {
+func (m *merc) DisplayMenu(u *joue) {
 	fmt.Println("List of choices : ")
 	for index, product := range m.product {
-		if product.quantity > 0 {
-			fmt.Printf("\t%d - Buy %s\n", (index + 1), product.name)
+		if product.Quantity > 0 {
+			fmt.Printf("\t%d - Buy %s\n", (index + 1), product.Name)
 		}
 	}
 	fmt.Println("Your choice?")
@@ -60,17 +53,17 @@ func (m *merch) DisplayMenu(u *p1) {
 
 	selectedProduct := &m.product[choix-1]
 
-	if selectedProduct.quantity <= 0 {
-		fmt.Printf("Item %s is no longer available from the merchant.\n", selectedProduct.name)
+	if selectedProduct.Quantity <= 0 {
+		fmt.Printf("Item %s is no longer available from the merchant.\n", selectedProduct.Name)
 	} else {
 		u.Buy(selectedProduct)
-		selectedProduct.quantity--
+		selectedProduct.Quantity--
 	}
-	MenuAbiliti(u, m)
+	MenuAbilitie(u, m)
 }
 
-func (u *p1) Buy(obj *Abiliti) {
-	if u.credit < obj.price {
+func (u *joue) Buy(obj *save.Abilite) {
+	if u.credit < obj.Price {
 		fmt.Println("Insufficient credit...")
 		return
 	}
@@ -89,60 +82,72 @@ func (u *p1) Buy(obj *Abiliti) {
 		u.coteForce -= obj.CoteForce
 	}
 
-	u.credit -= obj.price
+	u.credit -= obj.Price
 	isFind := false
 	for index, objBag := range u.bag {
-		if objBag.name == obj.name {
+		if objBag.Name == obj.Name {
 			isFind = true
-			u.bag[index].quantity++
-			fmt.Printf("Item add : %s, quantity in inventory: %d\n", objBag.name, u.bag[index].quantity)
+			u.bag[index].Quantity++
+			fmt.Printf("Item add : %s, quantity in inventory: %d\n", objBag.Name, u.bag[index].Quantity)
 			break
 		}
 	}
 
 	if !isFind {
-		u.bag = append(u.bag, Abiliti{name: obj.name, quantity: 1, price: obj.price})
-		fmt.Printf("New item add in inventory : %s\n", obj.name)
+		u.bag = append(u.bag, save.Abilite{Name: obj.Name, Quantity: 1, Price: obj.Price})
+		fmt.Printf("New item add in inventory : %s\n", obj.Name)
 	}
 
-	fmt.Printf("Purchase made : %s, remaining money : %d\n", obj.name, u.credit)
+	fmt.Printf("Purchase made : %s, remaining money : %d\n", obj.Name, u.credit)
 }
 
-func MenuAbiliti(u *p1, m *merch) {
+func MenuAbilitie(u *joue, m *merc) {
 	m.DisplayProduct()
 	m.DisplayMenu(u)
 }
-func MarchandAbiliti(Credit int, CoteForce int) {
-	item01 := Abiliti{"darth vader helmet",
-		500,
-		1,
-		-10000,
-		"Having been badly burned on Moustafar, Darth Vader had no choice but to wear a breathing helmet to survive."}
-	item02 := Abiliti{"stormtrooper armor",
-		100,
-		5,
-		0,
-		"Developed by the Imperial Department of Military Research, the Stormtrooper's armor was made from simple, inexpensive materials. So the entire armor was made of 18 removable white plastic composite plates that the Stormtroopers slipped over a special black tunic."}
-	item03 := Abiliti{"Jedi Battle Armor",
-		20,
-		1,
-		0,
-		"During the Sith Wars, the Jedi were forced to take on greater protection. These were unique armors, fashioned for each Jedi."}
-	item04 := Abiliti{"Gungan Personal Energy Shield",
-		2000,
-		1,
-		0,
-		"roduit à l'époque de la République Galactique par la Ligue de Défense d'Otoh Gunga sur Naboo, le Bouclier Energétique Personnel Gungan était un moyen de protection employé par les soldats et éclaireurs de la Grande Armée du Général Tobler Ceel."}
+func MarchandAbilitie(Credit int, CoteForce int) {
+	item01 := save.Abilite{Name: "Absorption of life",
+		EnergieCost: 200,
+		Dammage:     100,
+		Heal:        100,
+		Quantity:    1,
+		Price:       50000,
+		CoteForce:   -10000,
+		Description: "Life absorption is a dark power allowing you to vampirize an opponent's life force."}
+	item02 := save.Abilite{Name: "Force Shield",
+		EnergieCost: 100,
+		Dammage:     0,
+		Heal:        500,
+		Quantity:    5,
+		Price:       20000,
+		CoteForce:   0,
+		Description: "Power of the Force allowing its user to protect themselves from any type of aggression."}
+	item03 := save.Abilite{Name: "Sith Alchemy",
+		EnergieCost: 1000,
+		Dammage:     1000,
+		Heal:        0,
+		Quantity:    1,
+		Price:       30000,
+		CoteForce:   -10000,
+		Description: "Sith power allowing its user to manipulate very powerful lightning."}
+	item04 := save.Abilite{Name: "Convection",
+		EnergieCost: 200,
+		Dammage:     200,
+		Heal:        0,
+		Quantity:    3,
+		Price:       10000,
+		CoteForce:   0,
+		Description: "Convection allowed burning at a distance or on contact by concentrating the Force in the wrists."}
 	fmt.Println("")
-	fmt.Println(item01.name, " : ", item01.Description)
-	fmt.Println(item02.name, " : ", item02.Description)
-	fmt.Println(item03.name, " : ", item03.Description)
-	fmt.Println(item04.name, " : ", item04.Description)
+	fmt.Println(item01.Name, " : ", item01.Description, item01.EnergieCost, item01.Dammage, item01.Heal)
+	fmt.Println(item02.Name, " : ", item02.Description, item02.EnergieCost, item02.Dammage, item02.Heal)
+	fmt.Println(item03.Name, " : ", item03.Description, item03.EnergieCost, item03.Dammage, item03.Heal)
+	fmt.Println(item04.Name, " : ", item04.Description, item04.EnergieCost, item04.Dammage, item04.Heal)
 	fmt.Println("")
 	fmt.Println("credit : ", Utilisateur.credit, " | way Force : ", Utilisateur.coteForce)
 	fmt.Println("")
-	merchant := merch{"Merchant", []Abiliti{item01, item02, item03}}
+	marchand := merc{"Merchant", []save.Abilite{item01, item02, item03}}
 	Utilisateur.credit = Credit
 	Utilisateur.coteForce = CoteForce
-	MenuAbiliti(&joueur1, &merchant)
+	MenuAbilitie(&p1, &marchand)
 }
