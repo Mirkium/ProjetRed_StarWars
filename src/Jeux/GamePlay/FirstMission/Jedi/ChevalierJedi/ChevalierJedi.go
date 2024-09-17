@@ -1,9 +1,10 @@
 package chevalierjedi
 
 import (
+	Fight "Game/Jeux/GamePlay/Fight"
+	save "Game/Jeux/Sauvegarde"
 	"fmt"
 	"time"
-	save "Game/Jeux/Sauvegarde"
 )
 
 const (
@@ -782,7 +783,7 @@ func JediKnight() {
 	fmt.Println(" ")
 	time.Sleep(time.Second * 2)
 	save.ClearScreen()
-	fmt.Println("                          Republic....",Reset)
+	fmt.Println("                          Republic....", Reset)
 	fmt.Println(" ")
 	fmt.Println("  ")
 	fmt.Println("  ")
@@ -801,4 +802,37 @@ func JediKnight() {
 	fmt.Println(" ")
 	time.Sleep(time.Second * 2)
 	save.ClearScreen()
+}
+
+func CampaingJediKnight(MC *save.Perso) {
+	//fonction a appeller apres l'intro
+	//Prologue
+	fmt.Println("Clone : Are you okay general?")
+	time.Sleep(3 * time.Second)
+	fmt.Println("\nYou : Yes, I fell asleep a bit")
+	time.Sleep(3 * time.Second)
+	fmt.Println("\nClone : Need I remind you of the current mission?")
+	time.Sleep(3 * time.Second)
+	fmt.Println("\nYou : Yes please")
+	time.Sleep(3 * time.Second)
+	fmt.Println("\n Clone : Okay")
+	save.ClearScreen()
+	time.Sleep(3 * time.Second)
+	fmt.Println("Clone : We are on Coruscant, on the floor minus 32.")
+	time.Sleep(3 * time.Second)
+	save.ClearScreen()
+	fmt.Println("Clone : Our mission is to bring criminals who are in relation with the head of black march.")
+	time.Sleep(3 * time.Second)
+	save.ClearScreen()
+	fmt.Println("Clone : WARNING")
+	time.Sleep(3 * time.Second)
+	save.ClearScreen()
+	fmt.Println("Unknown : You are lucky " + MC.Name + ".")
+	time.Sleep(2 * time.Second)
+	fmt.Println("\nYou : Oh, you think, so we will see.")
+	time.Sleep(4 * time.Second)
+	save.ClearScreen()
+	fmt.Println("You decide to fight this unknown enemy.")
+	unknown := save.Mob{"brigands", 100, 100, 0, []save.Abilite{save.Abilite{"punch", 0, 10, 0, 0, 0, 0, "Just a punch"}}, map[save.Item]int{}, 100}
+	Fight.Fight(MC, &unknown, true)
 }
