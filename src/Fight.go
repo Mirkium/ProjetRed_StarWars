@@ -19,6 +19,7 @@ func ChangeLevel(P *save.Perso, mobKilled save.Mob) {
 func Fight(P *save.Perso, mob *save.Mob, PlayerStart bool) {
 	rand.Seed(time.Now().UnixNano())
 	save.ClearScreen()
+	//affichage du debut de combat
 	fmt.Println("Vous décidez d'affronter " + mob.Name)
 	fmt.Println("Le combat will start in 3")
 	time.Sleep(1 * time.Second)
@@ -114,14 +115,14 @@ func Fight(P *save.Perso, mob *save.Mob, PlayerStart bool) {
 					}
 				}
 			}
+			time.Sleep(2 * time.Second)
+			fmt.Println("Il vous reste " + strconv.Itoa(P.PV_actuelle) + " / " + strconv.Itoa(P.PV_max))
+			time.Sleep(2 * time.Second)
 			if P.PV_actuelle <= 0 {
 				save.ClearScreen()
 				fmt.Println("Vous avez été vaincu.")
 				FightIsOver = true
 			} else {
-				time.Sleep(2 * time.Second)
-				fmt.Println("Il vous reste " + strconv.Itoa(P.PV_actuelle) + " / " + strconv.Itoa(P.PV_max))
-				time.Sleep(2 * time.Second)
 				fmt.Println("Il reste " + strconv.Itoa(mob.PV_actuelle) + " / " + strconv.Itoa(mob.PV_max) + " à " + mob.Name)
 				time.Sleep(5 * time.Second)
 			}

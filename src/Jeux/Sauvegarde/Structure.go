@@ -10,17 +10,10 @@ type Perso struct {
 	Credit          int
 	Xp_Actu         int
 	AbilitieDefault Abilite
-<<<<<<< HEAD
-	//Weapon          struct{}
-	//Armure          struct{}
-	//Inventaire      struct{}
-	Classe classe
-=======
 	Weapon          []Weapon
 	Armure          struct{}
 	Inventaire      struct{}
 	Classe          classe
->>>>>>> 303821bd3eee723783fb6890c44f1fa131a8beb3
 }
 
 type Weapon struct {

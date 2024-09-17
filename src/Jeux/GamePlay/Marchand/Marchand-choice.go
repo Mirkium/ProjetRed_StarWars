@@ -36,7 +36,7 @@ func Merchantchoice(u *save.Perso, m *mar) {
 	case 1:
 		fmt.Println("Vous avez choisi de rencontrer le marchand d'armes.")
 		m := marcht{"fernuiqgrh", []Weapon{}}
-		p = player{u.Credit, u.CoteForce, u.Weapon}
+		p := player{u.Credit, u.CoteForce, u.Weapon}
 		MenuWeapon(&p, &m)
 	case 2:
 		fmt.Println("Vous avez choisi de rencontrer le marchand d'abilités.")
