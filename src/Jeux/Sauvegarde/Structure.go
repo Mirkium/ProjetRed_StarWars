@@ -74,8 +74,7 @@ type Mob struct {
 	Name        string
 	PV_max      int
 	PV_actuelle int
-	Damage      int
-	ArmorInt    int
+	Armor       int
 	Abilitie    []Abilite
 	Drop        map[Item]int
 	XpDrop      int

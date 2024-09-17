@@ -18,15 +18,30 @@ func ChangeLevel(P *save.Perso, mobKilled save.Mob) {
 
 func Fight(P *save.Perso, mob *save.Mob, PlayerStart bool) {
 	rand.Seed(time.Now().UnixNano())
+	save.ClearScreen()
 	fmt.Println("Vous décidez d'affronter " + mob.Name)
+	fmt.Println("Le combat will start in 3")
+	time.Sleep(1 * time.Second)
+	save.ClearScreen()
+	fmt.Println("Vous décidez d'affronter " + mob.Name)
+	fmt.Println("Le combat will start in 2")
+	time.Sleep(1 * time.Second)
+	save.ClearScreen()
+	fmt.Println("Vous décidez d'affronter " + mob.Name)
+	fmt.Println("Le combat will start in 1")
+	time.Sleep(1 * time.Second)
+	save.ClearScreen()
 	FightIsOver := false
 	for !FightIsOver {
 		if PlayerStart {
 			if P.PV_actuelle <= 0 {
-				fmt.Println("Vous avez été vaincu.")
+				save.ClearScreen() //combat termine
 				FightIsOver = true
 			} else {
 				//affichage
+				save.ClearScreen()
+				fmt.Println("Il reste " + strconv.Itoa(mob.PV_actuelle) + " / " + strconv.Itoa(mob.PV_max) + " à " + mob.Name)
+				time.Sleep(2 * time.Second)
 				AbilitieList := []save.Abilite{}
 				fmt.Println(" =================Abilités=================")
 				fmt.Println("|" + save.Formatage("Name", 16) + "|" + save.Formatage("Dammage", 8) + "|" + save.Formatage("Energie", 8) + "|")
@@ -40,6 +55,8 @@ func Fight(P *save.Perso, mob *save.Mob, PlayerStart bool) {
 					}
 				}
 				fmt.Println(" ==========================================")
+				time.Sleep(5 * time.Second)
+				fmt.Println("Quelle abilité souhaitez vous choisir ?")
 				//choix des abilites
 				var choix string
 				fmt.Scanln(&choix)
@@ -52,19 +69,26 @@ func Fight(P *save.Perso, mob *save.Mob, PlayerStart bool) {
 					} else {
 						//quelle abilite veux tu choisir
 						save.ClearScreen()
-						if len(AbilitieList) > int(e+48) {
+						c, _ := strconv.Atoi(choix)
+						if len(AbilitieList) < c { //verifier le type rune
 							fmt.Println("Mauvais input, trop grand")
 						} else {
-							if AbilitieList[int(e+48)].EnergieCost > P.Classe.Energie {
+							if AbilitieList[c].EnergieCost > P.Classe.Energie {
 								fmt.Println("Manque d'energie")
 							} else {
-								P.Classe.Energie -= AbilitieList[int(e+48)].EnergieCost
-								mob.PV_actuelle -= AbilitieList[int(e)+48].Dammage //ne pas oubliez l'application de l'armure
-								if P.PV_max > P.PV_actuelle+AbilitieList[int(e+48)].Heal {
-									P.PV_actuelle += AbilitieList[int(e+48)].Heal
+								fmt.Println("Vous décidez d'utliser " + AbilitieList[c].Name)
+								P.Classe.Energie -= AbilitieList[c].EnergieCost
+								mob.PV_actuelle -= AbilitieList[c].Dammage //ne pas oubliez l'application de l'armure
+								if P.PV_max > P.PV_actuelle+AbilitieList[c].Heal {
+									P.PV_actuelle += AbilitieList[c].Heal
 								} else {
 									P.PV_actuelle = P.PV_max
 								}
+								time.Sleep(2 * time.Second)
+								fmt.Println("Il vous reste " + strconv.Itoa(P.PV_actuelle) + " / " + strconv.Itoa(P.PV_max))
+								time.Sleep(2 * time.Second)
+								fmt.Println("Il reste " + strconv.Itoa(mob.PV_actuelle) + " / " + strconv.Itoa(mob.PV_max) + " à " + mob.Name)
+								time.Sleep(3 * time.Second)
 							}
 						}
 					}
@@ -77,19 +101,38 @@ func Fight(P *save.Perso, mob *save.Mob, PlayerStart bool) {
 				fmt.Println("Le mob adverse a été batue")
 				FightIsOver = true
 			} else {
+				save.ClearScreen()
+				fmt.Println("Ennemis : " + mob.Name)
 				randomInt := rand.Intn(len(mob.Abilitie))
+				fmt.Println(mob.Name + " a décidé d'utiliser " + mob.Abilitie[randomInt].Name)
 				P.PV_actuelle -= mob.Abilitie[randomInt].Dammage
-				if mob.PV_max < mob.PV_actuelle+mob.Abilitie[randomInt].Heal {
-					mob.PV_actuelle += mob.Abilitie[randomInt].Heal
-				} else {
-					mob.PV_actuelle = mob.PV_max
+				if mob.Abilitie[randomInt].Heal > 0 {
+					if mob.PV_max < mob.PV_actuelle+mob.Abilitie[randomInt].Heal {
+						mob.PV_actuelle += mob.Abilitie[randomInt].Heal
+					} else {
+						mob.PV_actuelle = mob.PV_max
+					}
 				}
 			}
 			if P.PV_actuelle <= 0 {
+				save.ClearScreen()
 				fmt.Println("Vous avez été vaincu.")
 				FightIsOver = true
+			} else {
+				time.Sleep(2 * time.Second)
+				fmt.Println("Il vous reste " + strconv.Itoa(P.PV_actuelle) + " / " + strconv.Itoa(P.PV_max))
+				time.Sleep(2 * time.Second)
+				fmt.Println("Il reste " + strconv.Itoa(mob.PV_actuelle) + " / " + strconv.Itoa(mob.PV_max) + " à " + mob.Name)
+				time.Sleep(5 * time.Second)
 			}
 			PlayerStart = true
 		}
+	}
+	//afichage de fin de combat
+	save.ClearScreen()
+	if P.PV_actuelle <= 0 {
+		fmt.Println(mob.Name + " vous a vaincue, il lui reste " + strconv.Itoa(mob.PV_actuelle) + "pv.")
+	} else {
+		fmt.Println("Vous avez vaincue " + mob.Name + ", il vous reste " + strconv.Itoa(P.PV_actuelle) + "pv.")
 	}
 }
