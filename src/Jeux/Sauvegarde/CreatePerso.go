@@ -90,7 +90,11 @@ func CaracteristiquePerso() {
 		Republic()
 	case "2":
 		SithEmpire()
+	default:
+		ClearScreen()
+		CaracteristiquePerso()
 	}
+
 }
 
 func ClearScreen() {
