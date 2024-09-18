@@ -806,6 +806,7 @@ func JediKnight() {
 	fmt.Println(" ")
 	time.Sleep(time.Second * 2)
 	ClearScreen()
+	Quete1(&save.Personnage)
 }
 
 func ClearScreen() {
@@ -825,37 +826,35 @@ func ClearScreen() {
 }
 
 func CampaingJediKnight(MC *save.Perso) {
-	//fonction a appeller apres l'intro
+	Quete1(MC)
 }
 
 func Quete1(MC *save.Perso) {
 	//Prologue
-	/*
-		ClearScreen()
-		fmt.Println("Clone : Are you okay general?")
-		time.Sleep(3 * time.Second)
-		fmt.Println("\nYou : Yes, I fell asleep a bit")
-		time.Sleep(3 * time.Second)
-		fmt.Println("\nClone : Need I remind you of the current mission?")
-		time.Sleep(3 * time.Second)
-		fmt.Println("\nYou : Yes please")
-		time.Sleep(3 * time.Second)
-		fmt.Println("\n Clone : Okay")
-		save.ClearScreen()
-		time.Sleep(3 * time.Second)
-		fmt.Println("Clone : We are on Coruscant, on the floor minus 32.")
-		time.Sleep(3 * time.Second)
-		save.ClearScreen()
-		fmt.Println("Clone : Our mission is to bring criminals who are in relation with the head of black march.")
-		time.Sleep(3 * time.Second)
-		save.ClearScreen()
-		fmt.Println("Clone : WARNING")
-		time.Sleep(3 * time.Second)
-		save.ClearScreen()
-		fmt.Println("Unknown : You are lucky " + MC.Name + ".")
-		time.Sleep(2 * time.Second)
-		fmt.Println("\nYou : Oh, you think, so we will see.")
-	*/
+	ClearScreen()
+	fmt.Println("Clone : Are you okay general?")
+	time.Sleep(3 * time.Second)
+	fmt.Println("\nYou : Yes, I fell asleep a bit")
+	time.Sleep(3 * time.Second)
+	fmt.Println("\nClone : Need I remind you of the current mission?")
+	time.Sleep(3 * time.Second)
+	fmt.Println("\nYou : Yes please")
+	time.Sleep(3 * time.Second)
+	fmt.Println("\n Clone : Okay")
+	save.ClearScreen()
+	time.Sleep(3 * time.Second)
+	fmt.Println("Clone : We are on Coruscant, on the floor minus 32.")
+	time.Sleep(3 * time.Second)
+	save.ClearScreen()
+	fmt.Println("Clone : Our mission is to bring criminals who are in relation with the head of black march.")
+	time.Sleep(3 * time.Second)
+	save.ClearScreen()
+	fmt.Println("Clone : WARNING")
+	time.Sleep(3 * time.Second)
+	save.ClearScreen()
+	fmt.Println("Unknown : You are lucky " + MC.Name + ".")
+	time.Sleep(2 * time.Second)
+	fmt.Println("\nYou : Oh, you think, so we will see.")
 	time.Sleep(4 * time.Second)
 	save.ClearScreen()
 	fmt.Println("You decide to fight this unknown enemy.")
@@ -922,4 +921,17 @@ func Quete1(MC *save.Perso) {
 	ClearScreen()
 	fmt.Println("Clone : Congratulations")
 	time.Sleep(3 * time.Second)
+}
+
+func Quete2(MC *save.Perso) {
+	//quete ou on doit escorter un senateur
+	fmt.Println("")
+}
+
+func Quete3(MC *save.Perso) {
+	//quete on doit combatre trois ennemies redoutable
+}
+
+func quete4(MC *save.Perso) {
+	//quete final
 }
