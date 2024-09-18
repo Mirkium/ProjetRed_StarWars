@@ -24,6 +24,7 @@ var Arme Weapon
 var ArmeSecondaire SecondaryWeapon
 var Armors Armure
 var Campagne classe
+var Capacite Abilite
 
 func CreatePerso() {
 	var choix string

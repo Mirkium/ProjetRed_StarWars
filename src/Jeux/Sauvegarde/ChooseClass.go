@@ -99,21 +99,21 @@ func SithEmpire() {
 	fmt.Println("Choose your class weapon :")
 	fmt.Println("")
 	fmt.Println("(1) One blade :")
-	fmt.Println(" []####[===========================================>")
+	fmt.Println("[]####[", Red, "===========================================>", Reset)
 	fmt.Println("")
 	fmt.Println("(2) Two blade : ")
-	fmt.Println("[]####[===========================================>")
-	fmt.Println("<===========================================]####[]")
+	fmt.Println("[]####[", Red, "===========================================>", Reset)
+	fmt.Println(Red, "<===========================================", Reset, "]####[]")
 	fmt.Println("")
 	fmt.Println("(3) Double blade : ")
-	fmt.Println("<===========================================]#####[]#####[===========================================>")
+	fmt.Println(Red, "<===========================================", Reset, "]#####[]#####[", Red, "===========================================>", Reset)
 	fmt.Scanln(&choix_weapon)
 	switch choix_weapon {
 	case "1":
 		Arme.Name = "Trainning blade"
 		Arme.DamageBonus = 10
 		Arme.PvBonus = 0
-		Arme.Color = "jaune"
+		Arme.Color = "\033[93m"
 		Personnage.PV_max = 1000 + Arme.PvBonus + Armors.PvBonus
 		Personnage.PV_actuelle = 1000 + Arme.PvBonus + Armors.PvBonus
 		Personnage.Force = 10 + Arme.DamageBonus + Armors.DamageBonus
@@ -121,20 +121,21 @@ func SithEmpire() {
 		Arme.Name = "Trainning blade"
 		Arme.DamageBonus = 10
 		Arme.PvBonus = 0
-		Arme.Color = "jaune"
+		Arme.Color = "\033[93m"
 		ArmeSecondaire.Name = "Trainning blade"
 		ArmeSecondaire.DamageBonus = 10
 		ArmeSecondaire.PvBonus = 0
-		ArmeSecondaire.Color = "jaune"
+		ArmeSecondaire.Color = "\033[93m"
 		Personnage.PV_max = 1000 + Arme.PvBonus + Armors.PvBonus + ArmeSecondaire.PvBonus
 		Personnage.PV_actuelle = 1000 + Arme.PvBonus + Armors.PvBonus + ArmeSecondaire.PvBonus
 		Personnage.Force = 10 + Arme.DamageBonus + Armors.DamageBonus + ArmeSecondaire.DamageBonus
+		Personnage.IsSecondaryWeapon = true
 	case "3":
 
 		Arme.Name = "electric training stick"
 		Arme.DamageBonus = 10
 		Arme.PvBonus = 0
-		Arme.Color = "jaune"
+		Arme.Color = "\033[93m"
 		Personnage.PV_max = 1000 + Arme.PvBonus + Armors.PvBonus
 		Personnage.PV_actuelle = 1000 + Arme.PvBonus + Armors.PvBonus
 		Personnage.Force = 10 + Arme.DamageBonus + Armors.DamageBonus
