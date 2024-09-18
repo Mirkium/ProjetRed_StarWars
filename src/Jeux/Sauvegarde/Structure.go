@@ -1,19 +1,6 @@
 package Sauvegarde
 
 type Perso struct {
-	Name            string
-	Level           int
-	PV_max          int
-	PV_actuelle     int
-	Force           int
-	CoteForce       int
-	Credit          int
-	Xp_Actu         int
-	AbilitieDefault Abilite
-	Weapon          []Weapon
-	SecondaryWeapon []Weapon
-	Armure          []Armor
-	Classe          Classe
 	Name              string
 	Level             int
 	PV_max            int
@@ -27,7 +14,7 @@ type Perso struct {
 	IsSecondaryWeapon bool
 	SecondaryWeapon   []Weapon
 	Armure            []Armor
-	Classe            classe
+	Classe            Classe
 }
 
 type Weapon struct {
@@ -52,21 +39,11 @@ type SecondaryWeapon struct {
 	Description string
 }
 
-type Armure struct {
-	Name        string
-	PvBonus     int
-	DamageBonus int
-	Color       string
-	Quantity    int
-	Price       int
-	CoteForce   int
-	Description string
-}
-
 type Armor struct {
 	Name        string
 	PvBonus     int
 	DamageBonus int
+	StatArmor   int
 	Color       string
 	Quantity    int
 	Price       int
