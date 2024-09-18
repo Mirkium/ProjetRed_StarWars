@@ -1,12 +1,12 @@
 package chevalierjedi
 
 import (
-	Fight "Game/Jeux/GamePlay/Fight"
 	save "Game/Jeux/Sauvegarde"
 	"fmt"
 	"os"
 	"os/exec"
 	"runtime"
+	"strconv"
 	"time"
 )
 
@@ -825,7 +825,11 @@ func ClearScreen() {
 
 func CampaingJediKnight(MC *save.Perso) {
 	//fonction a appeller apres l'intro
+}
+
+func Quete1(MC *save.Perso) {
 	//Prologue
+	ClearScreen()
 	fmt.Println("Clone : Are you okay general?")
 	time.Sleep(3 * time.Second)
 	fmt.Println("\nYou : Yes, I fell asleep a bit")
@@ -852,6 +856,67 @@ func CampaingJediKnight(MC *save.Perso) {
 	time.Sleep(4 * time.Second)
 	save.ClearScreen()
 	fmt.Println("You decide to fight this unknown enemy.")
-	unknown := save.Mob{"brigands", 100, 100, 0, []save.Abilite{save.Abilite{"punch", 0, 10, 0, 0, 0, 0, "Just a punch"}}, map[save.Item]int{}, 100}
-	Fight.Fight(MC, &unknown, true)
+	//unknown := save.Mob{"Brigand", 100, 100, 0, []save.Abilite{save.Abilite{"punch", 0, 10, 0, 0, 0, 0, "Just a punch"}}, map[save.Item]int{}, 100}
+	//Fight.Fight(MC, &unknown, true)
+	//fin du premier combat imperdable pour le joueur
+	ClearScreen()
+	fmt.Println("Brigands : I didn't expect a jedi, I must contact the chef.")
+	time.Sleep(3 * time.Second)
+	ClearScreen()
+	fmt.Println("Clone : do we follow him ?")
+	time.Sleep(1 * time.Second)
+	fmt.Println("\n(1) Yes, but beware of the trap			(2) Yes, hurry up")
+	fmt.Println("\nEnter 1 or 2")
+	var choix string
+	fmt.Scan(&choix)
+	_, verification := strconv.Atoi(choix)
+	for verification != nil {
+		fmt.Println("for ", verification)
+		ClearScreen()
+		choix = ""
+		fmt.Println("(1) Yes, but beware of the trap			(2) Yes, hurry up")
+		fmt.Println("\nWe ask you to enter 1 or 2")
+		fmt.Scan(&choix)
+		_, verification = strconv.Atoi(choix)
+	}
+	ClearScreen()
+	fmt.Println("Clone : Ok")
+	time.Sleep(3 * time.Second)
+	ClearScreen()
+	fmt.Println("You follow the Brigand")
+	time.Sleep(2 * time.Second)
+	ClearScreen()
+	fmt.Println("you enter an abandoned building")
+	time.Sleep(3 * time.Second)
+	ClearScreen()
+	fmt.Println("Unknown : Hi jedi")
+	time.Sleep(2 * time.Second)
+	ClearScreen()
+	fmt.Println("The chief of the brignands takes you aside and decide to fight you")
+	time.Sleep(3 * time.Second)
+	ClearScreen()
+	//BrignandsChief := save.Mob{"Brignands's chief", 200, 200, 10, []save.Abilite{save.Abilite{"punch", 0, 10, 0, 0, 0, 0, "Just a punch"}, save.Abilite{"Blaster", 0, 20, 0, 0, 0, 0, "A classic Blaster"}}, map[save.Item]int{}, 0}
+	/*if !Fight.Fight(MC, &BrignandsChief, true) {
+		ClearScreen()
+		fmt.Println("Do you want to restart Yes(1) or No(2) ?")
+		fmt.Scan(&choix)
+		answer, verification := strconv.Atoi(choix)
+		for verification != nil && !(answer == 1 || answer == 2) {
+			ClearScreen()
+			choix = ""
+			fmt.Println("Do you want to restart Yes(1) or No(2) ?")
+			fmt.Println("\nWe ask you to enter 1 or 2")
+			fmt.Scan(&choix)
+			answer, verification = strconv.Atoi(choix)
+		}
+		if answer == 1 {
+			MC.PV_actuelle = (MC.PV_max * 4) / 3
+			Quete1(MC)
+		} else {
+			return
+		}
+	}*/
+	ClearScreen()
+	fmt.Println("Clone : Congratulations")
+	time.Sleep(3 * time.Second)
 }

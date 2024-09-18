@@ -11,7 +11,7 @@ func Intro() {
 	fmt.Println("                      FAR AWAY...", Reset)
 	time.Sleep(time.Second * 2)
 	clearScreen()
-	fmt.Println(Yellow, "      ▄▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀█     █▀▀▀▀▀█        █▀▀▀▀▀▀▀▀▀▄        ")
+	fmt.Println(Yellow, "     ▄▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀█     █▀▀▀▀▀█        █▀▀▀▀▀▀▀▀▀▄        ")
 	fmt.Println("     █                            █    █   ▄   █       █   █▀▀▄   █        ")
 	fmt.Println("      ▀▄    ▀█▀▀▀▀▀▀▀▀▀█   █▀▀▀▀▀▀▀   █   █ █   █      █   ▀▀▀  ▄▀         ")
 	fmt.Println("        ▀▄    ▀▄       █   █         █   █▄▄▄█   █     █   ▄     ▀▄        ")

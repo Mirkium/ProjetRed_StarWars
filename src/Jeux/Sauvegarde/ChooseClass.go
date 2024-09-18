@@ -1,9 +1,7 @@
 package Sauvegarde
 
 import (
-	"encoding/json"
 	"fmt"
-	"os"
 )
 
 func Republic() {
@@ -26,9 +24,10 @@ func Republic() {
 		Armors.Name = "Tenue de Padawan"
 		Armors.DamageBonus = 0
 		Armors.PvBonus = 10
+		Armors.StatArmor = 3
 		Personnage.PV_max = 1000 + Arme.PvBonus + Armors.PvBonus
 		Personnage.PV_actuelle = 1000 + Arme.PvBonus + Armors.PvBonus
-		Personnage.Force = 10 + Arme.DamageBonus + Armors.DamageBonus
+		Personnage.Force = 20 + Arme.DamageBonus + Armors.DamageBonus
 		Personnage.Level = 1
 		Personnage.CoteForce = 0
 		Personnage.Credit = 0
@@ -41,26 +40,18 @@ func Republic() {
 		Armors.Name = "Tenue de Padawan"
 		Armors.DamageBonus = 0
 		Armors.PvBonus = 10
+		Armors.StatArmor = 3
 		Personnage.PV_max = 1000 + Arme.PvBonus + Armors.PvBonus
 		Personnage.PV_actuelle = 1000 + Arme.PvBonus + Armors.PvBonus
-		Personnage.Force = 10 + Arme.DamageBonus + Armors.DamageBonus
+		Personnage.Force = 20 + Arme.DamageBonus + Armors.DamageBonus
 		Personnage.Level = 1
 		Personnage.CoteForce = 0
 		Personnage.Credit = 0
+	default:
+		ClearScreen()
+		Republic()
 	}
-	filePath := "Save.json"
-
-	file, err := os.ReadFile(filePath)
-	if err != nil {
-		fmt.Println("Erreur lors de la lecture du fichier:", err)
-		return
-	}
-
-	err = json.Unmarshal(file, &Personnage)
-	if err != nil {
-		fmt.Println("Erreur lors du décodage JSON:", err)
-		return
-	}
+	ChooseWeapon()
 }
 
 func SithEmpire() {
@@ -80,7 +71,7 @@ func SithEmpire() {
 		Armors.Name = "Tenue d'Acolyte"
 		Armors.DamageBonus = 0
 		Armors.PvBonus = 10
-
+		Armors.StatArmor = 3
 		Personnage.Level = 1
 		Personnage.CoteForce = 0
 		Personnage.Credit = 0
@@ -90,53 +81,63 @@ func SithEmpire() {
 		Armors.Name = "Tenue d'Acolyte"
 		Armors.DamageBonus = 0
 		Armors.PvBonus = 10
+		Armors.StatArmor = 3
 		Personnage.Level = 1
 		Personnage.CoteForce = 0
 		Personnage.Credit = 0
+	default:
+		ClearScreen()
+		SithEmpire()
 	}
+	ChooseWeapon()
+
+}
+
+func ChooseWeapon() {
 	ClearScreen()
 	var choix_weapon string
 	fmt.Println("Choose your class weapon :")
 	fmt.Println("")
 	fmt.Println("(1) One blade :")
-	fmt.Println(" []####[===========================================>")
+	fmt.Println("[]####[", Red, "===========================================>", Reset)
 	fmt.Println("")
 	fmt.Println("(2) Two blade : ")
-	fmt.Println("[]####[===========================================>")
-	fmt.Println("<===========================================]####[]")
+	fmt.Println("[]####[", Red, "===========================================>", Reset)
+	fmt.Println(Red, "<===========================================", Reset, "]####[]")
 	fmt.Println("")
 	fmt.Println("(3) Double blade : ")
-	fmt.Println("<===========================================]#####[]#####[===========================================>")
+	fmt.Println(Red, "<===========================================", Reset, "]#####[]#####[", Red, "===========================================>", Reset)
 	fmt.Scanln(&choix_weapon)
 	switch choix_weapon {
 	case "1":
 		Arme.Name = "Trainning blade"
 		Arme.DamageBonus = 10
 		Arme.PvBonus = 0
-		Arme.Color = "jaune"
+		Arme.Color = "\033[93m"
 		Personnage.PV_max = 1000 + Arme.PvBonus + Armors.PvBonus
 		Personnage.PV_actuelle = 1000 + Arme.PvBonus + Armors.PvBonus
-		Personnage.Force = 10 + Arme.DamageBonus + Armors.DamageBonus
+		Personnage.Force = 20 + Arme.DamageBonus + Armors.DamageBonus
 	case "2":
 		Arme.Name = "Trainning blade"
 		Arme.DamageBonus = 10
 		Arme.PvBonus = 0
-		Arme.Color = "jaune"
+		Arme.Color = "\033[93m"
 		ArmeSecondaire.Name = "Trainning blade"
 		ArmeSecondaire.DamageBonus = 10
 		ArmeSecondaire.PvBonus = 0
-		ArmeSecondaire.Color = "jaune"
+		ArmeSecondaire.Color = "\033[93m"
 		Personnage.PV_max = 1000 + Arme.PvBonus + Armors.PvBonus + ArmeSecondaire.PvBonus
 		Personnage.PV_actuelle = 1000 + Arme.PvBonus + Armors.PvBonus + ArmeSecondaire.PvBonus
-		Personnage.Force = 10 + Arme.DamageBonus + Armors.DamageBonus + ArmeSecondaire.DamageBonus
+		Personnage.Force = 20 + Arme.DamageBonus + Armors.DamageBonus + ArmeSecondaire.DamageBonus
+		Personnage.IsSecondaryWeapon = true
 	case "3":
 
 		Arme.Name = "electric training stick"
 		Arme.DamageBonus = 10
 		Arme.PvBonus = 0
-		Arme.Color = "jaune"
+		Arme.Color = "\033[93m"
 		Personnage.PV_max = 1000 + Arme.PvBonus + Armors.PvBonus
 		Personnage.PV_actuelle = 1000 + Arme.PvBonus + Armors.PvBonus
-		Personnage.Force = 10 + Arme.DamageBonus + Armors.DamageBonus
+		Personnage.Force = 20 + Arme.DamageBonus + Armors.DamageBonus
 	}
 }

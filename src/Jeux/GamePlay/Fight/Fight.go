@@ -1,6 +1,6 @@
 package Fight
 
-import (
+/*import (
 	save "Game/Jeux/Sauvegarde"
 	"fmt"
 	"math/rand"
@@ -14,9 +14,10 @@ func ChangeLevel(P *save.Perso, mobKilled save.Mob) {
 		P.Xp_Actu -= 1000 * P.Level
 		P.Level++
 	}
+	fmt.Printf("You are level %d", P.Level)
 }
 
-func Fight(P *save.Perso, mob *save.Mob, PlayerStart bool) {
+func Fight(P *save.Perso, mob *save.Mob, PlayerStart bool) bool {
 	rand.Seed(time.Now().UnixNano())
 	save.ClearScreen()
 	//affichage du debut de combat
@@ -44,55 +45,49 @@ func Fight(P *save.Perso, mob *save.Mob, PlayerStart bool) {
 				fmt.Println("Il reste " + strconv.Itoa(mob.PV_actuelle) + " / " + strconv.Itoa(mob.PV_max) + " à " + mob.Name)
 				time.Sleep(2 * time.Second)
 				AbilitieList := []save.Abilite{}
-				fmt.Println(" =================Abilités=================")
-				fmt.Println("|" + save.Formatage("Name", 16) + "|" + save.Formatage("Dammage", 8) + "|" + save.Formatage("Energie", 8) + "|")
-				fmt.Println("|" + save.Formatage(P.AbilitieDefault.Name, 16) + "|" + save.Formatage(strconv.Itoa(P.AbilitieDefault.Dammage), 8) + "|" + save.Formatage(strconv.Itoa(P.AbilitieDefault.EnergieCost), 8) + "|")
+				fmt.Println(" ==================Abilités==================")
+				fmt.Println("|" + save.Formatage("Name", 16) + "|" + save.Formatage("Dammage", 8) + "|" + save.Formatage("Energie", 8) + "|  index   |")
+				fmt.Println("|" + save.Formatage(P.AbilitieDefault.Name, 16) + "|" + save.Formatage(strconv.Itoa(P.AbilitieDefault.Dammage), 8) + "|" + save.Formatage(strconv.Itoa(P.AbilitieDefault.EnergieCost), 8) + "|" + save.Formatage(strconv.Itoa(1), 7) + "|")
 				AbilitieList = append(AbilitieList, P.AbilitieDefault)
 				if len(P.Classe.Abilite) != 0 {
 					//affichage des abilite de la classe
-					for _, element := range P.Classe.Abilite {
-						fmt.Println("|" + save.Formatage(element.Name, 16) + "|" + save.Formatage(strconv.Itoa(element.Dammage), 8) + "|" + save.Formatage(strconv.Itoa(element.EnergieCost), 8) + "|")
+					for in, element := range P.Classe.Abilite {
+						fmt.Println("|" + save.Formatage(element.Name, 16) + "|" + save.Formatage(strconv.Itoa(element.Dammage), 8) + "|" + save.Formatage(strconv.Itoa(element.EnergieCost), 8) + "|" + save.Formatage(strconv.Itoa(in+2), 7) + "|")
 						AbilitieList = append(AbilitieList, element)
 					}
 				}
 				fmt.Println(" ==========================================")
-				time.Sleep(5 * time.Second)
+				time.Sleep(3 * time.Second)
 				fmt.Println("Quelle abilité souhaitez vous choisir ?")
 				//choix des abilites
 				var choix string
-				fmt.Scanln(&choix)
-				if len(choix) != 1 {
-					fmt.Println("Mauvais input")
+				fmt.Scan(&choix)
+				answer, verification := strconv.Atoi(choix)
+				for verification != nil && !(answer >= 1 && answer <= len(AbilitieList)) {
+					save.ClearScreen()
+					choix = ""
+					//refaire l'affichage des abilité
+					fmt.Println("Bad input")
+					fmt.Println("Quelle abilité souhaitez vous choisir ?")
+					fmt.Scan(&choix)
+					answer, verification = strconv.Atoi(choix)
 				}
-				for _, e := range choix {
-					if !(e >= '0' && e < '9') {
-						fmt.Print("mauvais input")
+				if AbilitieList[answer-1].EnergieCost > P.Classe.Energie {
+					fmt.Println("Manque d'energie")
+				} else {
+					fmt.Println("Vous décidez d'utliser " + AbilitieList[answer-1].Name)
+					P.Classe.Energie -= AbilitieList[answer-1].EnergieCost
+					mob.PV_actuelle -= AbilitieList[answer-1].Dammage //ne pas oubliez l'application de l'armure
+					if P.PV_max > P.PV_actuelle+AbilitieList[answer-1].Heal {
+						P.PV_actuelle += AbilitieList[answer-1].Heal
 					} else {
-						//quelle abilite veux tu choisir
-						save.ClearScreen()
-						c, _ := strconv.Atoi(choix)
-						if len(AbilitieList) < c { //verifier le type rune
-							fmt.Println("Mauvais input, trop grand")
-						} else {
-							if AbilitieList[c].EnergieCost > P.Classe.Energie {
-								fmt.Println("Manque d'energie")
-							} else {
-								fmt.Println("Vous décidez d'utliser " + AbilitieList[c].Name)
-								P.Classe.Energie -= AbilitieList[c].EnergieCost
-								mob.PV_actuelle -= AbilitieList[c].Dammage //ne pas oubliez l'application de l'armure
-								if P.PV_max > P.PV_actuelle+AbilitieList[c].Heal {
-									P.PV_actuelle += AbilitieList[c].Heal
-								} else {
-									P.PV_actuelle = P.PV_max
-								}
-								time.Sleep(2 * time.Second)
-								fmt.Println("Il vous reste " + strconv.Itoa(P.PV_actuelle) + " / " + strconv.Itoa(P.PV_max))
-								time.Sleep(2 * time.Second)
-								fmt.Println("Il reste " + strconv.Itoa(mob.PV_actuelle) + " / " + strconv.Itoa(mob.PV_max) + " à " + mob.Name)
-								time.Sleep(3 * time.Second)
-							}
-						}
+						P.PV_actuelle = P.PV_max
 					}
+					time.Sleep(2 * time.Second)
+					fmt.Println("Il vous reste " + strconv.Itoa(P.PV_actuelle) + " / " + strconv.Itoa(P.PV_max))
+					time.Sleep(2 * time.Second)
+					fmt.Println("Il reste " + strconv.Itoa(mob.PV_actuelle) + " / " + strconv.Itoa(mob.PV_max) + " à " + mob.Name)
+					time.Sleep(3 * time.Second)
 				}
 			}
 			PlayerStart = false
@@ -133,7 +128,10 @@ func Fight(P *save.Perso, mob *save.Mob, PlayerStart bool) {
 	save.ClearScreen()
 	if P.PV_actuelle <= 0 {
 		fmt.Println(mob.Name + " vous a vaincue, il lui reste " + strconv.Itoa(mob.PV_actuelle) + "pv.")
+		return false
 	} else {
 		fmt.Println("Vous avez vaincue " + mob.Name + ", il vous reste " + strconv.Itoa(P.PV_actuelle) + "pv.")
+		return true
 	}
 }
+*/
