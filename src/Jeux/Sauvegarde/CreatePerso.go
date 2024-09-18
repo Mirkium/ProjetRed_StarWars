@@ -23,7 +23,7 @@ var Personnage Perso
 var Arme Weapon
 var ArmeSecondaire SecondaryWeapon
 var Armors Armure
-var Campagne classe
+var Campagne Classe
 
 func CreatePerso() {
 	var choix string
@@ -89,7 +89,11 @@ func CaracteristiquePerso() {
 		Republic()
 	case "2":
 		SithEmpire()
+	default:
+		ClearScreen()
+		CaracteristiquePerso()
 	}
+
 }
 
 func ClearScreen() {

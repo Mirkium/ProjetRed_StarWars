@@ -13,7 +13,7 @@ type Perso struct {
 	Weapon          []Weapon
 	SecondaryWeapon []Weapon
 	Armure          []Armor
-	Classe          classe
+	Classe          Classe
 }
 
 type Weapon struct {
@@ -56,7 +56,7 @@ type Armor struct {
 	Description string
 }
 
-type classe struct {
+type Classe struct {
 	Name    string
 	Energie int
 	Abilite []Abilite
