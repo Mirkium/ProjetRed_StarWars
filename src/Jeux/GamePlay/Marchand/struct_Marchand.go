@@ -20,6 +20,7 @@ type Marcht struct {
 	product []save.Weapon
 }
 
+// marchand weapon
 type Player struct {
 	credit    int
 	coteForce int
@@ -31,6 +32,7 @@ type March struct {
 	product []save.Objects
 }
 
+// marchand Item
 type User struct {
 	credit    int
 	coteForce int
@@ -42,6 +44,7 @@ type Merchant struct {
 	product []save.Armor
 }
 
+// marchand Armor
 type Plyer struct {
 	credit    int
 	coteForce int
@@ -53,6 +56,7 @@ type Merc struct {
 	product []save.Abilite
 }
 
+// marchand Abiliti
 type Joue struct {
 	credit    int
 	coteForce int
