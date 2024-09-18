@@ -1,7 +1,6 @@
 package chevalierjedi
 
 import (
-	Fight "Game/Jeux/GamePlay/Fight"
 	save "Game/Jeux/Sauvegarde"
 	"fmt"
 	"os"
@@ -857,8 +856,8 @@ func Quete1(MC *save.Perso) {
 	time.Sleep(4 * time.Second)
 	save.ClearScreen()
 	fmt.Println("You decide to fight this unknown enemy.")
-	unknown := save.Mob{"Brigand", 100, 100, 0, []save.Abilite{save.Abilite{"punch", 0, 10, 0, 0, 0, 0, "Just a punch"}}, map[save.Item]int{}, 100}
-	Fight.Fight(MC, &unknown, true)
+	//unknown := save.Mob{"Brigand", 100, 100, 0, []save.Abilite{save.Abilite{"punch", 0, 10, 0, 0, 0, 0, "Just a punch"}}, map[save.Item]int{}, 100}
+	//Fight.Fight(MC, &unknown, true)
 	//fin du premier combat imperdable pour le joueur
 	ClearScreen()
 	fmt.Println("Brigands : I didn't expect a jedi, I must contact the chef.")
@@ -896,8 +895,8 @@ func Quete1(MC *save.Perso) {
 	fmt.Println("The chief of the brignands takes you aside and decide to fight you")
 	time.Sleep(3 * time.Second)
 	ClearScreen()
-	BrignandsChief := save.Mob{"Brignands's chief", 200, 200, 10, []save.Abilite{save.Abilite{"punch", 0, 10, 0, 0, 0, 0, "Just a punch"}, save.Abilite{"Blaster", 0, 20, 0, 0, 0, 0, "A classic Blaster"}}, map[save.Item]int{}, 0}
-	if !Fight.Fight(MC, &BrignandsChief, true) {
+	//BrignandsChief := save.Mob{"Brignands's chief", 200, 200, 10, []save.Abilite{save.Abilite{"punch", 0, 10, 0, 0, 0, 0, "Just a punch"}, save.Abilite{"Blaster", 0, 20, 0, 0, 0, 0, "A classic Blaster"}}, map[save.Item]int{}, 0}
+	/*if !Fight.Fight(MC, &BrignandsChief, true) {
 		ClearScreen()
 		fmt.Println("Do you want to restart Yes(1) or No(2) ?")
 		fmt.Scan(&choix)
@@ -916,7 +915,7 @@ func Quete1(MC *save.Perso) {
 		} else {
 			return
 		}
-	}
+	}*/
 	ClearScreen()
 	fmt.Println("Clone : Congratulations")
 	time.Sleep(3 * time.Second)
