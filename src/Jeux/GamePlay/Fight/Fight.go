@@ -62,6 +62,7 @@ func Fight(P *save.Perso, mob *save.Mob, PlayerStart bool) bool {
 				//choix des abilites
 				var choix string
 				fmt.Scan(&choix)
+				fmt.Println(len(AbilitieList))
 				answer, verification := strconv.Atoi(choix)
 				for verification != nil && !(answer >= 1 && answer <= len(AbilitieList)) {
 					save.ClearScreen()
