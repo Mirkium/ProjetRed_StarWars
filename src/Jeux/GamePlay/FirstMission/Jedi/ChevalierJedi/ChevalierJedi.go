@@ -1,6 +1,7 @@
 package chevalierjedi
 
 import (
+	fight "Game/Jeux/GamePlay/Fight"
 	save "Game/Jeux/Sauvegarde"
 	"fmt"
 	"os"
@@ -805,6 +806,7 @@ func JediKnight() {
 	fmt.Println(" ")
 	time.Sleep(time.Second * 2)
 	ClearScreen()
+	Quete1(&save.Personnage)
 }
 
 func ClearScreen() {
@@ -824,7 +826,7 @@ func ClearScreen() {
 }
 
 func CampaingJediKnight(MC *save.Perso) {
-	//fonction a appeller apres l'intro
+	Quete1(MC)
 }
 
 func Quete1(MC *save.Perso) {
@@ -895,8 +897,8 @@ func Quete1(MC *save.Perso) {
 	fmt.Println("The chief of the brignands takes you aside and decide to fight you")
 	time.Sleep(3 * time.Second)
 	ClearScreen()
-	//BrignandsChief := save.Mob{"Brignands's chief", 200, 200, 10, []save.Abilite{save.Abilite{"punch", 0, 10, 0, 0, 0, 0, "Just a punch"}, save.Abilite{"Blaster", 0, 20, 0, 0, 0, 0, "A classic Blaster"}}, map[save.Item]int{}, 0}
-	/*if !Fight.Fight(MC, &BrignandsChief, true) {
+	BrignandsChief := save.Mob{"Brignands's chief", 200, 200, 10, []save.Abilite{save.Abilite{"punch", 0, 10, 0, 0, 0, 0, "Just a punch"}, save.Abilite{"Blaster", 0, 20, 0, 0, 0, 0, "A classic Blaster"}}, map[save.Item]int{}, 0}
+	if !fight.Fight(MC, &BrignandsChief, true) {
 		ClearScreen()
 		fmt.Println("Do you want to restart Yes(1) or No(2) ?")
 		fmt.Scan(&choix)
@@ -915,8 +917,111 @@ func Quete1(MC *save.Perso) {
 		} else {
 			return
 		}
-	}*/
+	}
 	ClearScreen()
 	fmt.Println("Clone : Congratulations")
 	time.Sleep(3 * time.Second)
+}
+
+func Quete2(MC *save.Perso) {
+	//quete ou on doit escorter un senateur
+	fmt.Printf("Sheev Palpatine : Hi %s, I'll send you to escort the senator Bail Organa to an appointment.\n\n", MC.Name)
+	time.Sleep(2 * time.Second)
+	fmt.Printf("You : Okay, okay, I'll take care of it.")
+	time.Sleep(2 * time.Second)
+	ClearScreen()
+	fmt.Printf("Guard : Hello %s, nice to meet you.\n\n", MC.Name)
+	time.Sleep(2 * time.Second)
+	fmt.Printf("You : Me too, so, what is the risk of the mission ?\n\n")
+	time.Sleep(2 * time.Second)
+	fmt.Printf("Guard : We think a bounty hunter was hired to eliminate the senator.\n\n")
+	time.Sleep(2 * time.Second)
+	fmt.Printf("You : Okay, so let's go.")
+	ClearScreen()
+	fmt.Printf("You walk next to Bail Organa when you listen an explosion")
+	time.Sleep(2 * time.Second)
+	ClearScreen()
+	fmt.Printf("You : Caution!")
+	time.Sleep(2 * time.Second)
+	ClearScreen()
+	fmt.Printf("You keep the senator out of danger")
+	time.Sleep(2 * time.Second)
+	ClearScreen()
+	fmt.Printf("You go on the sniper")
+	time.Sleep(2 * time.Second)
+	ClearScreen()
+	fmt.Printf("You : In the name of the republic, stop.\n\n")
+	time.Sleep(2 * time.Second)
+	fmt.Printf("Bounty hunter : Certainly not.")
+	ClearScreen()
+	BountyHunter := save.Mob{"Bounty hunter", 300, 300, 20, []save.Abilite{save.Abilite{"Grenade", 0, 30, 0, 1, 0, 0, "A grenade who explose."}, save.Abilite{"Self-Healing", 0, 0, 20, 1, 0, 0, "Self heal"}, save.Abilite{"Sniper shot", 0, 30, 0, 1, 0, 0, "Sniper shot abilite"}}, map[save.Item]int{}, 500}
+	if !fight.Fight(MC, &BountyHunter, true) {
+		MC.PV_actuelle = MC.PV_actuelle * 3 / 4
+		Quete2(MC)
+	}
+	ClearScreen()
+	fmt.Printf("Congratulation")
+}
+
+func End(MC *save.Perso) {
+	fmt.Println("Dooku : Welcomme young Jedi")
+	time.Sleep(2 * time.Second)
+	fmt.Printf("\nYou : Hello traitor")
+	time.Sleep(2 * time.Second)
+	fmt.Printf("\n\nDooku : I'm not a traitor like tou say, I have just see than the Jedi High Council is corupted by the Galactic Senate.")
+	time.Sleep(2 * time.Second)
+	fmt.Printf("\n\nYou : You are a liar.")
+	Dooku1 := save.Mob{"Dooku", 500, 500, 90, []save.Abilite{save.Abilite{"lightning", 0, 150, 0, 1, 0, 0, "Lightning of the dark Side"}, save.Abilite{"Lighsaber", 0, 210, 0, 1, 0, 0, "Lighsaber technique"}}, map[save.Item]int{}, 1000}
+	res := fight.Fight(MC, &Dooku1, true)
+	if !res {
+		ClearScreen()
+		var choix string
+		fmt.Println("Do you want to restart Yes(1) or No(2) ?")
+		fmt.Scan(&choix)
+		answer, verification := strconv.Atoi(choix)
+		for verification != nil && !(answer == 1 || answer == 2) {
+			ClearScreen()
+			choix = ""
+			fmt.Println("Do you want to restart Yes(1) or No(2) ?")
+			fmt.Println("\nWe ask you to enter 1 or 2")
+			fmt.Scan(&choix)
+			answer, verification = strconv.Atoi(choix)
+		}
+		if answer == 1 {
+			MC.PV_actuelle = (MC.PV_max * 4) / 3
+			Quete1(MC)
+		} else {
+			return
+		}
+	}
+	ClearScreen()
+	fmt.Printf("Dooku : Not bad")
+	time.Sleep(1 * time.Second)
+	ClearScreen()
+	fmt.Printf("Dooku : But you must do better if you want ot win")
+	time.Sleep(2 * time.Second)
+	Dooku2 := save.Mob{"Dooku", 600, 500, 70, []save.Abilite{save.Abilite{"lightning", 0, 150, 0, 1, 0, 0, "Lightning of the dark Side"}, save.Abilite{"Lighsaber", 0, 210, 0, 1, 0, 0, "Lighsaber technique"}, save.Abilite{"Self-Healing", 0, 0, 70, 1, 0, 0, "Self heal"}}, map[save.Item]int{}, 1000}
+	res = fight.Fight(MC, &Dooku2, false)
+	if !res {
+		ClearScreen()
+		var choix string
+		fmt.Println("Do you want to restart Yes(1) or No(2) ?")
+		fmt.Scan(&choix)
+		answer, verification := strconv.Atoi(choix)
+		for verification != nil && !(answer == 1 || answer == 2) {
+			ClearScreen()
+			choix = ""
+			fmt.Println("Do you want to restart Yes(1) or No(2) ?")
+			fmt.Println("\nWe ask you to enter 1 or 2")
+			fmt.Scan(&choix)
+			answer, verification = strconv.Atoi(choix)
+		}
+		if answer == 1 {
+			MC.PV_actuelle = (MC.PV_max * 4) / 3
+			Quete1(MC)
+		} else {
+			return
+		}
+	}
+	fmt.Printf("Congratulations")
 }
