@@ -12,6 +12,7 @@ type Perso struct {
 	AbilitieDefault   []Abilite
 	Weapon            []Weapon
 	IsSecondaryWeapon bool
+	IsDoubleBlade     bool
 	SecondaryWeapon   []Weapon
 	Armure            []Armor
 	Classe            Classe
@@ -80,6 +81,8 @@ type Abilite struct {
 	Price       int
 	CoteForce   int
 	Description string
+	DotCompteur int
+	DotDammage  int
 }
 
 //=========================================MOB=======================================

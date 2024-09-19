@@ -8,6 +8,11 @@ import (
 	"time"
 )
 
+var DcP int = 0 //DotCompteurPerso
+var DDP int = 0 //DotDammagePerso
+var DcM int = 0 //DotCompteurMob
+var DDM int = 0 //DotDammageMob
+
 func ChangeLevel(P *save.Perso, mobKilled save.Mob) {
 	P.Xp_Actu += mobKilled.XpDrop
 	if P.Xp_Actu > 1000*P.Level {
@@ -105,6 +110,14 @@ func Fight(P *save.Perso, mob *save.Mob, PlayerStart bool) bool {
 					P.PV_actuelle = P.PV_max
 				}
 			}
+			if AbilitieList[answer-1].DotCompteur > 0 {
+				DcP = AbilitieList[answer-1].DotCompteur
+				DDP = AbilitieList[answer-1].DotDammage
+			}
+			if DcP > 0 {
+				DcP--
+				mob.PV_actuelle -= DDP
+			}
 			if mob.PV_actuelle <= 0 {
 				fmt.Println("Il reste " + strconv.Itoa(0) + " / " + strconv.Itoa(mob.PV_max) + " à " + mob.Name)
 				time.Sleep(2 * time.Second)
@@ -138,7 +151,14 @@ func Fight(P *save.Perso, mob *save.Mob, PlayerStart bool) bool {
 					mob.PV_actuelle = mob.PV_max
 				}
 			}
-			time.Sleep(2 * time.Second)
+			if mob.Abilitie[randomInt].DotCompteur > 0 {
+				DcM = mob.Abilitie[randomInt].DotCompteur
+				DDM = mob.Abilitie[randomInt].DotDammage
+			}
+			if DcM > 0 {
+				DcM--
+				P.PV_actuelle -= DDM
+			}
 			if P.PV_actuelle < 0 {
 				P.PV_actuelle = 0
 			}

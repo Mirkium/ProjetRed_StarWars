@@ -1,14 +1,13 @@
 package main
 
 import (
-
+	save "Game/Jeux/Sauvegarde"
 	//game "Game/Jeux/GamePlay"
 	chevalierJedi "Game/Jeux/GamePlay/FirstMission/Jedi/ChevalierJedi"
 	consulaireJedi "Game/Jeux/GamePlay/FirstMission/Jedi/ConsulaireJedi"
 	assassinSith "Game/Jeux/GamePlay/FirstMission/Sith/AssassinSith"
 	guerrierSith "Game/Jeux/GamePlay/FirstMission/Sith/GuerrierSith"
 	marchand "Game/Jeux/GamePlay/Marchand"
-	save "Game/Jeux/Sauvegarde"
 )
 
 func main() {
@@ -19,9 +18,6 @@ func main() {
 	save.Ajout_Item(objet1)
 	save.Ajout_Item(objet2)
 	save.RegardeStat()*/
-	//marchand.Marchand(save.Personnage.Credit, save.Personnage.CoteForce)
-	//marchand.MarchandArmor(save.Personnage.Credit, save.Personnage.CoteForce)
-
 	switch save.Campagne.Name {
 	case "Jedi Knight":
 		chevalierJedi.JediKnight()
@@ -42,6 +38,7 @@ func main() {
 		}
 	case "Sith Assassin":
 		assassinSith.SithAssassin()
+
 	}
 
 	//Forgeron2 := forge.Forgeron{"vbfjimegobes", []save.Weapon{save.Weapon{"fbezhlif", 10, 10, "red", 1, 1, 1, "ceci est une decription"}}}

@@ -59,7 +59,8 @@ func Stats(Objet Item) string {
 	return Objet.Description
 }
 
-func DisplayInventaire_Item() {
+func DisplayInventaire() {
+	var Exit string
 	/*
 		Affiche les diiferents item
 	*/
@@ -70,7 +71,16 @@ func DisplayInventaire_Item() {
 		fmt.Printf("|Index : %d | Item :  %s | Quantité : %s |\n", i, Formatage(element.Name, 16), Formatage(strconv.Itoa(element.Quantite), 4))
 		i++
 	}
+	fmt.Println("                         (0)  Exit")
 	fmt.Println(" ===========================================================")
+	fmt.Scanln(&Exit)
+	switch Exit {
+	case "0":
+		break
+	default:
+		ClearScreen()
+		DisplayInventaire()
+	}
 }
 
 func Formatage(c string, z int) string {
@@ -130,7 +140,7 @@ func DisplayInventaireIndex(index1 int) {
 
 func Vendre(index int, quantite int) {
 	var choix string
-	DisplayInventaire_Item()
+	DisplayInventaire()
 	fmt.Println("Quel item veut tu vendre ?")
 	fmt.Scanln(&choix)
 	if len(choix) != 1 {
@@ -154,7 +164,7 @@ func Vendre(index int, quantite int) {
 }
 
 func RegardeStat() {
-	DisplayInventaire_Item()
+	DisplayInventaire()
 	var choix string
 	fmt.Println("Veux tu voir plus de détails sur un item (si non rentre juste 0)")
 	fmt.Scanln(&choix)
@@ -269,7 +279,7 @@ func DisplayInventaireIndexWeapon(index1 int) {
 
 func VendreWeapon(index int, quantite int) {
 	var choix string
-	DisplayInventaire_Item()
+	DisplayInventaire_Weapon()
 	fmt.Println("Quel item veut tu vendre ?")
 	fmt.Scanln(&choix)
 	if len(choix) != 1 {
@@ -293,7 +303,7 @@ func VendreWeapon(index int, quantite int) {
 }
 
 func RegardeStatWeapon() {
-	DisplayInventaire_Item()
+	DisplayInventaire_Weapon()
 	var choix string
 	fmt.Println("Veux tu voir plus de détails sur un item (si non rentre juste 0)")
 	fmt.Scanln(&choix)
@@ -408,7 +418,7 @@ func DisplayInventaireIndexArmor(index1 int) {
 
 func VendreArmor(index int, quantite int) {
 	var choix string
-	DisplayInventaire_Item()
+	DisplayInventaire_Armor()
 	fmt.Println("Quel item veut tu vendre ?")
 	fmt.Scanln(&choix)
 	if len(choix) != 1 {
@@ -432,7 +442,7 @@ func VendreArmor(index int, quantite int) {
 }
 
 func RegardeStaArmor() {
-	DisplayInventaire_Item()
+	DisplayInventaire_Armor()
 	var choix string
 	fmt.Println("Veux tu voir plus de détails sur un item (si non rentre juste 0)")
 	fmt.Scanln(&choix)

@@ -24,21 +24,21 @@ func Merchantchoice(u *save.Perso) {
 
 	switch choix {
 	case "1":
+
 		fmt.Println("Vous avez choisi de rencontrer le marchand d'armes.")
-		Marchand_Arme := MarchantWeapon{"fernuiqgrh", []save.Weapon{}}
-		MenuWeapon(&save.Personnage, &Marchand_Arme)
+		MenuWeapon()
 	case "2":
+	
 		fmt.Println("Vous avez choisi de rencontrer le marchand d'abilités.")
-		Marchand_Capacite := MarchantAbiliti{"feznog", []save.Abilite{}}
-		MenuAbilitie(&save.Personnage, &Marchand_Capacite)
+		MenuAbilitie()
 	case "3":
+		
 		fmt.Println("Vous avez choisi de rencontrer le marchand d'armures.")
-		Marchand_Armure := MarchantArmor{"geoiqhm", []save.Armor{}}
-		MenuArmor(&save.Personnage, &Marchand_Armure)
+		MenuArmor()
 	case "4":
-		fmt.Println("Vous avez choisi de rencontrer le marchand d'Item.")
-		Marchand_Item := MarchantItem{"fdp", []save.Item{}}
-		MenuItem(&save.Personnage, &Marchand_Item)
+
+		fmt.Println("Vous avez choisi de rencontrer le marchand d'Item ")
+		MenuItem()
 	case "5":
 		break
 	default:
