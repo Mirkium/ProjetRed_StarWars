@@ -5,11 +5,13 @@ import (
 	"fmt"
 )
 
-func MenuAbilitie(u *save.Perso, m *MarchandAbiliti) {
-	m.DisplayProduct()
-	m.DisplayMenu(u)
+func MenuAbilitie() {
+	MarchandAbiliti()
 }
 
+<<<<<<< HEAD
+func MarchandAbiliti() {
+=======
 func (m MarchandAbiliti) DisplayProduct() {
 	fmt.Println("=== Armor MarchantArmor ===")
 	for index, product := range m.product {
@@ -54,6 +56,7 @@ func (m *MarchantArmor) DisplayMenu(u *save.Perso) {
 }
 
 func Marchand_Abiliti(Credit int, CoteForce int) {
+>>>>>>> eaeb2da9ec69c6fe6d6e0cb520c7b602a872a6a0
 	item01 := save.Abilite{Name: "Jedi Battle Armor",
 		EnergieCost: 100,
 		Dammage:     50,
@@ -95,8 +98,5 @@ func Marchand_Abiliti(Credit int, CoteForce int) {
 	fmt.Println("")
 	fmt.Println("credit : ", save.Personnage.Credit, " | way Force : ", save.Personnage.CoteForce)
 	fmt.Println("")
-	marchand := MarchandAbiliti{"Merchant", []save.Abilite{item01, item02, item03}}
-	save.Personnage.Credit = Credit
-	save.Personnage.CoteForce = CoteForce
-	MenuArmor(&save.Personnage, &marchand)
+	MenuAbilitie()
 }

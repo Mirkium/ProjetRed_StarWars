@@ -5,55 +5,11 @@ import (
 	"fmt"
 )
 
-func MenuArmor(u *save.Perso, m *MarchantArmor) {
-	m.DisplayProduct()
-	m.DisplayMenu(u)
+func MenuArmor() {
+	MarchandArmor()
 }
 
-func (m MarchantArmor) DisplayProduct() {
-	fmt.Println("=== Armor MarchantArmor ===")
-	for index, product := range m.product {
-		fmt.Printf("\t%d - %s price : %d, Remaining quantity : %d, Side of force required : %d,\n", (index + 1), product.Name, product.Price, product.Quantity, product.CoteForce)
-	}
-	fmt.Printf(" Remaining items: %d\n", m.MoneyRemaining())
-}
-
-func (m MarchantArmor) MoneyRemaining() int {
-	total := 0
-	for _, obj := range m.product {
-		total += obj.Quantity
-	}
-	return total
-}
-
-func (m *MarchantArmor) DisplayMenu(u *save.Perso) {
-	fmt.Println("List of choices : ")
-	for index, product := range m.product {
-		if product.Quantity > 0 {
-			fmt.Printf("\t%d - Buy %s\n", (index + 1), product.Name)
-		}
-	}
-	fmt.Println("Your choice?")
-	var choix int
-	fmt.Scan(&choix)
-
-	if choix < 1 || choix > len(m.product) {
-		fmt.Println("Invalid choice...")
-		m.DisplayMenu(u)
-		return
-	}
-
-	selectedProduct := &m.product[choix-1]
-
-	if selectedProduct.Quantity <= 0 {
-		fmt.Printf("Item %s is no longer available from the MarchantArmor.\n", selectedProduct.Name)
-	} else {
-		selectedProduct.Quantity--
-	}
-	MenuArmor(u, m)
-}
-
-func MarchandArmor(Credit int, CoteForce int) {
+func MarchandArmor() {
 	item01 := save.Armor{Name: "darth vader helmet",
 		PvBonus:     200,
 		DamageBonus: 100,
@@ -94,8 +50,5 @@ func MarchandArmor(Credit int, CoteForce int) {
 	fmt.Println("")
 	fmt.Println("credit : ", save.Personnage.Credit, " | way Force : ", save.Personnage.CoteForce)
 	fmt.Println("")
-	marchand := MarchantArmor{"Merchant", []save.Armor{item01, item02, item03}}
-	save.Personnage.Credit = Credit
-	save.Personnage.CoteForce = CoteForce
-	MenuArmor(&save.Personnage, &marchand)
+	MenuArmor()
 }

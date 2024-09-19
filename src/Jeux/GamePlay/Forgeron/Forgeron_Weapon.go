@@ -1,9 +1,7 @@
 package forgeron
 
-import (
-	save "Game/Jeux/Sauvegarde"
-	"fmt"
-)
+//save "Game/Jeux/Sauvegarde"
+//"fmt"
 
 /*func ForgeronTest() {
 	Sword := save.Item{"Sword", 100, "sedfgujhch,;u,nyubgkjvfj", 1}
@@ -28,7 +26,7 @@ import (
 		save.Ajout_Item(Sword, 1)
 	}
 }*/
-
+/*
 func ForgeronTest() {
 	LaserSaber := save.Item{"laser saber", 100, "sedfgujhch,;u,nyubgkjvfj", 1}
 	fmt.Println("épée : iron ingot + ")
@@ -90,3 +88,4 @@ func MenuWeapon(u *User, f *Forgeron) {
 	f.DisplayProduct()
 	f.DisplayMenu(u)
 }
+*/
