@@ -5,27 +5,29 @@ import (
 	"strconv"
 )
 
-var Inventaire []Item
+var Inventaire_Item []Item
+var Inventaire_Weapon []Weapon
+var Inventaire_Armor []Armor
 
 func Ajout_Item(Objet Item, quantite int) {
 	/*
 		Rajoute un item si il n'existe pas déja
 		sinon rajoute la quantite.
-		Verifie si l'inventaire est complet egalement
+		Verifie si l'Inventaire_Item est complet egalement
 	*/
 	AlreadyExiste := false
-	for _, ele := range Inventaire {
+	for _, ele := range Inventaire_Item {
 		if Objet.Name == ele.Name {
 			AlreadyExiste = true
 			ele.Quantite += Objet.Quantite
 			return
 		}
 	}
-	if len(Inventaire) >= 9 && !AlreadyExiste {
-		fmt.Println("L'inventaire est complet")
+	if len(Inventaire_Item) >= 9 && !AlreadyExiste {
+		fmt.Println("L'Inventaire_Item est complet")
 		return
 	} else {
-		Inventaire = append(Inventaire, Objet)
+		Inventaire_Item = append(Inventaire_Item, Objet)
 	}
 }
 
@@ -34,10 +36,10 @@ func Enlever_Item(Objet Item, Quantite int) {
 		Retire la quantite d'item demande et le supprime si <= 0
 		Ne fais rien si l'item n'existe pas.
 	*/
-	for index, element := range Inventaire {
+	for index, element := range Inventaire_Item {
 		if element.Name == Objet.Name {
 			if element.Quantite-Objet.Quantite <= 0 {
-				Inventaire = append(Inventaire[:index], Inventaire[index+1:]...)
+				Inventaire_Item = append(Inventaire_Item[:index], Inventaire_Item[index+1:]...)
 				return
 			} else {
 				element.Quantite -= Objet.Quantite
@@ -55,14 +57,14 @@ func Stats(Objet Item) string {
 	return Objet.Description
 }
 
-func DisplayInventaire() {
+func DisplayInventaire_Item() {
 	/*
 		Affiche les diiferents item
 	*/
 	ClearScreen()
 	i := 1
-	fmt.Println(" ========================Inventaire=========================")
-	for _, element := range Inventaire {
+	fmt.Println(" ========================Inventaire_Item=========================")
+	for _, element := range Inventaire_Item {
 		fmt.Printf("|Index : %d | Item :  %s | Quantité : %s |\n", i, Formatage(element.Name, 16), Formatage(strconv.Itoa(element.Quantite), 4))
 		i++
 	}
@@ -92,14 +94,14 @@ func formatagePrix(prix int) string {
 }
 
 func DisplayInventaireIndex(index1 int) {
-	if index1 > len(Inventaire) {
+	if index1 > len(Inventaire_Item) {
 		fmt.Println("Index trop grand")
 	} else {
 		i := 1
-		for _, element := range Inventaire {
+		for _, element := range Inventaire_Item {
 			if index1 == i {
 				ClearScreen()
-				fmt.Println(" ========================Inventaire=========================")
+				fmt.Println(" ========================Inventaire_Item=========================")
 				fmt.Println("|--------------------------Name-----------------------------|")
 				fmt.Println("|                                                           |")
 				fmt.Println("|                    " + Formatage(element.Name, 16) + "                     |")
@@ -126,7 +128,7 @@ func DisplayInventaireIndex(index1 int) {
 
 func Vendre(index int, quantite int) {
 	var choix string
-	DisplayInventaire()
+	DisplayInventaire_Item()
 	fmt.Println("Quel item veut tu vendre ?")
 	fmt.Scanln(&choix)
 	if len(choix) != 1 {
@@ -134,9 +136,9 @@ func Vendre(index int, quantite int) {
 	}
 	for _, let := range choix {
 		if let >= '0' && let <= '9' {
-			//DisplayInventaireIndex(int(let - 48))
+			//DisplayInventaire_ItemIndex(int(let - 48))
 			i := 1
-			for _, key := range Inventaire {
+			for _, key := range Inventaire_Item {
 				if index == i {
 					Enlever_Item(key, quantite)
 					//return value * quantite
@@ -149,7 +151,7 @@ func Vendre(index int, quantite int) {
 }
 
 func RegardeStat() {
-	DisplayInventaire()
+	DisplayInventaire_Item()
 	var choix string
 	fmt.Println("Veux tu voir plus de détails sur un item (si non rentre juste 0)")
 	fmt.Scanln(&choix)

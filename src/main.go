@@ -3,8 +3,11 @@ package main
 import (
 
 	//game "Game/Jeux/GamePlay"
-	//marchand "Game/Jeux/GamePlay/Marchand"
-	forge "Game/Jeux/GamePlay/Forgeron"
+	chevalierJedi "Game/Jeux/GamePlay/FirstMission/Jedi/ChevalierJedi"
+	consulaireJedi "Game/Jeux/GamePlay/FirstMission/Jedi/ConsulaireJedi"
+	assassinSith "Game/Jeux/GamePlay/FirstMission/Sith/AssassinSith"
+	guerrierSith "Game/Jeux/GamePlay/FirstMission/Sith/GuerrierSith"
+	marchand "Game/Jeux/GamePlay/Marchand"
 	save "Game/Jeux/Sauvegarde"
 )
 
@@ -18,32 +21,31 @@ func main() {
 	save.RegardeStat()*/
 	//marchand.Marchand(save.Personnage.Credit, save.Personnage.CoteForce)
 	//marchand.MarchandArmor(save.Personnage.Credit, save.Personnage.CoteForce)
-	/*
-		Forge.DisplayMenu(save.Personnage)
-		switch save.Campagne.Name {
-		case "Jedi Knight":
-			chevalierJedi.JediKnight()
-		case "Jedi Consular":
-			consulaireJedi.JediConsular()
-		case "Sith Warrior":
-			guerrierSith.SithWarrior()
-			save.Personnage.CoteForce += guerrierSith.Arrive_2()
-			guerrierSith.Arrive_3()
-			choice_1 := guerriersith.Menu()
-			switch choice_1 {
-			case 1:
-				save.DisplayCharacter()
-			case 2:
-				save.DisplayInventaire()
-			case 3:
 
-			}
-		case "Sith Assassin":
-			assassinSith.SithAssassin()
+	switch save.Campagne.Name {
+	case "Jedi Knight":
+		chevalierJedi.JediKnight()
+	case "Jedi Consular":
+		consulaireJedi.JediConsular()
+	case "Sith Warrior":
+		guerrierSith.SithWarrior()
+		save.Personnage.CoteForce += guerrierSith.Arrive_2()
+		guerrierSith.Arrive_3()
+		choice_1 := guerrierSith.Menu()
+		switch choice_1 {
+		case 1:
+			save.DisplayCharacter()
+		case 2:
+			save.DisplayInventaire()
+		case 3:
+			marchand.Merchantchoice()
+		}
+	case "Sith Assassin":
+		assassinSith.SithAssassin()
+	}
 
-	*/
-	Forgeron2 := forge.Forgeron{"vbfjimegobes", []save.Weapon{save.Weapon{"fbezhlif", 10, 10, "red", 1, 1, 1, "ceci est une decription"}}}
-	Forgeron2.DisplayProduct()
+	//Forgeron2 := forge.Forgeron{"vbfjimegobes", []save.Weapon{save.Weapon{"fbezhlif", 10, 10, "red", 1, 1, 1, "ceci est une decription"}}}
+	//Forgeron2.DisplayProduct()
 }
 
 /*

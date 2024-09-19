@@ -4,61 +4,22 @@ import (
 	save "Game/Jeux/Sauvegarde"
 )
 
-type Mar struct {
+type MarchantWeapon struct {
 	name    string
 	product []save.Weapon
 }
 
-type Play struct {
-	credit    int
-	coteForce int
-	bag       []save.Weapon
-}
-
-type Marcht struct {
-	name    string
-	product []save.Weapon
-}
-
-// marchand weapon
-type Player struct {
-	credit    int
-	coteForce int
-	bag       []save.Weapon
-}
-
-type March struct {
-	name    string
-	product []save.Objects
-}
-
-// marchand Item
-type User struct {
-	credit    int
-	coteForce int
-	bag       []save.Objects
-}
-
-type Merchant struct {
+type MarchantArmor struct {
 	name    string
 	product []save.Armor
 }
 
-// marchand Armor
-type Plyer struct {
-	credit    int
-	coteForce int
-	bag       []save.Armor
+type MarchandItem struct {
+	name    string
+	product []save.Item
 }
 
-type Merc struct {
+type MarchandAbiliti struct {
 	name    string
 	product []save.Abilite
-}
-
-// marchand Abiliti
-type Joue struct {
-	credit    int
-	coteForce int
-	bag       []save.Abilite
 }
