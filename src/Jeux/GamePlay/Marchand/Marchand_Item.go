@@ -6,14 +6,10 @@ import (
 )
 
 func MenuItem() {
-	MarchandItem()
+	Marchand_Item()
 }
 
-<<<<<<< HEAD
-func MarchandItem() {
-=======
-func Marchand_Item(Credit int, CoteForce int) {
->>>>>>> eaeb2da9ec69c6fe6d6e0cb520c7b602a872a6a0
+func Marchand_Item() {
 	item01 := save.Item{
 		Name:        "darth vader helmet",
 		Quantite:    1,

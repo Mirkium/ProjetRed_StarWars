@@ -59,12 +59,8 @@ func Stats(Objet Item) string {
 	return Objet.Description
 }
 
-<<<<<<< HEAD
 func DisplayInventaire() {
 	var Exit string
-=======
-func DisplayInventaire_Item() {
->>>>>>> eaeb2da9ec69c6fe6d6e0cb520c7b602a872a6a0
 	/*
 		Affiche les diiferents item
 	*/
@@ -144,7 +140,7 @@ func DisplayInventaireIndex(index1 int) {
 
 func Vendre(index int, quantite int) {
 	var choix string
-	DisplayInventaire_Item()
+	DisplayInventaire()
 	fmt.Println("Quel item veut tu vendre ?")
 	fmt.Scanln(&choix)
 	if len(choix) != 1 {
@@ -168,7 +164,7 @@ func Vendre(index int, quantite int) {
 }
 
 func RegardeStat() {
-	DisplayInventaire_Item()
+	DisplayInventaire()
 	var choix string
 	fmt.Println("Veux tu voir plus de détails sur un item (si non rentre juste 0)")
 	fmt.Scanln(&choix)
@@ -283,7 +279,7 @@ func DisplayInventaireIndexWeapon(index1 int) {
 
 func VendreWeapon(index int, quantite int) {
 	var choix string
-	DisplayInventaire_Item()
+	DisplayInventaire_Weapon()
 	fmt.Println("Quel item veut tu vendre ?")
 	fmt.Scanln(&choix)
 	if len(choix) != 1 {
@@ -307,7 +303,7 @@ func VendreWeapon(index int, quantite int) {
 }
 
 func RegardeStatWeapon() {
-	DisplayInventaire_Item()
+	DisplayInventaire_Weapon()
 	var choix string
 	fmt.Println("Veux tu voir plus de détails sur un item (si non rentre juste 0)")
 	fmt.Scanln(&choix)
@@ -422,7 +418,7 @@ func DisplayInventaireIndexArmor(index1 int) {
 
 func VendreArmor(index int, quantite int) {
 	var choix string
-	DisplayInventaire_Item()
+	DisplayInventaire_Armor()
 	fmt.Println("Quel item veut tu vendre ?")
 	fmt.Scanln(&choix)
 	if len(choix) != 1 {
@@ -446,7 +442,7 @@ func VendreArmor(index int, quantite int) {
 }
 
 func RegardeStaArmor() {
-	DisplayInventaire_Item()
+	DisplayInventaire_Armor()
 	var choix string
 	fmt.Println("Veux tu voir plus de détails sur un item (si non rentre juste 0)")
 	fmt.Scanln(&choix)
