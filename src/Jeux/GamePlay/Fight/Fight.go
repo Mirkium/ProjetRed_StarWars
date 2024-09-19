@@ -1,6 +1,6 @@
 package Fight
 
-/*import (
+import (
 	save "Game/Jeux/Sauvegarde"
 	"fmt"
 	"math/rand"
@@ -156,4 +156,3 @@ func Fight(P *save.Perso, mob *save.Mob, PlayerStart bool) bool {
 		}
 	}
 }
-*/
