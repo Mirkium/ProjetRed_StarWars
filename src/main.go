@@ -29,11 +29,11 @@ func main() {
 		guerrierSith.Arrive_3()
 		choice_1 := guerrierSith.Menu()
 		switch choice_1 {
-		case 1:
+		case "1":
 			save.DisplayCharacter()
-		case 2:
-			save.DisplayInventaire_Item()
-		case 3:
+		case "2":
+			save.DisplayInventaire()
+		case "3":
 			marchand.Merchantchoice()
 		}
 	case "Sith Assassin":
