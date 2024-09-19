@@ -10,11 +10,11 @@ type Perso struct {
 	Credit            int
 	Xp_Actu           int
 	AbilitieDefault   []Abilite
-	Weapon            []Weapon
+	Weapon            Weapon
 	IsSecondaryWeapon bool
 	IsDoubleBlade     bool
-	SecondaryWeapon   []Weapon
-	Armure            []Armor
+	SecondaryWeapon   Weapon
+	Armure            Armor
 	Classe            Classe
 }
 
@@ -22,6 +22,7 @@ type Weapon struct {
 	Name        string
 	DamageBonus int
 	PvBonus     int
+	Type        string
 	Color       string
 	Quantity    int
 	Price       int
@@ -33,6 +34,7 @@ type SecondaryWeapon struct {
 	Name        string
 	DamageBonus int
 	PvBonus     int
+	Type        string
 	Color       string
 	Quantity    int
 	Price       int
