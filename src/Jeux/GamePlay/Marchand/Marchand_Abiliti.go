@@ -5,19 +5,20 @@ import (
 	"fmt"
 )
 
+func MenuAbilitie(u *save.Perso, m *MarchandAbiliti) {
+	m.DisplayProduct()
+	m.DisplayMenu(u)
+}
 
-
-var p1 Joue
-
-func (m Merc) DisplayProduct() {
-	fmt.Println("=== Abilitie Merchant ===")
+func (m MarchandAbiliti) DisplayProduct() {
+	fmt.Println("=== Armor MarchantArmor ===")
 	for index, product := range m.product {
 		fmt.Printf("\t%d - %s price : %d, Remaining quantity : %d, Side of force required : %d,\n", (index + 1), product.Name, product.Price, product.Quantity, product.CoteForce)
 	}
 	fmt.Printf(" Remaining items: %d\n", m.MoneyRemaining())
 }
 
-func (m Merc) MoneyRemaining() int {
+func (m MarchandAbiliti) MoneyRemaining() int {
 	total := 0
 	for _, obj := range m.product {
 		total += obj.Quantity
@@ -25,7 +26,7 @@ func (m Merc) MoneyRemaining() int {
 	return total
 }
 
-func (m *Merc) DisplayMenu(u *Joue) {
+func (m *MarchantArmor) DisplayMenu(u *save.Perso) {
 	fmt.Println("List of choices : ")
 	for index, product := range m.product {
 		if product.Quantity > 0 {
@@ -45,100 +46,57 @@ func (m *Merc) DisplayMenu(u *Joue) {
 	selectedProduct := &m.product[choix-1]
 
 	if selectedProduct.Quantity <= 0 {
-		fmt.Printf("Item %s is no longer available from the Merchant.\n", selectedProduct.Name)
+		fmt.Printf("Item %s is no longer available from the MarchantArmor.\n", selectedProduct.Name)
 	} else {
-		u.Buy(selectedProduct)
 		selectedProduct.Quantity--
 	}
 	MenuAbilitie(u, m)
 }
 
-func (u *Joue) Buy(obj *save.Abilite) {
-	if u.credit < obj.Price {
-		fmt.Println("Insufficient credit...")
-		return
-	}
-
-	if obj.CoteForce < 0 && obj.CoteForce > u.coteForce {
-		fmt.Println(("Missing good point of force... "))
-		return
-	} else {
-		u.coteForce -= obj.CoteForce
-	}
-
-	if obj.CoteForce > 0 && obj.CoteForce > u.coteForce {
-		fmt.Println(("Missing dark point of force... "))
-		return
-	} else {
-		u.coteForce -= obj.CoteForce
-	}
-
-	u.credit -= obj.Price
-	isFind := false
-	for index, objBag := range u.bag {
-		if objBag.Name == obj.Name {
-			isFind = true
-			u.bag[index].Quantity++
-			fmt.Printf("Item add : %s, quantity in inventory: %d\n", objBag.Name, u.bag[index].Quantity)
-			break
-		}
-	}
-
-	if !isFind {
-		u.bag = append(u.bag, save.Abilite{Name: obj.Name, Quantity: 1, Price: obj.Price})
-		fmt.Printf("New item add in inventory : %s\n", obj.Name)
-	}
-
-	fmt.Printf("Purchase made : %s, remaining money : %d\n", obj.Name, u.credit)
-}
-
-func MenuAbilitie(u *Joue, m *Merc) {
-	m.DisplayProduct()
-	m.DisplayMenu(u)
-}
-func MarchandAbilitie(Credit int, CoteForce int) {
-	item01 := save.Abilite{Name: "Absorption of life",
-		EnergieCost: 200,
-		Dammage:     100,
-		Heal:        100,
-		Quantity:    1,
-		Price:       50000,
-		CoteForce:   -10000,
-		Description: "Life absorption is a dark power allowing you to vampirize an opponent's life force."}
-	item02 := save.Abilite{Name: "Force Shield",
+func Marchand_Abiliti(Credit int, CoteForce int) {
+	item01 := save.Abilite{Name: "Jedi Battle Armor",
 		EnergieCost: 100,
-		Dammage:     0,
-		Heal:        500,
-		Quantity:    5,
-		Price:       20000,
-		CoteForce:   0,
-		Description: "Power of the Force allowing its user to protect themselves from any type of aggression."}
-	item03 := save.Abilite{Name: "Sith Alchemy",
-		EnergieCost: 1000,
-		Dammage:     1000,
+		Dammage:     50,
 		Heal:        0,
 		Quantity:    1,
-		Price:       30000,
-		CoteForce:   -10000,
-		Description: "Sith power allowing its user to manipulate very powerful lightning."}
-	item04 := save.Abilite{Name: "Convection",
-		EnergieCost: 200,
-		Dammage:     200,
+		Price:       4000,
+		CoteForce:   10000,
+		Description: "During the Sith Wars, the Jedi were forced to take on greater protection. These were unique armors, fashioned for each Jedi."}
+	item02 := save.Abilite{Name: "Jedi Battle Armor",
+		EnergieCost: 100,
+		Dammage:     50,
+		Heal:        0,
+		Quantity:    1,
+		Price:       4000,
+		CoteForce:   10000,
+		Description: "During the Sith Wars, the Jedi were forced to take on greater protection. These were unique armors, fashioned for each Jedi."}
+	item03 := save.Abilite{Name: "Jedi Battle Armor",
+		EnergieCost: 100,
+		Dammage:     50,
+		Heal:        0,
+		Quantity:    1,
+		Price:       4000,
+		CoteForce:   10000,
+		Description: "During the Sith Wars, the Jedi were forced to take on greater protection. These were unique armors, fashioned for each Jedi."}
+	item04 := save.Abilite{
+		Name:        "Gungan Personal Energy Shield",
+		EnergieCost: 0,
+		Dammage:     10,
 		Heal:        0,
 		Quantity:    3,
 		Price:       10000,
 		CoteForce:   0,
-		Description: "Convection allowed burning at a distance or on contact by concentrating the Force in the wrists."}
+		Description: "Produced during the Galactic Republic era by the Otoh Gunga Defense League on Naboo, the Gungan Personal Energy Shield was a means of protection used by the soldiers and scouts of General Tobler Ceel's Grand Army."}
 	fmt.Println("")
-	fmt.Println(item01.Name, " : ", item01.Description, item01.EnergieCost, item01.Dammage, item01.Heal)
-	fmt.Println(item02.Name, " : ", item02.Description, item02.EnergieCost, item02.Dammage, item02.Heal)
-	fmt.Println(item03.Name, " : ", item03.Description, item03.EnergieCost, item03.Dammage, item03.Heal)
-	fmt.Println(item04.Name, " : ", item04.Description, item04.EnergieCost, item04.Dammage, item04.Heal)
+	fmt.Println(item01.Name, " : ", item01.Description, item01.EnergieCost, item01.Dammage, item01.Heal, item01.Quantity)
+	fmt.Println(item02.Name, " : ", item02.Description, item02.EnergieCost, item02.Dammage, item02.Heal, item02.Quantity)
+	fmt.Println(item03.Name, " : ", item03.Description, item03.EnergieCost, item03.Dammage, item03.Heal, item03.Quantity)
+	fmt.Println(item01.Name, " : ", item04.Description, item04.EnergieCost, item04.Dammage, item04.Heal, item04.Quantity)
 	fmt.Println("")
-	fmt.Println("credit : ", Utilisateur.credit, " | way Force : ", Utilisateur.coteForce)
+	fmt.Println("credit : ", save.Personnage.Credit, " | way Force : ", save.Personnage.CoteForce)
 	fmt.Println("")
-	marchand := Merc{"Merchant", []save.Abilite{item01, item02, item03}}
-	Utilisateur.credit = Credit
-	Utilisateur.coteForce = CoteForce
-	MenuAbilitie(&p1, &marchand)
+	marchand := MarchandAbiliti{"Merchant", []save.Abilite{item01, item02, item03}}
+	save.Personnage.Credit = Credit
+	save.Personnage.CoteForce = CoteForce
+	MenuArmor(&save.Personnage, &marchand)
 }
