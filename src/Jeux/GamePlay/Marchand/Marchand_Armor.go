@@ -5,19 +5,20 @@ import (
 	"fmt"
 )
 
+func MenuArmor(u *save.Perso, m *MarchantArmor) {
+	m.DisplayProduct()
+	m.DisplayMenu(u)
+}
 
-
-var j1 Plyer
-
-func (m Merchant) DisplayProduct() {
-	fmt.Println("=== Armor Merchant ===")
+func (m MarchantArmor) DisplayProduct() {
+	fmt.Println("=== Armor MarchantArmor ===")
 	for index, product := range m.product {
 		fmt.Printf("\t%d - %s price : %d, Remaining quantity : %d, Side of force required : %d,\n", (index + 1), product.Name, product.Price, product.Quantity, product.CoteForce)
 	}
 	fmt.Printf(" Remaining items: %d\n", m.MoneyRemaining())
 }
 
-func (m Merchant) MoneyRemaining() int {
+func (m MarchantArmor) MoneyRemaining() int {
 	total := 0
 	for _, obj := range m.product {
 		total += obj.Quantity
@@ -25,7 +26,7 @@ func (m Merchant) MoneyRemaining() int {
 	return total
 }
 
-func (m *Merchant) DisplayMenu(u *Plyer) {
+func (m *MarchantArmor) DisplayMenu(u *save.Perso) {
 	fmt.Println("List of choices : ")
 	for index, product := range m.product {
 		if product.Quantity > 0 {
@@ -45,57 +46,13 @@ func (m *Merchant) DisplayMenu(u *Plyer) {
 	selectedProduct := &m.product[choix-1]
 
 	if selectedProduct.Quantity <= 0 {
-		fmt.Printf("Item %s is no longer available from the Merchant.\n", selectedProduct.Name)
+		fmt.Printf("Item %s is no longer available from the MarchantArmor.\n", selectedProduct.Name)
 	} else {
-		u.Buy(selectedProduct)
 		selectedProduct.Quantity--
 	}
 	MenuArmor(u, m)
 }
 
-func (u *Plyer) Buy(obj *save.Armor) {
-	if u.credit < obj.Price {
-		fmt.Println("Insufficient credit...")
-		return
-	}
-
-	if obj.CoteForce < 0 && obj.CoteForce > u.coteForce {
-		fmt.Println(("Missing good point of force... "))
-		return
-	} else {
-		u.coteForce -= obj.CoteForce
-	}
-
-	if obj.CoteForce > 0 && obj.CoteForce > u.coteForce {
-		fmt.Println(("Missing dark point of force... "))
-		return
-	} else {
-		u.coteForce -= obj.CoteForce
-	}
-
-	u.credit -= obj.Price
-	isFind := false
-	for index, objBag := range u.bag {
-		if objBag.Name == obj.Name {
-			isFind = true
-			u.bag[index].Quantity++
-			fmt.Printf("Item add : %s, quantity in inventory: %d\n", objBag.Name, u.bag[index].Quantity)
-			break
-		}
-	}
-
-	if !isFind {
-		u.bag = append(u.bag, save.Armor{Name: obj.Name, Quantity: 1, Price: obj.Price})
-		fmt.Printf("New item add in inventory : %s\n", obj.Name)
-	}
-
-	fmt.Printf("Purchase made : %s, remaining money : %d\n", obj.Name, u.credit)
-}
-
-func MenuArmor(u *Plyer, m *Merchant) {
-	m.DisplayProduct()
-	m.DisplayMenu(u)
-}
 func MarchandArmor(Credit int, CoteForce int) {
 	item01 := save.Armor{Name: "darth vader helmet",
 		PvBonus:     200,
@@ -135,10 +92,10 @@ func MarchandArmor(Credit int, CoteForce int) {
 	fmt.Println(item03.Name, " : ", item03.Description, item03.PvBonus, item03.DamageBonus, item03.Color)
 	fmt.Println(item04.Name, " : ", item04.Description, item04.PvBonus, item04.DamageBonus, item04.Color)
 	fmt.Println("")
-	fmt.Println("credit : ", Utilisateur.credit, " | way Force : ", Utilisateur.coteForce)
+	fmt.Println("credit : ", save.Personnage.Credit, " | way Force : ", save.Personnage.CoteForce)
 	fmt.Println("")
-	marchand := Merchant{"Merchant", []save.Armor{item01, item02, item03}}
-	Utilisateur.credit = Credit
-	Utilisateur.coteForce = CoteForce
-	MenuArmor(&j1, &marchand)
+	marchand := MarchantArmor{"Merchant", []save.Armor{item01, item02, item03}}
+	save.Personnage.Credit = Credit
+	save.Personnage.CoteForce = CoteForce
+	MenuArmor(&save.Personnage, &marchand)
 }

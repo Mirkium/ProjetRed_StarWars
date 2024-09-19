@@ -58,14 +58,15 @@ type Classe struct {
 }
 
 type Objects struct {
-	Name        string
-	PvBonus     int
-	DamageBonus int
-	Color       string
-	Quantity    int
-	Price       int
-	CoteForce   int
-	Description string
+	Name          string
+	PvBonus       int
+	DamageBonus   int
+	Color         string
+	Quantity      int
+	Price         int
+	CoteForce     int
+	Description   string
+	RequiredItems string
 }
 
 //=========================================Abilite<=================================

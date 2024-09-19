@@ -71,6 +71,9 @@ func CreatePerso() {
 			ClearScreen()
 			CreatePerso()
 		}
+	default:
+		ClearScreen()
+		CreatePerso()
 	}
 }
 
