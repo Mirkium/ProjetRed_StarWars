@@ -36,7 +36,7 @@ func main() {
 		case 1:
 			save.DisplayCharacter()
 		case 2:
-			save.DisplayInventaire()
+			save.DisplayInventaire_Item()
 		case 3:
 			marchand.Merchantchoice()
 		}

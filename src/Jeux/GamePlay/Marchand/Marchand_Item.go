@@ -5,11 +5,11 @@ import (
 	"fmt"
 )
 
-func MenuItem(u *save.Perso, m *MarchantItem) {
-	MarchandItem(u.Credit, u.CoteForce)
+func MenuItem() {
+	MarchandItem()
 }
 
-func MarchandItem(Credit int, CoteForce int) {
+func MarchandItem() {
 	item01 := save.Item{
 		Name:        "darth vader helmet",
 		Quantite:    1,
@@ -38,10 +38,7 @@ func MarchandItem(Credit int, CoteForce int) {
 	fmt.Println("")
 	fmt.Println("credit : ", save.Personnage.Credit, " | way Force : ", save.Personnage.CoteForce)
 	fmt.Println("")
-	marchand := MarchantItem{"Merchant", []save.Item{item01, item02, item03}}
-	save.Personnage.Credit = Credit
-	save.Personnage.CoteForce = CoteForce
-	MenuItem(&save.Personnage, &marchand)
+	MenuItem()
 }
 
 func AchatItem(BuyItem save.Item) {
@@ -55,7 +52,7 @@ func AchatItem(BuyItem save.Item) {
 		save.Ajout_Item(BuyItem, 1)
 	case "2":
 		save.ClearScreen()
-		MarchandWeapon(save.Personnage.Credit, save.Personnage.CoteForce)
+		MarchandWeapon()
 	default:
 		save.ClearScreen()
 		AchatItem(BuyItem)
