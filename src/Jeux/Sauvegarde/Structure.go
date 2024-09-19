@@ -22,7 +22,7 @@ type Weapon struct {
 	Name        string
 	DamageBonus int
 	PvBonus     int
-	Type        string
+	Type        int
 	Color       string
 	Quantity    int
 	Price       int
@@ -34,7 +34,7 @@ type SecondaryWeapon struct {
 	Name        string
 	DamageBonus int
 	PvBonus     int
-	Type        string
+	Type        int
 	Color       string
 	Quantity    int
 	Price       int
@@ -83,6 +83,8 @@ type Abilite struct {
 	Price       int
 	CoteForce   int
 	Description string
+	DotCompteur int
+	DotDammage  int
 }
 
 //=========================================MOB=======================================
@@ -104,6 +106,11 @@ type Item struct {
 	Valeur      int
 	Description string
 	Quantite    int
+}
+
+type Cristal struct {
+	Name  string
+	Color string
 }
 
 //var test ItemPacket

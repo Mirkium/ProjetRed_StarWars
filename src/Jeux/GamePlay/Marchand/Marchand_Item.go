@@ -3,33 +3,35 @@ package marchand
 import (
 	save "Game/Jeux/Sauvegarde"
 	"fmt"
+	"time"
 )
 
 func MenuItem() {
-	Marchand_Item()
+	MarchandItem()
 }
 
-func Marchand_Item() {
+func MarchandItem() {
+	var choix string
 	item01 := save.Item{
-		Name:        "darth vader helmet",
+		Name:        "Force Detector",
 		Quantite:    1,
 		Valeur:      50000,
-		Description: "Having been badly burned on Moustafar, Darth Vader had no choice but to wear a breathing helmet to survive."}
+		Description: "A device used by the Galactic Empire to detect fugitive Jedi, the Force detector worked using Thaissen Crystals, collected on Mimban, which had the particularity of glowing in the presence of sentient beings in the Force."}
 	item02 := save.Item{
-		Name:        "darth vader helmet",
+		Name:        "Kitpack",
 		Quantite:    1,
 		Valeur:      50000,
-		Description: "Having been badly burned on Moustafar, Darth Vader had no choice but to wear a breathing helmet to survive."}
+		Description: "kit allowing its careful user a large quantity of HP"}
 	item03 := save.Item{
-		Name:        "darth vader helmet",
+		Name:        "hemorrhagic item",
 		Quantite:    1,
 		Valeur:      50000,
-		Description: "Having been badly burned on Moustafar, Darth Vader had no choice but to wear a breathing helmet to survive."}
+		Description: "allows the user to create a hemorrhaging effect on their opponent, removing a certain number of HP each turn"}
 	item04 := save.Item{
-		Name:        "darth vader helmet",
+		Name:        "Bandfill",
 		Quantite:    1,
 		Valeur:      50000,
-		Description: "Having been badly burned on Moustafar, Darth Vader had no choice but to wear a breathing helmet to survive."}
+		Description: "The Bandfill was a very complex and unique instrument popular during the era of the Old Republic and the Galactic Empire."}
 	fmt.Println("")
 	fmt.Println(item01.Name, " : ", item01.Description, item01.Quantite, item01.Valeur)
 	fmt.Println(item02.Name, " : ", item01.Description, item01.Quantite, item01.Valeur)
@@ -38,6 +40,34 @@ func Marchand_Item() {
 	fmt.Println("")
 	fmt.Println("credit : ", save.Personnage.Credit, " | way Force : ", save.Personnage.CoteForce)
 	fmt.Println("")
+	MenuItem()
+	if choix == "1" {
+		if save.Personnage.CoteForce <= -50 { //vérifie si on a assez de point Obscur
+			save.ClearScreen()
+			AchatItem(item01) // achète l'item01
+		} else {
+			fmt.Println("Tu ne crois pas assez au Côté Obscur")
+			time.Sleep(time.Second * 2)
+			save.ClearScreen()
+			MarchandItem()
+		}
+	} else if choix == "2" {
+		if save.Personnage.CoteForce >= 50 { //vérifie si on a assez de point lumineux
+			save.ClearScreen()
+			AchatItem(item02)
+		}
+	} else if choix == "3" {
+		save.ClearScreen()
+		AchatItem(item03)
+	} else if choix == "4" {
+		save.ClearScreen()
+		AchatItem(item04)
+	} else if choix == "0" {
+		fmt.Println("Tu sors")
+	} else {
+		save.ClearScreen()
+		MarchandItem()
+	}
 	MenuItem()
 }
 

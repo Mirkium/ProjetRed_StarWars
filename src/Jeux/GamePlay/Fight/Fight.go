@@ -8,6 +8,11 @@ import (
 	"time"
 )
 
+var DcP int = 0 //DotCompteurPerso
+var DDP int = 0 //DotDammagePerso
+var DcM int = 0 //DotCompteurMob
+var DDM int = 0 //DotDammageMob
+
 func ChangeLevel(P *save.Perso, mobKilled save.Mob) {
 	P.Xp_Actu += mobKilled.XpDrop
 	if P.Xp_Actu > 1000*P.Level {
@@ -45,7 +50,7 @@ func DisplayAbilite(AbilitieList []save.Abilite, P save.Perso) {
 	fmt.Println(" =====================Abilités======================")
 	fmt.Println("|" + save.Formatage("Name", 16) + "|" + save.Formatage("Dammage", 8) + "|" + save.Formatage("Energie", 8) + "|  index   |")
 	for in, element := range AbilitieList {
-		d := element.Dammage + P.Weapon[0].DamageBonus - P.Armure[0].StatArmor
+		d := element.Dammage + P.Weapon.DamageBonus - P.Armure.StatArmor
 		if d <= 0 {
 			d = 1
 		}
@@ -93,7 +98,7 @@ func Fight(P *save.Perso, mob *save.Mob, PlayerStart bool) bool {
 			}
 			fmt.Println("Vous décidez d'utliser " + AbilitieList[answer-1].Name)
 			P.Classe.Energie -= AbilitieList[answer-1].EnergieCost
-			dam := AbilitieList[answer-1].Dammage + P.Weapon[0].DamageBonus - mob.Armor
+			dam := AbilitieList[answer-1].Dammage + P.Weapon.DamageBonus - mob.Armor
 			if dam <= 0 {
 				dam = 1
 			}
@@ -104,6 +109,14 @@ func Fight(P *save.Perso, mob *save.Mob, PlayerStart bool) bool {
 				} else {
 					P.PV_actuelle = P.PV_max
 				}
+			}
+			if AbilitieList[answer-1].DotCompteur > 0 {
+				DcP = AbilitieList[answer-1].DotCompteur
+				DDP = AbilitieList[answer-1].DotDammage
+			}
+			if DcP > 0 {
+				DcP--
+				mob.PV_actuelle -= DDP
 			}
 			if mob.PV_actuelle <= 0 {
 				fmt.Println("Il reste " + strconv.Itoa(0) + " / " + strconv.Itoa(mob.PV_max) + " à " + mob.Name)
@@ -126,7 +139,7 @@ func Fight(P *save.Perso, mob *save.Mob, PlayerStart bool) bool {
 			fmt.Println("Ennemis : " + mob.Name)
 			randomInt := rand.Intn(len(mob.Abilitie))
 			fmt.Println(mob.Name + " a décidé d'utiliser " + mob.Abilitie[randomInt].Name)
-			dam := mob.Abilitie[randomInt].Dammage - P.Armure[0].StatArmor
+			dam := mob.Abilitie[randomInt].Dammage - P.Armure.StatArmor
 			if dam <= 0 {
 				dam = 1
 			}
@@ -138,7 +151,14 @@ func Fight(P *save.Perso, mob *save.Mob, PlayerStart bool) bool {
 					mob.PV_actuelle = mob.PV_max
 				}
 			}
-			time.Sleep(2 * time.Second)
+			if mob.Abilitie[randomInt].DotCompteur > 0 {
+				DcM = mob.Abilitie[randomInt].DotCompteur
+				DDM = mob.Abilitie[randomInt].DotDammage
+			}
+			if DcM > 0 {
+				DcM--
+				P.PV_actuelle -= DDM
+			}
 			if P.PV_actuelle < 0 {
 				P.PV_actuelle = 0
 			}

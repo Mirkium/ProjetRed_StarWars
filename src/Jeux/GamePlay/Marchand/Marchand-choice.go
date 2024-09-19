@@ -5,7 +5,7 @@ import (
 	"fmt"
 )
 
-func Merchantchoice(u *save.Perso) {
+func Merchantchoice() {
 	fmt.Println("Quel marchand voulez-vous rencontrer ?")
 	fmt.Println("1 - Marchand d'armes")
 	fmt.Println("2 - Marchand d'abilités")
@@ -24,16 +24,15 @@ func Merchantchoice(u *save.Perso) {
 
 	switch choix {
 	case "1":
-
-		fmt.Println("Vous avez choisi de rencontrer le marchand d'armes.")
+		fmt.Println("Vous avez choisi de rencontrer le marchand d'armes ")
 		MenuWeapon()
 	case "2":
-	
-		fmt.Println("Vous avez choisi de rencontrer le marchand d'abilités.")
+
+		fmt.Println("Vous avez choisi de rencontrer le marchand d'abilités ")
 		MenuAbilitie()
 	case "3":
-		
-		fmt.Println("Vous avez choisi de rencontrer le marchand d'armures.")
+
+		fmt.Println("Vous avez choisi de rencontrer le marchand d'armures ")
 		MenuArmor()
 	case "4":
 

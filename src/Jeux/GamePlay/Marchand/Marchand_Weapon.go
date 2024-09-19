@@ -3,6 +3,7 @@ package marchand
 import (
 	save "Game/Jeux/Sauvegarde"
 	"fmt"
+	"time"
 )
 
 func MenuWeapon() {
@@ -58,18 +59,31 @@ func MarchandWeapon() {
 	fmt.Println("")
 	fmt.Scanln(&choix) //input qui va prendre en considération l'objet voulu
 	if choix == "1" {
-		save.ClearScreen()
-		AchatWeapon(item01)
+		if save.Personnage.CoteForce <= -50 { //vérifie si on a assez de point Obscur
+			save.ClearScreen()
+			AchatWeapon(item01) // achète l'item01
+		} else {
+			fmt.Println("Tu ne crois pas assez au Côté Obscur")
+			time.Sleep(time.Second * 2)
+			save.ClearScreen()
+			MarchandWeapon()
+		}
 	} else if choix == "2" {
-
+		if save.Personnage.CoteForce >= 50 { //vérifie si on a assez de point lumineux
+			save.ClearScreen()
+			AchatWeapon(item02)
+		}
 	} else if choix == "3" {
-
+		save.ClearScreen()
+		AchatWeapon(item03)
 	} else if choix == "4" {
-
+		save.ClearScreen()
+		AchatWeapon(item04)
 	} else if choix == "0" {
-
+		fmt.Println("Tu sors")
 	} else {
-
+		save.ClearScreen()
+		MarchandWeapon()
 	}
 	MenuWeapon()
 }
@@ -81,8 +95,8 @@ func AchatWeapon(BuyItem save.Weapon) {
 	fmt.Scanln(&choix)
 	switch choix {
 	case "1":
-		//save.Personnage.Credit -= BuyItem.Valeur
-		//save.Ajout_Item(BuyItem, 1)
+		save.Personnage.Credit -= BuyItem.Price
+		save.Ajout_Weapon(BuyItem, 1)
 	case "2":
 		save.ClearScreen()
 		MarchandWeapon()
@@ -91,47 +105,3 @@ func AchatWeapon(BuyItem save.Weapon) {
 		AchatWeapon(BuyItem)
 	}
 }
-
-/*
-func (m MarchantWeapon) DisplayProduct() {
-	fmt.Println("=== Weapon Merchant ===")
-	for index, product := range m.product {
-		fmt.Printf("\t%d - %s price : %d, Remaining quantity : %d, Side of force required : %d,\n", (index + 1), product.Name, product.Price, product.Quantity, product.CoteForce)
-	}
-	fmt.Printf(" Remaining items: %d\n", m.MoneyRemaining())
-}
-
-func (m MarchantWeapon) MoneyRemaining() int {
-	total := 0
-	for _, obj := range m.product {
-		total += obj.Quantity
-	}
-	return total
-}
-
-func (m *MarchantWeapon) DisplayMenu(u *save.Perso) {
-	fmt.Println("List of choices : ")
-	for index, product := range m.product {
-		if product.Quantity > 0 {
-			fmt.Printf("\t%d - Buy %s\n", (index + 1), product.Name)
-		}
-	}
-	fmt.Println("Your choice?")
-	var choix int
-	fmt.Scan(&choix)
-
-	if choix < 1 || choix > len(m.product) {
-		fmt.Println("Invalid choice...")
-		m.DisplayMenu(u)
-		return
-	}
-
-	selectedProduct := &m.product[choix-1]
-
-	if selectedProduct.Quantity <= 0 {
-		fmt.Printf("Item %s is no longer available from the merchant.\n", selectedProduct.Name)
-	} else {
-		selectedProduct.Quantity--
-	}
-	MenuWeapon(u, m)
-}*/

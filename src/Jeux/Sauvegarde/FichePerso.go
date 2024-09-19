@@ -235,9 +235,9 @@ func ChangeWeapon() {
 	fmt.Println("/=============================Weapon=============================\\")
 	for i, k := range Inventaire_Weapon {
 		fmt.Println("/= ", k.Name)
-		if k.Type == "Blade" {
+		if k.Type == 1 {
 			fmt.Println(i, "  ",gray, "[]####[", k.Color, "===========================================>", Reset)
-		} else if k.Type == "Double Blade" {
+		} else if k.Type == 2 {
 			fmt.Println(i, "  ",k.Color, "<===========================================", Reset, "]#####[]#####[", k.Color, "===========================================>", Reset)
 		}
 		fmt.Println("\\= Pv Bonus : ",k.PvBonus," | Damage Bonus : ",k.DamageBonus)
@@ -248,9 +248,8 @@ func ChangeWeapon() {
 	fmt.Scanln(&choix)
 	for elem, Saber := range Inventaire_Weapon {
 		if choix == elem {
-			
+			fmt.Println("")
 		}
-
 	}
 }
 
