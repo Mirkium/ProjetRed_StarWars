@@ -56,6 +56,7 @@ func Stats(Objet Item) string {
 }
 
 func DisplayInventaire() {
+	var Exit string
 	/*
 		Affiche les diiferents item
 	*/
@@ -66,7 +67,16 @@ func DisplayInventaire() {
 		fmt.Printf("|Index : %d | Item :  %s | Quantité : %s |\n", i, Formatage(element.Name, 16), Formatage(strconv.Itoa(element.Quantite), 4))
 		i++
 	}
+	fmt.Println("                         (0)  Exit")
 	fmt.Println(" ===========================================================")
+	fmt.Scanln(&Exit)
+	switch Exit {
+	case "0":
+		break
+	default:
+		ClearScreen()
+		DisplayInventaire()
+	}
 }
 
 func Formatage(c string, z int) string {

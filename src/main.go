@@ -7,8 +7,8 @@ import (
 	//forgeron "Game/Jeux/GamePlay/Forgeron"
 	chevalierJedi "Game/Jeux/GamePlay/FirstMission/Jedi/ChevalierJedi"
 	consulaireJedi "Game/Jeux/GamePlay/FirstMission/Jedi/ConsulaireJedi"
-	guerrierSith "Game/Jeux/GamePlay/FirstMission/Sith/GuerrierSith"
 	assassinSith "Game/Jeux/GamePlay/FirstMission/Sith/AssassinSith"
+	guerrierSith "Game/Jeux/GamePlay/FirstMission/Sith/GuerrierSith"
 )
 
 func main() {
@@ -19,28 +19,22 @@ func main() {
 	save.Ajout_Item(objet1)
 	save.Ajout_Item(objet2)
 	save.RegardeStat()*/
-		switch save.Campagne.Name {
-		case "Jedi Knight" :
-			chevalierJedi.JediKnight()
-		case "Jedi Consular" :
-			consulaireJedi.JediConsular()
-		case "Sith Warrior" :
-			guerrierSith.SithWarrior()
-			save.Personnage.CoteForce += guerrierSith.Arrive_2()
-			guerrierSith.Arrive_3()
-			choice_1 := guerrierSith.Menu()
-			switch choice_1 {
-			case 1 :
-				save.DisplayCharacter()
-			case 2 :
-				save.DisplayInventaire()
-			case 3 :
+	switch save.Campagne.Name {
+	case "Jedi Knight":
+		chevalierJedi.JediKnight()
+	case "Jedi Consular":
+		consulaireJedi.JediConsular()
+	case "Sith Warrior":
+		//guerrierSith.SithWarrior()
+		//save.Personnage.CoteForce += guerrierSith.Arrive_2()
+		//guerrierSith.Arrive_3()
+		MenuGuerrierSith(guerrierSith.Menu())
+		//Premier fight guerrier sith
+		guerrierSith.Vemrin_1()
+	case "Sith Assassin":
+		assassinSith.SithAssassin()
 
-			}
-		case "Sith Assassin" :
-			assassinSith.SithAssassin()
-
-		}
+	}
 	/*
 				DA := save.Abilite{"attaqua basic", 0, 10, 0}
 				DA2 := save.Abilite{"eclai de force", 0, 100, 0}
@@ -61,4 +55,27 @@ func main() {
 	//C := save.Classe{"Force", 100, []save.Abilite{DA2}}
 	//MC := save.Perso{"Toto", 0, 100, 100, 1, 2, 100, 0, DA, []save.Weapon{}, []save.Weapon{}, []save.Armor{}, C}
 	//game.Quete1(&MC)
+}
+
+
+func MenuGuerrierSith(choix string) {
+	switch choix {
+	case "1":
+		save.DisplayCharacter()
+		save.ClearScreen()
+		MenuGuerrierSith(guerrierSith.Menu())
+	case "2":
+		save.DisplayInventaire()
+		save.ClearScreen()
+		MenuGuerrierSith(guerrierSith.Menu())
+	case "3":
+	
+	case "4":
+
+	case "5":
+		break
+	default :
+		save.ClearScreen()
+		MenuGuerrierSith(guerrierSith.Menu())
+	}
 }

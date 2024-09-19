@@ -100,6 +100,10 @@ func Arrive_3() {
 	clearScreen()
 }
 
+func Vemrin_1() {
+	
+}
+
 func clearScreen() {
 	var cmd *exec.Cmd
 	// Détecter le système d'exploitation

@@ -4,7 +4,7 @@ import (
 	"fmt"
 )
 
-func Menu() int{
+func Menu() string{
 	var choix string
 	fmt.Println("/===============================\\")
 	fmt.Println("")
@@ -25,18 +25,18 @@ func Menu() int{
 	fmt.Scanln(&choix)
 	switch choix {
 	case "1" :
-		return 1
+		return "1"
 	case "2" :
-		return 2
+		return "2"
 	case "3" :
-		return 3
+		return "3"
 	case "4" :
-		return 4
+		return "4"
 	case "5" :
-		return 5
+		return "5"
 	case "0" :
-		return 0
+		return "0"
 	default :
-		return 0
+		return "0"
 	}
 }
