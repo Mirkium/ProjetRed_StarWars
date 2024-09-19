@@ -82,6 +82,8 @@ type Abilite struct {
 	Price       int
 	CoteForce   int
 	Description string
+	DotCompteur int
+	DotDammage  int
 }
 
 //=========================================MOB=======================================

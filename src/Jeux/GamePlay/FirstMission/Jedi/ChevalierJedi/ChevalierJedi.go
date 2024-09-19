@@ -23,6 +23,13 @@ const (
 	gray    = "\033[90m"
 )
 
+// Les differentes classes pour le jedi
+var classeJedi1 save.Classe = save.Classe{"Way of the spirit", 100, []save.Abilite{save.Abilite{"Meditation", 10, 0, 30, 1, 0, 0, "An Abilite for rest a litle bit during a fight.", 0, 0}, save.Abilite{"Force Attack", 15, 20, 0, 1, 0, 0, "A Force Attack who project the ennemie on the wall", 0, 0}}}
+var classeJedi2 save.Classe = save.Classe{"Way of the training", 150, []save.Abilite{save.Abilite{"Hissatsu Majishirīzu", 20, 30, 0, 1, 0, 0, "A serie of punch", 0, 0}, save.Abilite{"right hook", 40, 40, 0, 1, 0, 0, "A right hook on the face of the ennemie", 0, 0}}}
+var classeJedi3 save.Classe = save.Classe{"Way of the instinct", 120, []save.Abilite{save.Abilite{"Charge of the Jedi", 20, 35, 0, 1, 0, 0, "Charge on the enemie", 0, 0}, save.Abilite{"Dot of the jedi", 40, 10, 0, 1, 0, 0, "A dot build in Jedi laboratory", 3, 10}}}
+
+var ClasseJediList [3]save.Classe = [3]save.Classe{classeJedi1, classeJedi2, classeJedi3}
+
 func JediKnight() {
 	ClearScreen()
 	fmt.Println("                      ", Cyan, "LONG TIME AGO IN A GALAXY FAR,")
@@ -897,7 +904,7 @@ func Quete1(MC *save.Perso) {
 	fmt.Println("The chief of the brignands takes you aside and decide to fight you")
 	time.Sleep(3 * time.Second)
 	ClearScreen()
-	BrignandsChief := save.Mob{"Brignands's chief", 200, 200, 10, []save.Abilite{save.Abilite{"punch", 0, 10, 0, 0, 0, 0, "Just a punch"}, save.Abilite{"Blaster", 0, 20, 0, 0, 0, 0, "A classic Blaster"}}, map[save.Item]int{}, 0}
+	BrignandsChief := save.Mob{"Brignands's chief", 200, 200, 10, []save.Abilite{save.Abilite{"punch", 0, 10, 0, 0, 0, 0, "Just a punch", 0, 0}, save.Abilite{"Blaster", 0, 20, 0, 0, 0, 0, "A classic Blaster", 0, 0}}, map[save.Item]int{}, 0}
 	if !fight.Fight(MC, &BrignandsChief, true) {
 		ClearScreen()
 		fmt.Println("Do you want to restart Yes(1) or No(2) ?")
@@ -954,7 +961,7 @@ func Quete2(MC *save.Perso) {
 	time.Sleep(2 * time.Second)
 	fmt.Printf("Bounty hunter : Certainly not.")
 	ClearScreen()
-	BountyHunter := save.Mob{"Bounty hunter", 300, 300, 20, []save.Abilite{save.Abilite{"Grenade", 0, 30, 0, 1, 0, 0, "A grenade who explose."}, save.Abilite{"Self-Healing", 0, 0, 20, 1, 0, 0, "Self heal"}, save.Abilite{"Sniper shot", 0, 30, 0, 1, 0, 0, "Sniper shot abilite"}}, map[save.Item]int{}, 500}
+	BountyHunter := save.Mob{"Bounty hunter", 300, 300, 20, []save.Abilite{save.Abilite{"Grenade", 0, 30, 0, 1, 0, 0, "A grenade who explose.", 2, 5}, save.Abilite{"Self-Healing", 0, 0, 20, 1, 0, 0, "Self heal", 0, 0}, save.Abilite{"Sniper shot", 0, 30, 0, 1, 0, 0, "Sniper shot abilite", 0, 0}}, map[save.Item]int{}, 500}
 	if !fight.Fight(MC, &BountyHunter, true) {
 		MC.PV_actuelle = MC.PV_actuelle * 3 / 4
 		Quete2(MC)
@@ -971,7 +978,7 @@ func End(MC *save.Perso) {
 	fmt.Printf("\n\nDooku : I'm not a traitor like tou say, I have just see than the Jedi High Council is corupted by the Galactic Senate.")
 	time.Sleep(2 * time.Second)
 	fmt.Printf("\n\nYou : You are a liar.")
-	Dooku1 := save.Mob{"Dooku", 500, 500, 90, []save.Abilite{save.Abilite{"lightning", 0, 150, 0, 1, 0, 0, "Lightning of the dark Side"}, save.Abilite{"Lighsaber", 0, 210, 0, 1, 0, 0, "Lighsaber technique"}}, map[save.Item]int{}, 1000}
+	Dooku1 := save.Mob{"Dooku", 500, 500, 90, []save.Abilite{save.Abilite{"lightning", 0, 150, 0, 1, 0, 0, "Lightning of the dark Side", 0, 0}, save.Abilite{"Lighsaber", 0, 210, 0, 1, 0, 0, "Lighsaber technique", 0, 0}}, map[save.Item]int{}, 1000}
 	res := fight.Fight(MC, &Dooku1, true)
 	if !res {
 		ClearScreen()
@@ -1000,7 +1007,7 @@ func End(MC *save.Perso) {
 	ClearScreen()
 	fmt.Printf("Dooku : But you must do better if you want ot win")
 	time.Sleep(2 * time.Second)
-	Dooku2 := save.Mob{"Dooku", 600, 500, 70, []save.Abilite{save.Abilite{"lightning", 0, 150, 0, 1, 0, 0, "Lightning of the dark Side"}, save.Abilite{"Lighsaber", 0, 210, 0, 1, 0, 0, "Lighsaber technique"}, save.Abilite{"Self-Healing", 0, 0, 70, 1, 0, 0, "Self heal"}}, map[save.Item]int{}, 1000}
+	Dooku2 := save.Mob{"Dooku", 600, 500, 70, []save.Abilite{save.Abilite{"lightning", 0, 150, 0, 1, 0, 0, "Lightning of the dark Side", 2, 15}, save.Abilite{"Lighsaber", 0, 210, 0, 1, 0, 0, "Lighsaber technique", 0, 0}, save.Abilite{"Self-Healing", 0, 0, 70, 1, 0, 0, "Self heal", 0, 0}}, map[save.Item]int{}, 1000}
 	res = fight.Fight(MC, &Dooku2, false)
 	if !res {
 		ClearScreen()
