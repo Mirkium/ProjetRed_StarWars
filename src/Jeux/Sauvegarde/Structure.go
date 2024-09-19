@@ -23,7 +23,7 @@ type Weapon struct {
 	DamageBonus int
 	PvBonus     int
 	Type        int
-	Color       string
+	Color       Cristal
 	Quantity    int
 	Price       int
 	CoteForce   int
@@ -35,7 +35,7 @@ type SecondaryWeapon struct {
 	DamageBonus int
 	PvBonus     int
 	Type        int
-	Color       string
+	Color       Cristal
 	Quantity    int
 	Price       int
 	CoteForce   int

@@ -20,7 +20,7 @@ func Republic() {
 		Campagne.Energie = 0
 		Arme.DamageBonus = 5
 		Arme.PvBonus = 0
-		Arme.Color = "Jaune"
+		Arme.Color = Cristal{"Cristal jaune","\033[93m"}
 		Armors.Name = "Tenue de Padawan"
 		Armors.DamageBonus = 0
 		Armors.PvBonus = 10
@@ -37,7 +37,7 @@ func Republic() {
 		Campagne.Energie = 10
 		Arme.DamageBonus = 5
 		Arme.PvBonus = 0
-		Arme.Color = "Jaune"
+		Arme.Color = Cristal{"Cristal jaune","\033[93m"}
 		Armors.Name = "Tenue de Padawan"
 		Armors.DamageBonus = 0
 		Armors.PvBonus = 10
@@ -117,7 +117,7 @@ func ChooseWeapon() {
 		Arme.Name = "Trainning blade"
 		Arme.DamageBonus = 10
 		Arme.PvBonus = 0
-		Arme.Color = "\033[93m"
+		Arme.Color = Cristal{"Cristal jaune","\033[93m"}
 		Personnage.PV_max = 1000 + Arme.PvBonus + Armors.PvBonus
 		Personnage.PV_actuelle = 1000 + Arme.PvBonus + Armors.PvBonus
 		Personnage.Force = 20 + Arme.DamageBonus + Armors.DamageBonus
@@ -125,11 +125,11 @@ func ChooseWeapon() {
 		Arme.Name = "Trainning blade"
 		Arme.DamageBonus = 10
 		Arme.PvBonus = 0
-		Arme.Color = "\033[93m"
+		Arme.Color = Cristal{"Cristal jaune","\033[93m"}
 		ArmeSecondaire.Name = "Trainning blade"
 		ArmeSecondaire.DamageBonus = 10
 		ArmeSecondaire.PvBonus = 0
-		ArmeSecondaire.Color = "\033[93m"
+		ArmeSecondaire.Color = Cristal{"Cristal jaune","\033[93m"}
 		Personnage.PV_max = 1000 + Arme.PvBonus + Armors.PvBonus + ArmeSecondaire.PvBonus
 		Personnage.PV_actuelle = 1000 + Arme.PvBonus + Armors.PvBonus + ArmeSecondaire.PvBonus
 		Personnage.Force = 20 + Arme.DamageBonus + Armors.DamageBonus + ArmeSecondaire.DamageBonus
@@ -138,7 +138,7 @@ func ChooseWeapon() {
 		Arme.Name = "electric training stick"
 		Arme.DamageBonus = 10
 		Arme.PvBonus = 0
-		Arme.Color = "\033[93m"
+		Arme.Color = Cristal{"Cristal jaune","\033[93m"}
 		Personnage.IsDoubleBlade = true
 		Personnage.PV_max = 1000 + Arme.PvBonus + Armors.PvBonus
 		Personnage.PV_actuelle = 1000 + Arme.PvBonus + Armors.PvBonus

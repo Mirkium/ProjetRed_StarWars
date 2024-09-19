@@ -236,33 +236,133 @@ func ChangeWeapon() {
 	for i, k := range Inventaire_Weapon {
 		fmt.Println("/= ", k.Name)
 		if k.Type == 1 {
-			fmt.Println(i, "  ",gray, "[]####[", k.Color, "===========================================>", Reset)
+			fmt.Println(i, "  ", gray, "[]####[", k.Color, "===========================================>", Reset)
 		} else if k.Type == 2 {
-			fmt.Println(i, "  ",k.Color, "<===========================================", Reset, "]#####[]#####[", k.Color, "===========================================>", Reset)
+			fmt.Println(i, "  ", k.Color, "<===========================================", Reset, "]#####[]#####[", k.Color, "===========================================>", Reset)
 		}
-		fmt.Println("\\= Pv Bonus : ",k.PvBonus," | Damage Bonus : ",k.DamageBonus)
+		fmt.Println("\\= Pv Bonus : ", k.PvBonus, " | Damage Bonus : ", k.DamageBonus)
 	}
 	fmt.Println("                        (0) Exit")
 	fmt.Println("\\===========================================================/")
 	fmt.Print("Your choice : ")
 	fmt.Scanln(&choix)
+	var Change string
 	for elem, Saber := range Inventaire_Weapon {
 		if choix == elem {
-			fmt.Println("")
+			fmt.Println("Are you sure to you want ?")
+			fmt.Println("  (1) yes     (2) no")
+			fmt.Scanln(&Change)
+			switch Change {
+			case "1":
+				Enlever_Weapon(Saber, 1)
+				Ajout_Weapon(Arme, 1)
+				Arme = Saber
+			case "2":
+				ClearScreen()
+				ChangeWeapon()
+			}
 		}
 	}
 }
 
 func ChangeCristal() {
-
+	ClearScreen()
+	var choix int
+	fmt.Println("/=============================Weapon=============================\\")
+	for i, k := range Inventaire_Crystal {
+		fmt.Println("/= ")
+		fmt.Println(i, "  ", k.Name)
+		fmt.Println("\\=")
+	}
+	fmt.Println("                        (0) Exit")
+	fmt.Println("\\===========================================================/")
+	fmt.Print("Your choice : ")
+	fmt.Scanln(&choix)
+	var Change string
+	for elem, Cristal := range Inventaire_Crystal {
+		if choix == elem {
+			fmt.Println("Are you sure to you want ?")
+			fmt.Println("  (1) yes     (2) no")
+			fmt.Scanln(&Change)
+			switch Change {
+			case "1":
+				Enlever_Cristal(Cristal)
+				Ajout_Crystal(Arme.Color)
+				Arme.Color = Cristal
+			case "2":
+				ClearScreen()
+				ChangeWeapon()
+			}
+		}
+	}
 }
 
 func ChangeSecondaryWeapon() {
-
+	ClearScreen()
+	var choix int
+	fmt.Println("/=============================Weapon=============================\\")
+	for i, k := range Inventaire_Weapon {
+		fmt.Println("/= ", k.Name)
+		if k.Type == 1 {
+			fmt.Println(i, "  ", gray, "[]####[", k.Color, "===========================================>", Reset)
+		} else if k.Type == 2 {
+			fmt.Println(i, "  ", k.Color, "<===========================================", Reset, "]#####[]#####[", k.Color, "===========================================>", Reset)
+		}
+		fmt.Println("\\= Pv Bonus : ", k.PvBonus, " | Damage Bonus : ", k.DamageBonus)
+	}
+	fmt.Println("                        (0) Exit")
+	fmt.Println("\\===========================================================/")
+	fmt.Print("Your choice : ")
+	fmt.Scanln(&choix)
+	var Change string
+	for elem, Saber := range Inventaire_Weapon {
+		if choix == elem {
+			fmt.Println("Are you sure to you want ?")
+			fmt.Println("  (1) yes     (2) no")
+			fmt.Scanln(&Change)
+			switch Change {
+			case "1":
+				Enlever_Weapon(Saber, 1)
+				Ajout_Weapon(Weapon(ArmeSecondaire), 1)
+				ArmeSecondaire = SecondaryWeapon(Saber)
+			case "2":
+				ClearScreen()
+				ChangeWeapon()
+			}
+		}
+	}
 }
 
 func ChangeSecondaryWeaponCristal() {
-
+	ClearScreen()
+	var choix int
+	fmt.Println("/=============================Weapon=============================\\")
+	for i, k := range Inventaire_Crystal {
+		fmt.Println("/= ")
+		fmt.Println(i, "  ", k.Name)
+		fmt.Println("\\=")
+	}
+	fmt.Println("                        (0) Exit")
+	fmt.Println("\\===========================================================/")
+	fmt.Print("Your choice : ")
+	fmt.Scanln(&choix)
+	var Change string
+	for elem, Cristal := range Inventaire_Crystal {
+		if choix == elem {
+			fmt.Println("Are you sure to you want ?")
+			fmt.Println("  (1) yes     (2) no")
+			fmt.Scanln(&Change)
+			switch Change {
+			case "1":
+				Enlever_Cristal(Cristal)
+				Ajout_Crystal(ArmeSecondaire.Color)
+				ArmeSecondaire.Color = Cristal
+			case "2":
+				ClearScreen()
+				ChangeWeapon()
+			}
+		}
+	}
 }
 
 //=======================================================================================================================
@@ -297,5 +397,32 @@ func MenuArmor() {
 }
 
 func ChangeArmor() {
-
+	var choix int
+	fmt.Println("/=============================Armor=============================\\")
+	for i, k := range Inventaire_Armor {
+		fmt.Println("/= ", k.Name)
+		fmt.Println(i, "  Pv Bonus : ", k.PvBonus, " | Damage Bonus : ", k.DamageBonus, " | Armor : ", k.StatArmor)
+		fmt.Println("\\=")
+	}
+	fmt.Println("                        (0) Exit")
+	fmt.Println("\\===============================================================/")
+	fmt.Print("Your choice : ")
+	fmt.Scanln(&choix)
+	var Change string
+	for elem, armor := range Inventaire_Armor {
+		if choix == elem {
+			fmt.Println("Are you sure to you want ?")
+			fmt.Println("  (1) yes     (2) no")
+			fmt.Scanln(&Change)
+			switch Change {
+			case "1":
+				Enlever_Armor(armor, 1)
+				Ajout_Armur(Personnage.Armure, 1)
+				Personnage.Armure = armor
+			case "2":
+				ClearScreen()
+				ChangeWeapon()
+			}
+		}
+	}
 }

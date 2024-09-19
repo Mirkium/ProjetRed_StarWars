@@ -62,7 +62,7 @@ func AchatWeapon(BuyItem Forgeron_Weapon, Item2 save.Item, Item1 save.Cristal) {
 		BuyItem.DamageBonus,
 		BuyItem.PvBonus,
 		BuyItem.Type,
-		BuyItem.ItemValeur_1.Color,
+		BuyItem.ItemValeur_1,
 		1,
 		BuyItem.Valeur,
 		BuyItem.CoteForce,
