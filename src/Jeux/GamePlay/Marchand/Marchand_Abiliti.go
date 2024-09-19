@@ -69,13 +69,15 @@ func MarchandAbilitie() {
 			MarchandAbilitie()
 		}
 	} else if choix == "2" {
+		save.ClearScreen()
+		AchatAbilitie(item02)
+	} else if choix == "3" {
 		if save.Personnage.CoteForce >= 50 { //vérifie si on a assez de point lumineux
 			save.ClearScreen()
-			AchatAbilitie(item02)
+			AchatAbilitie(item03)
+		} else {
+
 		}
-	} else if choix == "3" {
-		save.ClearScreen()
-		AchatAbilitie(item03)
 	} else if choix == "4" {
 		save.ClearScreen()
 		AchatAbilitie(item04)

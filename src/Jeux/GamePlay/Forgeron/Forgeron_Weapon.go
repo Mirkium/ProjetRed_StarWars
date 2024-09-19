@@ -33,19 +33,23 @@ func ForgeronWeapon() {
 		-100,
 		"C'est le sabre de vador",
 	}
+
 	fmt.Println("Forgeron d'arme")
 	fmt.Println("1- ", weapon1.Name)
 	fmt.Println("   Pv Bonus : ", weapon1.PvBonus, " | Damage Bonus : ", weapon1.DamageBonus)
 	fmt.Println("Price :")
-	fmt.Println("credit : ", save.Personnage.Credit, " | ", " | way Force : ", save.Personnage.CoteForce)
+	fmt.Println("   credit : ", save.Personnage.Credit, " | ", weapon1.ItemValeur_1.Name, " | ", weapon1.ItemValeur_2.Name, " | way Force : ", save.Personnage.CoteForce)
+	fmt.Println("____________________________________")
 	fmt.Scanln(&choix) //input qui va prendre en considération l'objet voulu
 	if choix == "1" {
 		for _, Item := range save.Inventaire_Item {
 			if Item.Name == weapon1.ItemValeur_2.Name && save.Personnage.CoteForce <= weapon1.CoteForce && save.Personnage.Credit >= weapon1.Valeur {
 				Item2 = weapon1.ItemValeur_2
-				AchatWeapon(weapon1, Item2, Item1)
 				break
 			}
+		}
+		if Item1 == weapon1.ItemValeur_1 && Item2 == weapon1.ItemValeur_2 {
+			AchatWeapon(weapon1, Item2, Item1)
 		}
 	}
 	MenuFWeapon()

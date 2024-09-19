@@ -59,7 +59,7 @@ func MarchandArmor() {
 	fmt.Println("")
 	fmt.Scanln(&choix) //input qui va prendre en considération l'objet voulu
 	if choix == "1" {
-		if save.Personnage.CoteForce <= -50 { //vérifie si on a assez de point Obscur
+		if save.Personnage.CoteForce <= -10000000 { //vérifie si on a assez de point Obscur
 			save.ClearScreen()
 			AchatArmor(item01) // achète l'item01
 		} else {
@@ -69,7 +69,7 @@ func MarchandArmor() {
 			MarchandArmor()
 		}
 	} else if choix == "2" {
-		if save.Personnage.CoteForce >= 50 { //vérifie si on a assez de point lumineux
+		if save.Personnage.CoteForce >= 10000000 { //vérifie si on a assez de point lumineux
 			save.ClearScreen()
 			AchatArmor(item02)
 		}
