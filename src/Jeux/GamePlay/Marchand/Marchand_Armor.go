@@ -3,6 +3,7 @@ package marchand
 import (
 	save "Game/Jeux/Sauvegarde"
 	"fmt"
+	"time"
 )
 
 func MenuArmor() {
@@ -10,45 +11,97 @@ func MenuArmor() {
 }
 
 func MarchandArmor() {
-	item01 := save.Armor{Name: "darth vader helmet",
-		PvBonus:     200,
-		DamageBonus: 100,
+	var choix string
+	item01 := save.Armor{
+		Name:        "Dark Vader Helmet",
+		PvBonus:     10000,
+		DamageBonus: 10000,
 		Color:       "Black",
 		Quantity:    1,
-		Price:       50000,
-		CoteForce:   -10000,
+		Price:       100000,
+		CoteForce:   -10000000,
 		Description: "Having been badly burned on Moustafar, Darth Vader had no choice but to wear a breathing helmet to survive."}
-	item02 := save.Armor{Name: "stormtrooper armor",
-		PvBonus:     40,
-		DamageBonus: 10,
-		Color:       "White and Black",
-		Quantity:    5,
-		Price:       1000,
-		CoteForce:   0,
-		Description: "Developed by the Imperial Department of Military Research, the Stormtrooper's armor was made from simple, inexpensive materials. So the entire armor was made of 18 removable white plastic composite plates that the Stormtroopers slipped over a special black tunic."}
-	item03 := save.Armor{Name: "Jedi Battle Armor",
-		PvBonus:     100,
-		DamageBonus: 50,
-		Color:       "Brown and White",
+	item02 := save.Armor{
+		Name:        "Jedi Battle Armor",
+		PvBonus:     20000,
+		DamageBonus: 1000,
+		Color:       "Blue",
 		Quantity:    1,
-		Price:       4000,
-		CoteForce:   10000,
-		Description: "During the Sith Wars, the Jedi were forced to take on greater protection. These were unique armors, fashioned for each Jedi."}
-	item04 := save.Armor{Name: "Gungan Personal Energy Shield",
-		PvBonus:     0,
-		DamageBonus: 10,
+		Price:       1000000,
+		CoteForce:   10000000,
+		Description: " As surprising as it may seem, the Jedi had not always worn their symbolic togas and robes. There was a time when the dark times forced the Jedi to don more adequate protections such as true battle armor."}
+	item03 := save.Armor{
+		Name:        "Gungan Personal Energy Shield",
+		PvBonus:     500,
+		DamageBonus: 0,
 		Color:       "Purple",
 		Quantity:    3,
-		Price:       10000,
+		Price:       50000,
 		CoteForce:   0,
 		Description: "Produced during the Galactic Republic era by the Otoh Gunga Defense League on Naboo, the Gungan Personal Energy Shield was a means of protection used by the soldiers and scouts of General Tobler Ceel's Grand Army."}
+	item04 := save.Armor{
+		Name:        "Coruscant Guard Armor",
+		PvBonus:     1000,
+		DamageBonus: 0,
+		Color:       "Red",
+		Quantity:    2,
+		Price:       20000,
+		CoteForce:   0,
+		Description: "The Coruscant Guard Armor equipped the elite Stormtrooper unit responsible for policing Coruscant and the Core Worlds."}
+	fmt.Println("Marchand")
 	fmt.Println("")
-	fmt.Println(item01.Name, " : ", item01.Description, item01.PvBonus, item01.DamageBonus, item01.Color)
-	fmt.Println(item02.Name, " : ", item02.Description, item02.PvBonus, item02.DamageBonus, item02.Color)
-	fmt.Println(item03.Name, " : ", item03.Description, item03.PvBonus, item03.DamageBonus, item03.Color)
-	fmt.Println(item04.Name, " : ", item04.Description, item04.PvBonus, item04.DamageBonus, item04.Color)
+	fmt.Println("1- ", item01.Name, " : ", item01.Description, item01.PvBonus, item01.DamageBonus, item01.Color)
+	fmt.Println("2- ", item02.Name, " : ", item02.Description, item02.PvBonus, item02.DamageBonus, item02.Color)
+	fmt.Println("3- ", item03.Name, " : ", item03.Description, item03.PvBonus, item03.DamageBonus, item03.Color)
+	fmt.Println("4- ", item04.Name, " : ", item04.Description, item04.PvBonus, item04.DamageBonus, item04.Color)
 	fmt.Println("")
 	fmt.Println("credit : ", save.Personnage.Credit, " | way Force : ", save.Personnage.CoteForce)
 	fmt.Println("")
+	fmt.Scanln(&choix) //input qui va prendre en considération l'objet voulu
+	if choix == "1" {
+		if save.Personnage.CoteForce <= -50 { //vérifie si on a assez de point Obscur
+			save.ClearScreen()
+			AchatArmor(item01) // achète l'item01
+		} else {
+			fmt.Println("Tu ne crois pas assez au Côté Obscur")
+			time.Sleep(time.Second * 2)
+			save.ClearScreen()
+			MarchandArmor()
+		}
+	} else if choix == "2" {
+		if save.Personnage.CoteForce >= 50 { //vérifie si on a assez de point lumineux
+			save.ClearScreen()
+			AchatArmor(item02)
+		}
+	} else if choix == "3" {
+		save.ClearScreen()
+		AchatArmor(item03)
+	} else if choix == "4" {
+		save.ClearScreen()
+		AchatArmor(item04)
+	} else if choix == "0" {
+		fmt.Println("Tu sors")
+	} else {
+		save.ClearScreen()
+		MarchandArmor()
+	}
 	MenuArmor()
+}
+
+func AchatArmor(BuyItem save.Armor) {
+	var choix string
+	fmt.Println("Are you sure to buy ", BuyItem.Name)
+	fmt.Println(" (1) yes   (2) no")
+	fmt.Scanln(&choix)
+	switch choix {
+	case "1":
+		save.Personnage.Credit -= BuyItem.Price
+		save.Ajout_Armur(BuyItem, 1)
+	case "2":
+		save.ClearScreen()
+		MarchandArmor()
+	default:
+		save.ClearScreen()
+		AchatArmor(BuyItem)
+	}
 }

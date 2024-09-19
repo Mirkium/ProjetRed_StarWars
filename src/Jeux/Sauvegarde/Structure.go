@@ -22,6 +22,7 @@ type Weapon struct {
 	Name        string
 	DamageBonus int
 	PvBonus     int
+	Type        int
 	Color       string
 	Quantity    int
 	Price       int
@@ -102,6 +103,11 @@ type Item struct {
 	Valeur      int
 	Description string
 	Quantite    int
+}
+
+type Cristal struct {
+	Name  string
+	Color string
 }
 
 //var test ItemPacket
