@@ -6,7 +6,7 @@ import (
 	//game "Game/Jeux/GamePlay"
 	Combat "Game/Jeux/GamePlay/Fight"
 	chevalierJedi "Game/Jeux/GamePlay/FirstMission/Jedi/ChevalierJedi"
-	consulaireJedi "Game/Jeux/GamePlay/FirstMission/Jedi/ConsulaireJedi"
+	//consulaireJedi "Game/Jeux/GamePlay/FirstMission/Jedi/ConsulaireJedi"
 	assassinSith "Game/Jeux/GamePlay/FirstMission/Sith/AssassinSith"
 	guerrierSith "Game/Jeux/GamePlay/FirstMission/Sith/GuerrierSith"
 	marchand "Game/Jeux/GamePlay/Marchand"
@@ -24,7 +24,7 @@ func main() {
 	case "Jedi Knight":
 		chevalierJedi.JediKnight()
 	case "Jedi Consular":
-		consulaireJedi.JediConsular()
+		//consulaireJedi.JediConsular()
 	case "Sith Warrior":
 		guerrierSith.SithWarrior()
 		save.Personnage.CoteForce += guerrierSith.Arrive_2()
