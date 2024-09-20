@@ -1,6 +1,6 @@
 package marchand
 
-/*
+
 import (
 	save "Game/Jeux/Sauvegarde"
 	"fmt"
@@ -47,9 +47,7 @@ func MarchandWeapon() {
 		Price:       20000,
 		CoteForce:   0,
 		Description: "Invented on behalf of the Grand Army of the Republic by Doctor Sionver Boll, the Electro-Proton Bomb released upon its explosion an electromagnetic pulse capable of destroying hundreds of Battle Droids in a few seconds.."}
-	fmt.Println("Merchant")
-		Description: "Invented on behalf of the Grand Army of the Republic by Doctor Sionver Boll, the Electro-Proton Bomb released upon its explosion an electromagnetic pulse capable of destroying hundreds of Battle Droids in a few seconds.."}*/
-/*	fmt.Println("Marchand")
+	fmt.Println("Marchand")
 	fmt.Println("")
 	fmt.Println("1- ", item01.Name, " : ", item01.Description, item01.PvBonus, item01.DamageBonus, item01.Color)
 	fmt.Println("2- ", item02.Name, " : ", item02.Description, item02.PvBonus, item02.DamageBonus, item02.Color)
@@ -124,4 +122,4 @@ func AchatLightSaber(BuyItem save.Lightsaber) {
 	}
 }
 
-*/
+
