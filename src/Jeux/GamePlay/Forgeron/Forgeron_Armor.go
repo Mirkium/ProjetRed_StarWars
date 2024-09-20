@@ -150,7 +150,8 @@ func ForgeronArmor() {
 		if Item1 == armor3.ItemValeur_1 && Item2 == armor3.ItemValeur_2 && armor3.Valeur <= save.Personnage.Credit {
 			CraftArmor(armor2, armor3.ItemValeur_1, armor3.ItemValeur_2)
 		}
-
+	} else if choix == "0" {
+		SmithchoiceAffichage()
 	} else {
 		ForgeronArmor()
 		return

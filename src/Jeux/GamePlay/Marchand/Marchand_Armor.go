@@ -76,7 +76,7 @@ func MarchandArmor() {
 		save.ClearScreen()
 		AchatArmor(item04)
 	} else if choix == "0" {
-		fmt.Println("You go out")
+		Merchantchoice()
 	} else {
 		save.ClearScreen()
 		MarchandArmor()

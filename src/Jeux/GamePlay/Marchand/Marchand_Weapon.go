@@ -79,12 +79,12 @@ func MarchandWeapon() {
 		save.ClearScreen()
 		AchatWeapon(item04)
 	} else if choix == "0" {
-		fmt.Println("You go out")
+		Merchantchoice()
 	} else {
 		save.ClearScreen()
 		MarchandWeapon()
 	}
-	MenuWeapon()
+	
 }
 
 func AchatWeapon(BuyItem save.Weapon) {
