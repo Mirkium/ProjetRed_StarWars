@@ -23,7 +23,6 @@ type Weapon struct {
 	DamageBonus int
 	PvBonus     int
 	Type        int
-	Color       Cristal
 	Quantity    int
 	Price       int
 	CoteForce   int
@@ -31,6 +30,18 @@ type Weapon struct {
 }
 
 type SecondaryWeapon struct {
+	Name        string
+	DamageBonus int
+	PvBonus     int
+	Type        int
+	Color       Cristal
+	Quantity    int
+	Price       int
+	CoteForce   int
+	Description string
+}
+
+type Lightsaber struct {
 	Name        string
 	DamageBonus int
 	PvBonus     int

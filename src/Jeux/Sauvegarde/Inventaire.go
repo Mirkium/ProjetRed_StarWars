@@ -9,6 +9,7 @@ var Inventaire_Item []Item
 var Inventaire_Weapon []Weapon
 var Inventaire_Armor []Armor
 var Inventaire_Crystal []Cristal
+var Inventaire_LightSaber []Lightsaber
 
 //Inventaire des Item
 
@@ -505,5 +506,96 @@ func DisplayInventaireCristal() {
 	default:
 		ClearScreen()
 		DisplayInventaire()
+	}
+}
+
+//Inventaire des sabre laser
+
+func Ajout_LightSaber(Objet Lightsaber, quantite int) {
+	/*
+		Rajoute un item si il n'existe pas déja
+		sinon rajoute la quantite.
+		Verifie si l'Inventaire_Item est complet egalement
+	*/
+	AlreadyExiste := false
+	for _, ele := range Inventaire_LightSaber {
+		if Objet.Name == ele.Name {
+			AlreadyExiste = true
+			ele.Quantity += Objet.Quantity
+			return
+		}
+	}
+	if len(Inventaire_LightSaber) >= 9 && !AlreadyExiste {
+		fmt.Println("L'Inventaire_LightSaber est complet")
+		return
+	} else {
+		Inventaire_LightSaber = append(Inventaire_LightSaber, Objet)
+	}
+}
+
+func Enlever_LightSaber(Objet Lightsaber, Quantite int) {
+	/*
+		Retire la quantite d'item demande et le supprime si <= 0
+		Ne fais rien si l'item n'existe pas.
+	*/
+	for index, element := range Inventaire_LightSaber {
+		if element.Name == Objet.Name {
+			if element.Quantity-Objet.Quantity <= 0 {
+				Inventaire_LightSaber = append(Inventaire_LightSaber[:index], Inventaire_LightSaber[index+1:]...)
+				return
+			} else {
+				element.Quantity -= Objet.Quantity
+				return
+			}
+		}
+	}
+	fmt.Println("L'item n'a pas été trouvé")
+}
+
+func DisplayInventaireLightSaber() {
+	var Exit string
+	/*
+		Affiche les diiferents item
+	*/
+	ClearScreen()
+	i := 1
+	fmt.Println(" ======================== LightSaber =========================")
+	for _, element := range Inventaire_LightSaber {
+		fmt.Printf("|Index : %d | Item :  %s | Quantité : %s |\n", i, Formatage(element.Name, 16), Formatage(strconv.Itoa(element.Quantity), 4))
+		i++
+	}
+	fmt.Println("                         (0)  Exit")
+	fmt.Println(" ===========================================================")
+	fmt.Scanln(&Exit)
+	switch Exit {
+	case "0":
+		break
+	default:
+		ClearScreen()
+		DisplayInventaire()
+	}
+}
+func VendreLightSaber(index int, quantite int) {
+	var choix string
+	DisplayInventaireLightSaber()
+	fmt.Println("Quel item veut tu vendre ?")
+	fmt.Scanln(&choix)
+	if len(choix) != 1 {
+		fmt.Println("error 404 : pas le bon input")
+	}
+	for _, let := range choix {
+		if let >= '0' && let <= '9' {
+			//DisplayInventaire_ItemIndex(int(let - 48))
+			i := 1
+			for _, key := range Inventaire_Armor {
+				if index == i {
+					Enlever_Armor(key, quantite)
+					//return value * quantite
+				}
+				i++
+			}
+		} else {
+			fmt.Println("on t'a demandé un chiffre pas autre chose.")
+		}
 	}
 }
