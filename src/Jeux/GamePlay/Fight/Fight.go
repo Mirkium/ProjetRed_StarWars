@@ -47,16 +47,16 @@ func AskInt(min int, max int) int {
 }
 
 func DisplayAbilite(AbilitieList []save.Abilite, P save.Perso) {
-	fmt.Println(" =====================Abilite======================")
-	fmt.Println("|" + save.Formatage("Name", 16) + "|" + save.Formatage("Dammage", 8) + "|" + save.Formatage("Energie", 8) + "|  index   |")
+	fmt.Println(" ===============================Abilite=================================")
+	fmt.Println("|" + save.Formatage("Name", 20) + "|" + save.Formatage("Energie", 8) + "|" + save.Formatage("Dammage", 8) + "|" + save.Formatage("Dot duration", 14) + "|" + save.Formatage(" Dot dammage", 14) + "|  index   |")
 	for in, element := range AbilitieList {
 		d := element.Dammage + P.Weapon.DamageBonus - P.Armure.StatArmor
 		if d <= 0 {
 			d = 1
 		}
-		fmt.Println("|" + save.Formatage(element.Name, 16) + "|" + save.Formatage(strconv.Itoa(d), 8) + "|" + save.Formatage(strconv.Itoa(element.EnergieCost), 8) + "|" + save.Formatage(strconv.Itoa(in+2), 7) + "|")
+		fmt.Println("|" + save.Formatage(element.Name, 20) + "|" + save.Formatage(strconv.Itoa(element.EnergieCost), 8) + "|" + save.Formatage(strconv.Itoa(d), 8) + save.Formatage(strconv.Itoa(element.DotCompteur), 14) + "|" + save.Formatage(strconv.Itoa(element.DotDammage), 14) + "|" + save.Formatage(strconv.Itoa(in+1), 7) + "|")
 	}
-	fmt.Println(" ==================================================")
+	fmt.Println(" =======================================================================")
 	time.Sleep(3 * time.Second)
 }
 
@@ -64,17 +64,17 @@ func Fight(P *save.Perso, mob *save.Mob, PlayerStart bool) bool {
 	rand.Seed(time.Now().UnixNano())
 	save.ClearScreen()
 	//affichage du debut de combat
-	fmt.Println("Vous décidez d'affronter " + mob.Name)
+	fmt.Println("You decide to fight " + mob.Name)
 	fmt.Println("The fight will start in 3")
 	fmt.Printf("\nStats : \n\t-Pv : %d\n\t-Armor : %d\n", mob.PV_max, mob.Armor)
 	time.Sleep(1 * time.Second)
 	save.ClearScreen()
-	fmt.Println("Vous décidez d'affronter " + mob.Name)
+	fmt.Println("You decide to fight " + mob.Name)
 	fmt.Println("The fight will start in 2")
 	fmt.Printf("\nStats : \n\t-Pv : %d\n\t-Armor : %d\n", mob.PV_max, mob.Armor)
 	time.Sleep(1 * time.Second)
 	save.ClearScreen()
-	fmt.Println("Vous décidez d'affronter " + mob.Name)
+	fmt.Println("You decide to fight " + mob.Name)
 	fmt.Println("The fight will start in 1")
 	fmt.Printf("\nStats : \n\t-Pv : %d\n\t-Armor : %d\n", mob.PV_max, mob.Armor)
 	time.Sleep(1 * time.Second)
@@ -83,7 +83,8 @@ func Fight(P *save.Perso, mob *save.Mob, PlayerStart bool) bool {
 		if PlayerStart {
 			//affichage
 			save.ClearScreen()
-			fmt.Println("Il reste " + strconv.Itoa(mob.PV_actuelle) + " / " + strconv.Itoa(mob.PV_max) + " à " + mob.Name)
+			fmt.Println("You have " + strconv.Itoa(P.PV_actuelle) + " / " + strconv.Itoa(P.PV_max) + " and " + strconv.Itoa(P.Classe.Energie) + "energie.")
+			fmt.Println(mob.Name + " have " + strconv.Itoa(mob.PV_actuelle) + " / " + strconv.Itoa(mob.PV_max))
 			time.Sleep(1 * time.Second)
 			AbilitieList := []save.Abilite{}
 			AbilitieList = append(AbilitieList, P.AbilitieDefault...)
@@ -119,7 +120,7 @@ func Fight(P *save.Perso, mob *save.Mob, PlayerStart bool) bool {
 				mob.PV_actuelle -= DDP
 			}
 			if mob.PV_actuelle <= 0 {
-				fmt.Println("Il reste " + strconv.Itoa(0) + " / " + strconv.Itoa(mob.PV_max) + " à " + mob.Name)
+				fmt.Println(mob.Name + " have " + strconv.Itoa(0) + " / " + strconv.Itoa(mob.PV_max))
 				time.Sleep(2 * time.Second)
 				fmt.Println("You win.")
 				time.Sleep(3 * time.Second)
