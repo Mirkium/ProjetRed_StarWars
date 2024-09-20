@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	save "Game/Jeux/Sauvegarde"
 	//game "Game/Jeux/GamePlay"
 	Combat "Game/Jeux/GamePlay/Fight"
@@ -28,6 +29,7 @@ func main() {
 		guerrierSith.SithWarrior()
 		save.Personnage.CoteForce += guerrierSith.Arrive_2()
 		guerrierSith.Arrive_3()
+		WayClasseSithWarrior()
 		choice_1 := guerrierSith.Menu()
 		switch choice_1 {
 		case "1":
@@ -66,6 +68,24 @@ func main() {
 
 	//Forgeron2 := forge.Forgeron{"vbfjimegobes", []save.Weapon{save.Weapon{"fbezhlif", 10, 10, "red", 1, 1, 1, "ceci est une decription"}}}
 	//Forgeron2.DisplayProduct()
+}
+
+func WayClasseSithWarrior() {
+	var choix string
+	fmt.Println("Choose your Ability class :")
+	fmt.Println("(1) Tank :",guerrierSith.ClassTank,"     (2) Burst : ",guerrierSith.ClassBurst.Name,"     (3) Dot : ",guerrierSith.ClassDot)
+	fmt.Scanln(&choix) 
+	switch choix {
+	case "1" :
+		save.Personnage.Classe = guerrierSith.ClassTank
+	case "2" :
+		save.Personnage.Classe = guerrierSith.ClassBurst
+	case "3" :
+		save.Personnage.Classe = guerrierSith.ClassDot
+	default :
+		save.ClearScreen()
+		WayClasseSithWarrior()
+	}
 }
 
 /*
