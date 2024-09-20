@@ -27,9 +27,9 @@ const (
 
 var quete int = 0
 
-var ClasseConsulaire1 save.Classe = save.Classe{"Guardian", 110, []save.Abilite{save.Abilite{"Meditation", 10, 0, 30, 1, 0, 0, "An Abilite for rest a litle bit during a fight.", 0, 0}, save.Abilite{"Force wave", 30, 25, 0, 1, 0, 0, "A projection of the force who atack the ennemie", 0, 0}}}
-var ClasseConsulaire2 save.Classe = save.Classe{"Sentinel", 100, []save.Abilite{save.Abilite{"Toxic gaz", 40, 15, 0, 1, 0, 0, "A toxic Gaz for the enemie but not for you", 5, 15}, save.Abilite{"right hook", 40, 40, 0, 1, 0, 0, "A right hook on the face of the ennemie", 0, 0}}}
-var ClasseConsulaire3 save.Classe = save.Classe{"Nurse", 120, []save.Abilite{save.Abilite{"Heal", 20, 0, 20, 1, 0, 0, "Heal yourself", 0, 0}, save.Abilite{"Toxic gaz", 40, 15, 0, 1, 0, 0, "A toxic Gaz for the enemie but not for you", 5, 15}}}
+var ClasseConsulaire1 save.Classe = save.Classe{"Guardian", 110, []save.Abilite{save.Abilite{"Meditation", 10, 0, 30, 1, 0, 0, "An Abilite for rest a litle bit during a fight.", 0, 0}, save.Abilite{"Force wave", 30, 25, 0, 1, 0, 0, "A projection of the force who atack the ennemie", 0, 0}}, 110}
+var ClasseConsulaire2 save.Classe = save.Classe{"Sentinel", 100, []save.Abilite{save.Abilite{"Toxic gaz", 40, 15, 0, 1, 0, 0, "A toxic Gaz for the enemie but not for you", 5, 15}, save.Abilite{"right hook", 40, 40, 0, 1, 0, 0, "A right hook on the face of the ennemie", 0, 0}}, 120}
+var ClasseConsulaire3 save.Classe = save.Classe{"Nurse", 120, []save.Abilite{save.Abilite{"Heal", 20, 0, 20, 1, 0, 0, "Heal yourself", 0, 0}, save.Abilite{"Toxic gaz", 40, 15, 0, 1, 0, 0, "A toxic Gaz for the enemie but not for you", 5, 15}}, 120}
 
 var ClasseConsulaireList [3]save.Classe = [3]save.Classe{ClasseConsulaire1, ClasseConsulaire2, ClasseConsulaire3}
 

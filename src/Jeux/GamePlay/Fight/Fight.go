@@ -83,7 +83,7 @@ func Fight(P *save.Perso, mob *save.Mob, PlayerStart bool) bool {
 		if PlayerStart {
 			//affichage
 			save.ClearScreen()
-			fmt.Println("You have " + strconv.Itoa(P.PV_actuelle) + " / " + strconv.Itoa(P.PV_max) + " and " + strconv.Itoa(P.Classe.Energie) + "energie.")
+			fmt.Println("You have " + strconv.Itoa(P.PV_actuelle) + " / " + strconv.Itoa(P.PV_max) + " and " + strconv.Itoa(P.Classe.Energie) + " energie.")
 			fmt.Println(mob.Name + " have " + strconv.Itoa(mob.PV_actuelle) + " / " + strconv.Itoa(mob.PV_max))
 			time.Sleep(1 * time.Second)
 			AbilitieList := []save.Abilite{}

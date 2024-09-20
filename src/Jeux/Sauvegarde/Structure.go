@@ -66,9 +66,10 @@ type Armor struct {
 }
 
 type Classe struct {
-	Name    string
-	Energie int
-	Abilite []Abilite
+	Name       string
+	Energie    int
+	Abilite    []Abilite
+	EnergieMax int
 }
 
 type Objects struct {
