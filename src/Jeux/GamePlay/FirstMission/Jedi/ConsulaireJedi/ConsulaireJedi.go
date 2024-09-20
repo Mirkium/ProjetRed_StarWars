@@ -1,10 +1,8 @@
 package consulairejedi
-/*
+
 import (
-	//forg "Game/Jeux/GamePLay/Forgeron"
-	//march "Game/Jeux/GamePLay/Marchand"
-	//fight "Game/Jeux/GamePlay/Fight"
-	//save "Game/Jeux/Sauvegarde"
+	fight "Game/Jeux/GamePlay/Fight"
+	save "Game/Jeux/Sauvegarde"
 	"fmt"
 	"os"
 	"os/exec"
@@ -25,111 +23,13 @@ const (
 	gray    = "\033[90m"
 )
 
-var quete int = 0
+var Quete int = 0
 
 var ClasseConsulaire1 save.Classe = save.Classe{"Guardian", 110, []save.Abilite{save.Abilite{"Meditation", 10, 0, 30, 1, 0, 0, "An Abilite for rest a litle bit during a fight.", 0, 0}, save.Abilite{"Force wave", 30, 25, 0, 1, 0, 0, "A projection of the force who atack the ennemie", 0, 0}}, 110}
 var ClasseConsulaire2 save.Classe = save.Classe{"Sentinel", 100, []save.Abilite{save.Abilite{"Toxic gaz", 40, 15, 0, 1, 0, 0, "A toxic Gaz for the enemie but not for you", 5, 15}, save.Abilite{"right hook", 40, 40, 0, 1, 0, 0, "A right hook on the face of the ennemie", 0, 0}}, 120}
 var ClasseConsulaire3 save.Classe = save.Classe{"Nurse", 120, []save.Abilite{save.Abilite{"Heal", 20, 0, 20, 1, 0, 0, "Heal yourself", 0, 0}, save.Abilite{"Toxic gaz", 40, 15, 0, 1, 0, 0, "A toxic Gaz for the enemie but not for you", 5, 15}}, 120}
 
 var ClasseConsulaireList [3]save.Classe = [3]save.Classe{ClasseConsulaire1, ClasseConsulaire2, ClasseConsulaire3}
-
-func JediConsular() {
-	var choix_Intro string
-	fmt.Println("Do you want skip Intro ?")
-	fmt.Println(" (1) yes     (2) no")
-	fmt.Scanln(&choix_Intro)
-	switch choix_Intro {
-	case "1":
-		ChoixClasse()
-	case "2":
-		IntroConsulaire()
-	default:
-		fmt.Println("Bad Input")
-		time.Sleep(2 * time.Second)
-		ClearScreen()
-		JediConsular()
-	}
-}
-
-func ChoixClasse() {
-	ClearScreen()
-	for i, element := range ClasseConsulaireList {
-		fmt.Printf("%s (%d): \n\tEnergie : %d\n\tAbilite : \n", element.Name, i+1, element.Energie)
-		for _, ele := range element.Abilite {
-			fmt.Printf("\t\t - %s, Cost Energie : %d, Dammage : %d, Heal : %d, Dot duartion : %d, Dot dammage : %d.\n", ele.Name, ele.EnergieCost, ele.Dammage, ele.Heal, ele.DotCompteur, ele.DotDammage)
-		}
-	}
-	time.Sleep(2 * time.Second)
-	fmt.Printf("Which class do you want to chosse ?")
-	var choix string
-	Ok := false
-	for !Ok {
-		fmt.Scan(&choix)
-		switch choix {
-		case "1":
-			save.Personnage.Classe = ClasseConsulaire1
-			Ok = true
-		case "2":
-			save.Personnage.Classe = ClasseConsulaire2
-			Ok = true
-		case "3":
-			save.Personnage.Classe = ClasseConsulaire3
-			Ok = true
-		default:
-			Ok = false
-		}
-
-	}
-
-}
-
-func Menu() {
-	var choix string
-	Ok := false
-	for !Ok {
-		fmt.Println("/===============================\\")
-		fmt.Println("")
-		fmt.Println("           1. character")
-		fmt.Println("")
-		fmt.Println("           2. Inventory")
-		fmt.Println("")
-		fmt.Println("           3. Marchand")
-		fmt.Println("")
-		fmt.Println("           4. Forgeron")
-		fmt.Println("")
-		fmt.Println("           5. continue")
-		fmt.Println("")
-		fmt.Println("           0. exit")
-		fmt.Println("")
-		fmt.Println("\\===============================/")
-		fmt.Print("Your choise : ")
-		fmt.Scanln(&choix)
-		switch choix {
-		case "1":
-			Ok = true
-			save.DisplayCharacter()
-		case "2":
-			save.DisplayInventaire()
-		case "3":
-			march.Merchantchoice()
-		case "4":
-			//forge.MenuFWeapon() //a modifier le menu des forgeron
-		case "5":
-			if quete == 0 {
-				Quete1(&save.Personnage)
-			} else if quete == 1 {
-				Quete2(&save.Personnage)
-			} else {
-				//remerciment et crédits
-			}
-		case "0":
-			return
-		default:
-			Menu()
-		}
-	}
-	Menu()
-}
 
 func Final() {
 	ClearScreen()
@@ -1444,7 +1344,7 @@ func Quete1(MC *save.Perso) {
 	Obi_Wan := save.Mob{"Obi-wan", 100, 100, 20, []save.Abilite{save.Abilite{"Light saber", 0, 10, 0, 1, 0, 0, "Light Saber of obi wan", 0, 0}}, map[save.Item]int{}, 1000}
 	fight.Fight(MC, &Obi_Wan, true)
 	fmt.Println("Librarian : Congratulations, you win the level 4 / 10 of this simulation.")
-	quete = 1
+	Quete = 1
 }
 
 func Quete2(MC *save.Perso) {
@@ -1469,6 +1369,5 @@ func Quete2(MC *save.Perso) {
 	Obi_Wan := save.Mob{"Yoda", 300, 300, 60, []save.Abilite{save.Abilite{"Light saber", 0, 10, 0, 1, 0, 0, "Light Saber of yoda", 0, 0}, save.Abilite{"Self-Healing", 0, 0, 70, 1, 0, 0, "Self healing", 0, 0}}, map[save.Item]int{}, 1000}
 	fight.Fight(MC, &Obi_Wan, true)
 	fmt.Println("Librarian : Congratulations, you win the level 8 / 10 of this simulation.")
-	quete = 2
+	Quete = 2
 }
-*/
