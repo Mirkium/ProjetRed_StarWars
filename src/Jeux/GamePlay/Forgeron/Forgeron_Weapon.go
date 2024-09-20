@@ -1,6 +1,5 @@
 package forgeron
 
-
 import (
 	save "Game/Jeux/Sauvegarde"
 	"fmt"
@@ -145,8 +144,12 @@ func ForgeronWeapon() {
 		if Item1 == weapon3.ItemValeur_1 && Item2 == weapon3.ItemValeur_2 && weapon3.Valeur <= save.Personnage.Credit {
 			Craft(weapon1, weapon3.ItemValeur_1, weapon3.ItemValeur_2)
 		}
+	} else if choix == "0" {
+		SmithchoiceAffichage()
+	} else {
+		ForgeronArmor()
+		return
 	}
-
 }
 
 func Craft(BuyItem Forgeron_Weapon, Item1 save.Cristal, Item2 save.Item) {

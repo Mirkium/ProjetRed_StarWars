@@ -82,7 +82,7 @@ func MarchandAbilitie() {
 		save.ClearScreen()
 		AchatAbilitie(item04)
 	} else if choix == "0" {
-		fmt.Println("You go out")
+		Merchantchoice()
 	} else {
 		save.ClearScreen()
 		MarchandAbilitie()
