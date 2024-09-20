@@ -233,7 +233,7 @@ func ChangeWeapon() {
 	ClearScreen()
 	var choix int
 	fmt.Println("/=============================Weapon=============================\\")
-	for i, k := range Inventaire_Weapon {
+	for i, k := range Inventaire_LightSaber {
 		fmt.Println("/= ", k.Name)
 		if k.Type == 1 {
 			fmt.Println(i, "  ", gray, "[]####[", k.Color, "===========================================>", Reset)
@@ -247,15 +247,15 @@ func ChangeWeapon() {
 	fmt.Print("Your choice : ")
 	fmt.Scanln(&choix)
 	var Change string
-	for elem, Saber := range Inventaire_Weapon {
+	for elem, Saber := range Inventaire_LightSaber {
 		if choix == elem {
 			fmt.Println("Are you sure to you want ?")
 			fmt.Println("  (1) yes     (2) no")
 			fmt.Scanln(&Change)
 			switch Change {
 			case "1":
-				Enlever_Weapon(Saber, 1)
-				Ajout_Weapon(Arme, 1)
+				Enlever_LightSaber(Saber, 1)
+				Ajout_LightSaber(Arme, 1)
 				Arme = Saber
 			case "2":
 				ClearScreen()
@@ -301,7 +301,7 @@ func ChangeSecondaryWeapon() {
 	ClearScreen()
 	var choix int
 	fmt.Println("/=============================Weapon=============================\\")
-	for i, k := range Inventaire_Weapon {
+	for i, k := range Inventaire_LightSaber {
 		fmt.Println("/= ", k.Name)
 		if k.Type == 1 {
 			fmt.Println(i, "  ", gray, "[]####[", k.Color, "===========================================>", Reset)
@@ -315,16 +315,16 @@ func ChangeSecondaryWeapon() {
 	fmt.Print("Your choice : ")
 	fmt.Scanln(&choix)
 	var Change string
-	for elem, Saber := range Inventaire_Weapon {
+	for elem, Saber := range Inventaire_LightSaber {
 		if choix == elem {
 			fmt.Println("Are you sure to you want ?")
 			fmt.Println("  (1) yes     (2) no")
 			fmt.Scanln(&Change)
 			switch Change {
 			case "1":
-				Enlever_Weapon(Saber, 1)
-				Ajout_Weapon(Lightsaber(ArmeSecondaire), 1)
-				ArmeSecondaire = SecondaryWeapon(Saber)
+				Enlever_LightSaber(Saber, 1)
+				Ajout_LightSaber(Lightsaber(ArmeSecondaire), 1)
+				ArmeSecondaire = SecondaryLightsaber(Saber)
 			case "2":
 				ClearScreen()
 				ChangeWeapon()

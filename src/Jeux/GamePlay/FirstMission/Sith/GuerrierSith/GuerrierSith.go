@@ -100,9 +100,7 @@ func Arrive_3() {
 	clearScreen()
 }
 
-func WayClasse() {
-	
-}
+
 
 func Vemrin_1() {
 	
