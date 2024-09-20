@@ -20,8 +20,8 @@ const (
 )
 
 var Personnage Perso
-var Arme Weapon
-var ArmeSecondaire SecondaryWeapon
+var Arme Lightsaber
+var ArmeSecondaire SecondaryLightsaber
 var Armors Armor
 var Campagne Classe
 var Capacite Abilite

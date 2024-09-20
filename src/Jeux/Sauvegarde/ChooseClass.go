@@ -20,7 +20,7 @@ func Republic() {
 		Campagne.Energie = 0
 		Arme.DamageBonus = 5
 		Arme.PvBonus = 0
-		Arme.Color = Cristal{"Cristal jaune","\033[93m"}
+		Arme.Color = Cristal{"Cristal jaune", "\033[93m"}
 		Armors.Name = "Tenue de Padawan"
 		Armors.DamageBonus = 0
 		Armors.PvBonus = 10
@@ -37,7 +37,7 @@ func Republic() {
 		Campagne.Energie = 10
 		Arme.DamageBonus = 5
 		Arme.PvBonus = 0
-		Arme.Color = Cristal{"Cristal jaune","\033[93m"}
+		Arme.Color = Cristal{"Cristal jaune", "\033[93m"}
 		Armors.Name = "Tenue de Padawan"
 		Armors.DamageBonus = 0
 		Armors.PvBonus = 10
@@ -53,6 +53,7 @@ func Republic() {
 		ClearScreen()
 		Republic()
 	}
+	Personnage.AbilitieDefault = append(Personnage.AbilitieDefault, Abilite{"Basic hit", 0, Personnage.Force, 0, 1, 0, 0, "Basic hit", 0, 0})
 	ChooseWeapon()
 }
 
@@ -62,9 +63,9 @@ func SithEmpire() {
 	fmt.Println(" ")
 	fmt.Println("         (1) Sith Warrior                                                 (2) Sith Assassin")
 	fmt.Println(" ")
-	fmt.Println(" ",Yellow,"Become the Emperor's Hand as a ",Red,"Sith Warrior",Yellow,",                            Explore the depths of the Dark Side with ")
-	fmt.Println(" to strike down the Empire's enemies.                            the ",Red,"Sith Assassin",Yellow,"'s Path, and destroy ")
-	fmt.Println("                                                                 those who stand in your way.",Reset)
+	fmt.Println(" ", Yellow, "Become the Emperor's Hand as a ", Red, "Sith Warrior", Yellow, ",                            Explore the depths of the Dark Side with ")
+	fmt.Println(" to strike down the Empire's enemies.                            the ", Red, "Sith Assassin", Yellow, "'s Path, and destroy ")
+	fmt.Println("                                                                 those who stand in your way.", Reset)
 	fmt.Scanln(&choix)
 	switch choix {
 	case "1":
@@ -93,6 +94,7 @@ func SithEmpire() {
 		ClearScreen()
 		SithEmpire()
 	}
+	Personnage.AbilitieDefault = append(Personnage.AbilitieDefault, Abilite{"Basic hit", 0, Personnage.Force, 0, 1, 0, 0, "Basic hit", 0, 0})
 	ChooseWeapon()
 
 }
@@ -103,21 +105,21 @@ func ChooseWeapon() {
 	fmt.Println("Choose your class weapon :")
 	fmt.Println("")
 	fmt.Println("(1) One blade :")
-	fmt.Println(gray,"[]####[",Red,"===========================================>", Reset)
+	fmt.Println(gray, "[]####[", Red, "===========================================>", Reset)
 	fmt.Println("")
 	fmt.Println("(2) Two blade : ")
-	fmt.Println(gray,"[]####[",Red,"===========================================>", Reset)
-	fmt.Println(Red, "<===========================================",gray,"]####[]", Reset)
+	fmt.Println(gray, "[]####[", Red, "===========================================>", Reset)
+	fmt.Println(Red, "<===========================================", gray, "]####[]", Reset)
 	fmt.Println("")
 	fmt.Println("(3) Double blade : ")
-	fmt.Println(Red, "<===========================================",gray,"]#####[]#####[",Red,"===========================================>", Reset)
+	fmt.Println(Red, "<===========================================", gray, "]#####[]#####[", Red, "===========================================>", Reset)
 	fmt.Scanln(&choix_weapon)
 	switch choix_weapon {
 	case "1":
 		Arme.Name = "Trainning blade"
 		Arme.DamageBonus = 10
 		Arme.PvBonus = 0
-		Arme.Color = Cristal{"Cristal jaune","\033[93m"}
+		Arme.Color = Cristal{"Cristal jaune", "\033[93m"}
 		Personnage.PV_max = 1000 + Arme.PvBonus + Armors.PvBonus
 		Personnage.PV_actuelle = 1000 + Arme.PvBonus + Armors.PvBonus
 		Personnage.Force = 20 + Arme.DamageBonus + Armors.DamageBonus
@@ -125,11 +127,11 @@ func ChooseWeapon() {
 		Arme.Name = "Trainning blade"
 		Arme.DamageBonus = 10
 		Arme.PvBonus = 0
-		Arme.Color = Cristal{"Cristal jaune","\033[93m"}
+		Arme.Color = Cristal{"Cristal jaune", "\033[93m"}
 		ArmeSecondaire.Name = "Trainning blade"
 		ArmeSecondaire.DamageBonus = 10
 		ArmeSecondaire.PvBonus = 0
-		ArmeSecondaire.Color = Cristal{"Cristal jaune","\033[93m"}
+		ArmeSecondaire.Color = Cristal{"Cristal jaune", "\033[93m"}
 		Personnage.PV_max = 1000 + Arme.PvBonus + Armors.PvBonus + ArmeSecondaire.PvBonus
 		Personnage.PV_actuelle = 1000 + Arme.PvBonus + Armors.PvBonus + ArmeSecondaire.PvBonus
 		Personnage.Force = 20 + Arme.DamageBonus + Armors.DamageBonus + ArmeSecondaire.DamageBonus
@@ -138,7 +140,7 @@ func ChooseWeapon() {
 		Arme.Name = "electric training stick"
 		Arme.DamageBonus = 10
 		Arme.PvBonus = 0
-		Arme.Color = Cristal{"Cristal jaune","\033[93m"}
+		Arme.Color = Cristal{"Cristal jaune", "\033[93m"}
 		Personnage.IsDoubleBlade = true
 		Personnage.PV_max = 1000 + Arme.PvBonus + Armors.PvBonus
 		Personnage.PV_actuelle = 1000 + Arme.PvBonus + Armors.PvBonus
