@@ -1,10 +1,10 @@
 package consulairejedi
-
+/*
 import (
-	forg "Game/Jeux/GamePLay/Forgeron"
-	march "Game/Jeux/GamePLay/Marchand"
-	fight "Game/Jeux/GamePlay/Fight"
-	save "Game/Jeux/Sauvegarde"
+	//forg "Game/Jeux/GamePLay/Forgeron"
+	//march "Game/Jeux/GamePLay/Marchand"
+	//fight "Game/Jeux/GamePlay/Fight"
+	//save "Game/Jeux/Sauvegarde"
 	"fmt"
 	"os"
 	"os/exec"
@@ -113,7 +113,7 @@ func Menu() {
 		case "3":
 			march.Merchantchoice()
 		case "4":
-			forg.MenuFWeapon() //a modifier le menu des forgeron
+			//forge.MenuFWeapon() //a modifier le menu des forgeron
 		case "5":
 			if quete == 0 {
 				Quete1(&save.Personnage)
@@ -1471,3 +1471,4 @@ func Quete2(MC *save.Perso) {
 	fmt.Println("Librarian : Congratulations, you win the level 8 / 10 of this simulation.")
 	quete = 2
 }
+*/

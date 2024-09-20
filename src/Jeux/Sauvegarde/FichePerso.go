@@ -45,43 +45,27 @@ func MenuAbilitie() {
 	var choix int
 	fmt.Println("/======================================\\")
 	fmt.Println(Cyan, "                Abiliti")
-	for i, k := range Personnage.AbilitieDefault {
+	for _, k := range Personnage.AbilitieDefault {
 		fmt.Println("/= ", k.Name)
-		fmt.Println(i, "  ", k.EnergieCost)
-		fmt.Println("\\=")
+		fmt.Println("|   Energie : ", k.EnergieCost)
+		fmt.Println("\\= Damage : ",k.Dammage," | Heal",k.Heal)
+	}
+	for _, k := range Personnage.Classe.Abilite {
+		fmt.Println("/= ", k.Name)
+		fmt.Println("|   Energie : ", k.EnergieCost)
+		fmt.Println("\\= Damage : ",k.Dammage," | Heal",k.Heal)
 	}
 	fmt.Println(Yellow, "              (0)", Cyan, " Exit", Reset)
 	fmt.Println("\\======================================/")
 	fmt.Println(" ")
 	fmt.Print("Your choice : ")
 	fmt.Scanln(&choix)
-	for elem, L := range Personnage.AbilitieDefault {
-		if choix == elem {
-			ClearScreen()
-			var Exit string
-			fmt.Println("==========================Abiliti============================")
-			fmt.Println("|--------------------------Name-----------------------------|")
-			fmt.Println("|                                                           |")
-			fmt.Println("|                    " /*+ Formatage(L.Name, 16) +*/, "                     |")
-			fmt.Println("|                                                           |")
-			fmt.Println("|-----------------------Description-------------------------|")
-			fmt.Println("|                                                           |")
-			fmt.Println("|   " + L.Description)
-			fmt.Println("|                                                           |")
-			fmt.Println("|------------------------Damage/Heal------------------------|")
-			fmt.Println("|                                                           |")
-			fmt.Println("|            Heal   : " /*+ formatagePrix(L.Heal) + */, "                    |")
-			fmt.Println("|            Damage : " /* + formatagePrix(L.Dammage) +*/, "                    |")
-			fmt.Println("|                                                           |")
-			fmt.Println("|                        (0) Exit                           |")
-			fmt.Println("=============================================================")
-			fmt.Scanln(&Exit)
-			switch Exit {
-			default:
-				ClearScreen()
-				MenuAbilitie()
-			}
-		}
+	if choix == 0 {
+		ClearScreen()
+		DisplayCharacter()
+	} else {
+		ClearScreen()
+		MenuAbilitie()
 	}
 }
 
