@@ -16,7 +16,7 @@ func MarchandWeapon() {
 		Name:        "LaserSaber Sith",
 		PvBonus:     50,
 		DamageBonus: 0,
-		Color:       "Red",
+		Color:       save.Cristal{"Cristal rouge", "\033[91m"},
 		Quantity:    5,
 		Price:       45,
 		CoteForce:   -50,
@@ -25,12 +25,12 @@ func MarchandWeapon() {
 		Name:        "Light Saber Jedi",
 		PvBonus:     50,
 		DamageBonus: 10,
-		Color:       "Blue",
+		Color:       save.Cristal{"Cristal Bleue", "\033[34m"},
 		Quantity:    1,
 		Price:       45,
 		CoteForce:   50,
 		Description: " melee weapon, this weapon requires training and its use is greatly improved when its user uses the Force."}
-	item03 := save.Weapon{
+	/*item03 := save.Weapon{
 		Name:        "E-11 Blaster Rifle",
 		PvBonus:     30,
 		DamageBonus: 10,
@@ -47,13 +47,18 @@ func MarchandWeapon() {
 		Quantity:    3,
 		Price:       20000,
 		CoteForce:   0,
+<<<<<<< HEAD
 		Description: "Invented on behalf of the Grand Army of the Republic by Doctor Sionver Boll, the Electro-Proton Bomb released upon its explosion an electromagnetic pulse capable of destroying hundreds of Battle Droids in a few seconds.."}
 	fmt.Println("Merchant")
+=======
+		Description: "Invented on behalf of the Grand Army of the Republic by Doctor Sionver Boll, the Electro-Proton Bomb released upon its explosion an electromagnetic pulse capable of destroying hundreds of Battle Droids in a few seconds.."}*/
+	fmt.Println("Marchand")
+>>>>>>> 5e58797da5f59fdebfebfb7b741cb2c2f316bef8
 	fmt.Println("")
 	fmt.Println("1- ", item01.Name, " : ", item01.Description, item01.PvBonus, item01.DamageBonus, item01.Color)
 	fmt.Println("2- ", item02.Name, " : ", item02.Description, item02.PvBonus, item02.DamageBonus, item02.Color)
-	fmt.Println("3- ", item03.Name, " : ", item03.Description, item03.PvBonus, item03.DamageBonus, item03.Color)
-	fmt.Println("4- ", item04.Name, " : ", item04.Description, item04.PvBonus, item04.DamageBonus, item04.Color)
+	//fmt.Println("3- ", item03.Name, " : ", item03.Description, item03.PvBonus, item03.DamageBonus, item03.Color)
+	//fmt.Println("4- ", item04.Name, " : ", item04.Description, item04.PvBonus, item04.DamageBonus, item04.Color)
 	fmt.Println("")
 	fmt.Println("credit : ", save.Personnage.Credit, " | way Force : ", save.Personnage.CoteForce)
 	fmt.Println("")
@@ -75,10 +80,10 @@ func MarchandWeapon() {
 		}
 	} else if choix == "3" {
 		save.ClearScreen()
-		AchatWeapon(item03)
+		//AchatWeapon(item03)
 	} else if choix == "4" {
 		save.ClearScreen()
-		AchatWeapon(item04)
+		//AchatWeapon(item04)
 	} else if choix == "0" {
 		fmt.Println("You go out")
 	} else {

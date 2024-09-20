@@ -50,7 +50,7 @@ func DisplayAbilite(AbilitieList []save.Abilite, P save.Perso) {
 	fmt.Println(" =====================Abilités======================")
 	fmt.Println("|" + save.Formatage("Name", 16) + "|" + save.Formatage("Dammage", 8) + "|" + save.Formatage("Energie", 8) + "|  index   |")
 	for in, element := range AbilitieList {
-		d := element.Dammage + P.Weapon[0].DamageBonus - P.Armure[0].StatArmor
+		d := element.Dammage + P.Weapon.DamageBonus - P.Armure.StatArmor
 		if d <= 0 {
 			d = 1
 		}
@@ -98,7 +98,7 @@ func Fight(P *save.Perso, mob *save.Mob, PlayerStart bool) bool {
 			}
 			fmt.Println("Vous décidez d'utliser " + AbilitieList[answer-1].Name)
 			P.Classe.Energie -= AbilitieList[answer-1].EnergieCost
-			dam := AbilitieList[answer-1].Dammage + P.Weapon[0].DamageBonus - mob.Armor
+			dam := AbilitieList[answer-1].Dammage + P.Weapon.DamageBonus - mob.Armor
 			if dam <= 0 {
 				dam = 1
 			}
@@ -139,7 +139,7 @@ func Fight(P *save.Perso, mob *save.Mob, PlayerStart bool) bool {
 			fmt.Println("Ennemis : " + mob.Name)
 			randomInt := rand.Intn(len(mob.Abilitie))
 			fmt.Println(mob.Name + " a décidé d'utiliser " + mob.Abilitie[randomInt].Name)
-			dam := mob.Abilitie[randomInt].Dammage - P.Armure[0].StatArmor
+			dam := mob.Abilitie[randomInt].Dammage - P.Armure.StatArmor
 			if dam <= 0 {
 				dam = 1
 			}

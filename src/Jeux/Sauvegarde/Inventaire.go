@@ -8,6 +8,7 @@ import (
 var Inventaire_Item []Item
 var Inventaire_Weapon []Weapon
 var Inventaire_Armor []Armor
+var Inventaire_Crystal []Cristal
 
 //Inventaire des Item
 
@@ -455,5 +456,54 @@ func RegardeStaArmor() {
 		} else {
 			fmt.Println("on t'a demandé un chiffre pas autre chose.")
 		}
+	}
+}
+
+// Inventaire des crystal
+func Ajout_Crystal(Objet Cristal) {
+	for _, element := range Inventaire_Crystal {
+		if element.Name == Objet.Name {
+			fmt.Println("You have already this Cristal")
+			return
+		}
+	}
+	Inventaire_Crystal = append(Inventaire_Crystal, Objet)
+}
+
+func Enlever_Cristal(Objet Cristal) {
+	/*
+		Retire la quantite d'item demande et le supprime si <= 0
+		Ne fais rien si l'item n'existe pas.
+	*/
+	for index, element := range Inventaire_Crystal {
+		if element.Name == Objet.Name {
+			Inventaire_Crystal = append(Inventaire_Crystal[:index], Inventaire_Crystal[index+1:]...)
+			return
+		}
+	}
+	fmt.Println("Not found")
+}
+
+func DisplayInventaireCristal() {
+	var Exit string
+	/*
+		Affiche les diiferents item
+	*/
+	ClearScreen()
+	i := 1
+	fmt.Println(" ========================   Cristal   =========================")
+	for _, element := range Inventaire_Crystal {
+		fmt.Printf("|Index : %d | Item :  %s | Quantité : %s |\n", i, Formatage(element.Name, 16))
+		i++
+	}
+	fmt.Println("                         (0)  Exit")
+	fmt.Println(" ===========================================================")
+	fmt.Scanln(&Exit)
+	switch Exit {
+	case "0":
+		break
+	default:
+		ClearScreen()
+		DisplayInventaire()
 	}
 }
