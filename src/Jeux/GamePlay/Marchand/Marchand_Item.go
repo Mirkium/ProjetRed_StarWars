@@ -46,7 +46,7 @@ func MarchandItem() {
 			save.ClearScreen()
 			AchatItem(item01) // achète l'item01
 		} else {
-			fmt.Println("Tu ne crois pas assez au Côté Obscur")
+			fmt.Println("You don't believe enough in the Dark Side")
 			time.Sleep(time.Second * 2)
 			save.ClearScreen()
 			MarchandItem()
@@ -63,7 +63,7 @@ func MarchandItem() {
 		save.ClearScreen()
 		AchatItem(item04)
 	} else if choix == "0" {
-		fmt.Println("Tu sors")
+		fmt.Println("You go out")
 	} else {
 		save.ClearScreen()
 		MarchandItem()

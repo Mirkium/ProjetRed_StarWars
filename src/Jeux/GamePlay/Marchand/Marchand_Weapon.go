@@ -48,7 +48,7 @@ func MarchandWeapon() {
 		Price:       20000,
 		CoteForce:   0,
 		Description: "Invented on behalf of the Grand Army of the Republic by Doctor Sionver Boll, the Electro-Proton Bomb released upon its explosion an electromagnetic pulse capable of destroying hundreds of Battle Droids in a few seconds.."}
-	fmt.Println("Marchand")
+	fmt.Println("Merchant")
 	fmt.Println("")
 	fmt.Println("1- ", item01.Name, " : ", item01.Description, item01.PvBonus, item01.DamageBonus, item01.Color)
 	fmt.Println("2- ", item02.Name, " : ", item02.Description, item02.PvBonus, item02.DamageBonus, item02.Color)
@@ -63,7 +63,7 @@ func MarchandWeapon() {
 			save.ClearScreen()
 			AchatWeapon(item01) // achète l'item01
 		} else {
-			fmt.Println("Tu ne crois pas assez au Côté Obscur")
+			fmt.Println("You don't believe enough in the Dark Side")
 			time.Sleep(time.Second * 2)
 			save.ClearScreen()
 			MarchandWeapon()
@@ -80,7 +80,7 @@ func MarchandWeapon() {
 		save.ClearScreen()
 		AchatWeapon(item04)
 	} else if choix == "0" {
-		fmt.Println("Tu sors")
+		fmt.Println("You go out")
 	} else {
 		save.ClearScreen()
 		MarchandWeapon()
