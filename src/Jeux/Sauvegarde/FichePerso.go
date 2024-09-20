@@ -323,7 +323,7 @@ func ChangeSecondaryWeapon() {
 			switch Change {
 			case "1":
 				Enlever_Weapon(Saber, 1)
-				Ajout_Weapon(Weapon(ArmeSecondaire), 1)
+				Ajout_Weapon(Lightsaber(ArmeSecondaire), 1)
 				ArmeSecondaire = SecondaryWeapon(Saber)
 			case "2":
 				ClearScreen()
