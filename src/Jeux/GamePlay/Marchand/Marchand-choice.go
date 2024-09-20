@@ -25,7 +25,7 @@ func Merchantchoice() {
 	switch choix {
 	case "1":
 		fmt.Println("Vous avez choisi de rencontrer le marchand d'armes ")
-		MenuWeapon()
+		//MenuWeapon()
 	case "2":
 
 		fmt.Println("Vous avez choisi de rencontrer le marchand d'abilités ")

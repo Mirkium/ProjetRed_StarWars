@@ -82,7 +82,7 @@ func AchatItem(BuyItem save.Item) {
 		save.Ajout_Item(BuyItem, 1)
 	case "2":
 		save.ClearScreen()
-		MarchandWeapon()
+		MarchandItem()
 	default:
 		save.ClearScreen()
 		AchatItem(BuyItem)
