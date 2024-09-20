@@ -30,6 +30,56 @@ var ClasseConsulaire3 save.Classe = save.Classe{"Nurse", 120, []save.Abilite{sav
 var ClasseConsulaireList [3]save.Classe = [3]save.Classe{ClasseConsulaire1, ClasseConsulaire2, ClasseConsulaire3}
 
 func JediConsular() {
+	var choix_Intro string
+	fmt.Println("Do you want skip Intro ?")
+	fmt.Println(" (1) yes     (2) no")
+	fmt.Scanln(&choix_Intro)
+	switch choix_Intro {
+	case "1":
+		ChoixClasse()
+	case "2":
+		IntroConsulaire()
+	default:
+		fmt.Println("Bad Input")
+		time.Sleep(2 * time.Second)
+		ClearScreen()
+		JediConsular()
+	}
+}
+
+func ChoixClasse() {
+	ClearScreen()
+	for i, element := range ClasseConsulaireList {
+		fmt.Printf("%s (%d): \n\tEnergie : %d\n\tAbilite : \n", element.Name, i+1, element.Energie)
+		for _, ele := range element.Abilite {
+			fmt.Printf("\t\t - %s, Cost Energie : %d, Dammage : %d, Heal : %d, Dot duartion : %d, Dot dammage : %d.\n", ele.Name, ele.EnergieCost, ele.Dammage, ele.Heal, ele.DotCompteur, ele.DotDammage)
+		}
+	}
+	time.Sleep(2 * time.Second)
+	fmt.Printf("Which class do you want to chosse ?")
+	var choix string
+	Ok := false
+	for !Ok {
+		fmt.Scan(&choix)
+		switch choix {
+		case "1":
+			save.Personnage.Classe = ClasseConsulaire1
+			Ok = true
+		case "2":
+			save.Personnage.Classe = ClasseConsulaire2
+			Ok = true
+		case "3":
+			save.Personnage.Classe = ClasseConsulaire3
+			Ok = true
+		default:
+			Ok = false
+		}
+
+	}
+	fmt.Println("Continue")
+}
+
+func IntroConsulaire() {
 	ClearScreen()
 	fmt.Println("                      ", Cyan, "LONG TIME AGO IN A GALAXY FAR,")
 	fmt.Println("                      FAR AWAY...", Reset)
@@ -812,7 +862,6 @@ func JediConsular() {
 	fmt.Println(" ")
 	time.Sleep(time.Second * 2)
 	ClearScreen()
-	Quete1(&save.Personnage)
 }
 
 func ClearScreen() {

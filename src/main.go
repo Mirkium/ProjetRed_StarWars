@@ -3,6 +3,7 @@ package main
 import (
 	save "Game/Jeux/Sauvegarde"
 	//game "Game/Jeux/GamePlay"
+	Combat "Game/Jeux/GamePlay/Fight"
 	chevalierJedi "Game/Jeux/GamePlay/FirstMission/Jedi/ChevalierJedi"
 	consulaireJedi "Game/Jeux/GamePlay/FirstMission/Jedi/ConsulaireJedi"
 	assassinSith "Game/Jeux/GamePlay/FirstMission/Sith/AssassinSith"
@@ -35,6 +36,28 @@ func main() {
 			save.DisplayInventaire()
 		case "3":
 			marchand.Merchantchoice()
+		case "4" :
+
+		case "5" :
+			if Combat.Fight(&save.Personnage, &guerrierSith.LimaceKor_Rang1, true) {
+				if Combat.Fight(&save.Personnage, &guerrierSith.LimaceKor_Rang2, true) {
+					if Combat.Fight(&save.Personnage, &guerrierSith.LimaceKor_Rang3, false) {
+						choice_2 := guerrierSith.Menu()
+						switch choice_2 {
+						case "1":
+							save.DisplayCharacter()
+						case "2":
+							save.DisplayInventaire()
+						case "3":
+							marchand.Merchantchoice()
+						case "4" :
+						
+						case "5" :
+
+						}
+					}
+				}
+			}
 		}
 	case "Sith Assassin":
 		assassinSith.SithAssassin()
