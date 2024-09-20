@@ -38,7 +38,7 @@ func Merchantchoice() {
 		fmt.Println("You chose to meet the Item merchant ")
 		MenuItem()
 	case "5":
-		fmt.Println("Exit")
+		break
 	default:
 		fmt.Println("Invalid choice. Please choose a number between 1 and 4.")
 	}

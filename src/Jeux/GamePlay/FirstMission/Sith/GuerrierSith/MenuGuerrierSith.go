@@ -2,10 +2,11 @@ package guerriersith
 
 import (
 	"fmt"
+	"time"
 )
 
-func Menu() string{
-	var choix string
+func Menu() string {
+	choix := " "
 	fmt.Println("/===============================\\")
 	fmt.Println("")
 	fmt.Println("           1. character")
@@ -21,22 +22,23 @@ func Menu() string{
 	fmt.Println("           0. exit")
 	fmt.Println("")
 	fmt.Println("\\===============================/")
+	time.Sleep(time.Second * 1)
 	fmt.Print("Your choise : ")
 	fmt.Scanln(&choix)
 	switch choix {
-	case "1" :
+	case "1":
 		return "1"
-	case "2" :
+	case "2":
 		return "2"
-	case "3" :
+	case "3":
 		return "3"
-	case "4" :
+	case "4":
 		return "4"
-	case "5" :
+	case "5":
 		return "5"
-	case "0" :
+	case "0":
 		return "0"
-	default :
+	default:
 		return "0"
 	}
 }

@@ -33,5 +33,6 @@ func SmithchoiceAffichage() {
 	default:
 		fmt.Println("Invalid choice. Please choose a number between 1 and 3.")
 		save.ClearScreen()
+		SmithchoiceAffichage()
 	}
 }
