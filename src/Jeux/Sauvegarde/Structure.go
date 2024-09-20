@@ -18,11 +18,12 @@ type Perso struct {
 	Classe            Classe
 }
 
-type Weapon struct {
+type Lightsaber struct {
 	Name        string
 	DamageBonus int
 	PvBonus     int
 	Type        int
+	Color       Cristal
 	Quantity    int
 	Price       int
 	CoteForce   int
@@ -41,24 +42,24 @@ type SecondaryLightsaber struct {
 	Description string
 }
 
-type Lightsaber struct {
+type Weapon struct {
 	Name        string
 	DamageBonus int
 	PvBonus     int
 	Type        int
-	Color       Cristal
 	Quantity    int
 	Price       int
 	CoteForce   int
 	Description string
 }
 
+//============================================================================================================
+
 type Armor struct {
 	Name        string
 	PvBonus     int
 	DamageBonus int
 	StatArmor   int
-	Color       string
 	Quantity    int
 	Price       int
 	CoteForce   int

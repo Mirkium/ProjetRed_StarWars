@@ -16,7 +16,6 @@ func MarchandArmor() {
 		Name:        "Dark Vader Helmet",
 		PvBonus:     10000,
 		DamageBonus: 10000,
-		Color:       "Black",
 		Quantity:    1,
 		Price:       100000,
 		CoteForce:   -10000000,
@@ -25,7 +24,6 @@ func MarchandArmor() {
 		Name:        "Jedi Battle Armor",
 		PvBonus:     20000,
 		DamageBonus: 1000,
-		Color:       "Blue",
 		Quantity:    1,
 		Price:       1000000,
 		CoteForce:   10000000,
@@ -34,7 +32,6 @@ func MarchandArmor() {
 		Name:        "Gungan Personal Energy Shield",
 		PvBonus:     500,
 		DamageBonus: 0,
-		Color:       "Purple",
 		Quantity:    3,
 		Price:       50000,
 		CoteForce:   0,
@@ -43,17 +40,16 @@ func MarchandArmor() {
 		Name:        "Coruscant Guard Armor",
 		PvBonus:     1000,
 		DamageBonus: 0,
-		Color:       "Red",
 		Quantity:    2,
 		Price:       20000,
 		CoteForce:   0,
 		Description: "The Coruscant Guard Armor equipped the elite Stormtrooper unit responsible for policing Coruscant and the Core Worlds."}
-	fmt.Println("Marchand")
+	fmt.Println("Merchant")
 	fmt.Println("")
-	fmt.Println("1- ", item01.Name, " : ", item01.Description, item01.PvBonus, item01.DamageBonus, item01.Color)
-	fmt.Println("2- ", item02.Name, " : ", item02.Description, item02.PvBonus, item02.DamageBonus, item02.Color)
-	fmt.Println("3- ", item03.Name, " : ", item03.Description, item03.PvBonus, item03.DamageBonus, item03.Color)
-	fmt.Println("4- ", item04.Name, " : ", item04.Description, item04.PvBonus, item04.DamageBonus, item04.Color)
+	fmt.Println("1- ", item01.Name, " : ", item01.Description, item01.PvBonus, item01.DamageBonus)
+	fmt.Println("2- ", item02.Name, " : ", item02.Description, item02.PvBonus, item02.DamageBonus)
+	fmt.Println("3- ", item03.Name, " : ", item03.Description, item03.PvBonus, item03.DamageBonus)
+	fmt.Println("4- ", item04.Name, " : ", item04.Description, item04.PvBonus, item04.DamageBonus)
 	fmt.Println("")
 	fmt.Println("credit : ", save.Personnage.Credit, " | way Force : ", save.Personnage.CoteForce)
 	fmt.Println("")
@@ -63,7 +59,7 @@ func MarchandArmor() {
 			save.ClearScreen()
 			AchatArmor(item01) // achète l'item01
 		} else {
-			fmt.Println("Tu ne crois pas assez au Côté Obscur")
+			fmt.Println("You don't believe enough in the Dark Side")
 			time.Sleep(time.Second * 2)
 			save.ClearScreen()
 			MarchandArmor()
@@ -80,7 +76,7 @@ func MarchandArmor() {
 		save.ClearScreen()
 		AchatArmor(item04)
 	} else if choix == "0" {
-		fmt.Println("Tu sors")
+		fmt.Println("You go out")
 	} else {
 		save.ClearScreen()
 		MarchandArmor()

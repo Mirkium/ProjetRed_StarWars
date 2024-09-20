@@ -48,7 +48,7 @@ func MarchandAbilitie() {
 		Price:       10000,
 		CoteForce:   0,
 		Description: "Convection allowed burning at a distance or on contact by concentrating the Force in the wrists"}
-	fmt.Println("Marchand")
+	fmt.Println("Merchant")
 	fmt.Println("")
 	fmt.Println("1- ", item01.Name, " : ", item01.Description, item01.EnergieCost, item01.Dammage, item01.Heal)
 	fmt.Println("2- ", item02.Name, " : ", item02.Description, item02.EnergieCost, item02.Dammage, item02.Heal)
@@ -63,7 +63,7 @@ func MarchandAbilitie() {
 			save.ClearScreen()
 			AchatAbilitie(item01) // achète l'item01
 		} else {
-			fmt.Println("Tu ne crois pas assez au Côté Obscur")
+			fmt.Println("You don't believe enough in the Dark Side")
 			time.Sleep(time.Second * 2)
 			save.ClearScreen()
 			MarchandAbilitie()
@@ -82,7 +82,7 @@ func MarchandAbilitie() {
 		save.ClearScreen()
 		AchatAbilitie(item04)
 	} else if choix == "0" {
-		fmt.Println("Tu sors")
+		fmt.Println("You go out")
 	} else {
 		save.ClearScreen()
 		MarchandAbilitie()

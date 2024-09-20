@@ -47,16 +47,16 @@ func AskInt(min int, max int) int {
 }
 
 func DisplayAbilite(AbilitieList []save.Abilite, P save.Perso) {
-	fmt.Println(" ===============================Abilite=================================")
+	fmt.Println(" ============================================Abilite======================================")
 	fmt.Println("|" + save.Formatage("Name", 20) + "|" + save.Formatage("Energie", 8) + "|" + save.Formatage("Dammage", 8) + "|" + save.Formatage("Dot duration", 14) + "|" + save.Formatage(" Dot dammage", 14) + "|  index   |")
 	for in, element := range AbilitieList {
 		d := element.Dammage + P.Weapon.DamageBonus - P.Armure.StatArmor
 		if d <= 0 {
 			d = 1
 		}
-		fmt.Println("|" + save.Formatage(element.Name, 20) + "|" + save.Formatage(strconv.Itoa(element.EnergieCost), 8) + "|" + save.Formatage(strconv.Itoa(d), 8) + save.Formatage(strconv.Itoa(element.DotCompteur), 14) + "|" + save.Formatage(strconv.Itoa(element.DotDammage), 14) + "|" + save.Formatage(strconv.Itoa(in+1), 7) + "|")
+		fmt.Println("|" + save.Formatage(element.Name, 20) + "|" + save.Formatage(strconv.Itoa(element.EnergieCost), 8) + "|" + save.Formatage(strconv.Itoa(d), 8) + "|" + save.Formatage(strconv.Itoa(element.DotCompteur), 14) + "|" + save.Formatage(strconv.Itoa(element.DotDammage), 14) + "|" + save.Formatage(strconv.Itoa(in+1), 7) + "|")
 	}
-	fmt.Println(" =======================================================================")
+	fmt.Println(" =========================================================================================")
 	time.Sleep(3 * time.Second)
 }
 
@@ -118,6 +118,11 @@ func Fight(P *save.Perso, mob *save.Mob, PlayerStart bool) bool {
 			if DcP > 0 {
 				DcP--
 				mob.PV_actuelle -= DDP
+			}
+			if P.Classe.Energie+20 >= P.Classe.EnergieMax {
+				P.Classe.Energie = P.Classe.EnergieMax
+			} else {
+				P.Classe.Energie += 20
 			}
 			if mob.PV_actuelle <= 0 {
 				fmt.Println(mob.Name + " have " + strconv.Itoa(0) + " / " + strconv.Itoa(mob.PV_max))

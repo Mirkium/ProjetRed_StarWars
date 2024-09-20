@@ -20,6 +20,7 @@ type Forgeron_Armor struct {
 	Name         string
 	PvBonus      int
 	DamageBonus  int
+	StatArmor    int
 	Valeur       int
 	ItemValeur_1 save.Item
 	ItemValeur_2 save.Item
