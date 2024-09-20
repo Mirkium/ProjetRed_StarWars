@@ -35,10 +35,22 @@ Adrien : Inventaire (interaction, description des objets, etc) ; début du code 
 Alexandre : Menu de démarrage, système de création de personnage avec les classes, début du code du système de sauvegarde.
 
 
-Tâche pour Vendredi/Lundi :
+Tâche du 13/09 au 16/09 :
 
 Tibo : Marchand d'Item + Marchand d'Arme
 
 Adrien : Finir le système de level up/Combat + bugFix Inventaire + commencement de la campagne Chevalier Jedi
 
-Alexandre : Finir système de de sauvegarde + commencement de la campagne guerrier sith
+Alexandre : (Bonus)Finir système de de sauvegarde + commencement de la campagne guerrier sith
+
+Tâche de 16/09 au 18/09 :
+
+Tibo : Finir les marchands + commencer les forgeron
+
+Adrien : Finir le Chevalier Jedi + commencement Jedi Consulaire
+
+Alexandre : Finir les fiches perso + finir guerrier sith
+
+Tâche du 18/09 au 20/09
+
+groupe : Avoir fini 

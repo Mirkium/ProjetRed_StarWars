@@ -29,7 +29,7 @@ type Weapon struct {
 	Description string
 }
 
-type SecondaryWeapon struct {
+type SecondaryLightsaber struct {
 	Name        string
 	DamageBonus int
 	PvBonus     int
