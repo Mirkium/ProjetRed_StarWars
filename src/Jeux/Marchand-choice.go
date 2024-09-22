@@ -33,7 +33,10 @@ func Marchantchoice() {
 	case "3":
 
 	case "4":
-
+		clearScreen()
+		ItemShop()
+		clearScreen()
+		Marchantchoice()
 	case "0":
 		break
 	default:

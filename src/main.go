@@ -18,59 +18,9 @@ func main() {
 		game.Personnage.CoteForce += game.Arrive_2()
 		game.Arrive_3()
 		WayClasseSithWarrior()
-		MenuGuerrierSith1()
+		Menu()
 	case "Sith Assassin":
 		game.SithAssassin()
-
-	}
-}
-
-func MenuGuerrierSith1() {
-	choice_1 := game.Menu()
-	switch choice_1 {
-	case "1":
-		game.ClearScreen()
-		game.DisplayCharacter()
-		MenuGuerrierSith1()
-	case "2":
-		game.ClearScreen()
-		game.DisplayInventaire()
-		MenuGuerrierSith1()
-	case "3":
-		game.ClearScreen()
-		game.Marchantchoice()
-		MenuGuerrierSith1()
-	case "4":
-		game.ClearScreen()
-
-		MenuGuerrierSith1()
-	case "5":
-		game.ClearScreen()
-		if game.Fight(&game.Personnage, &game.LimaceKor_Rang1, true) {
-			fmt.Println("")
-			MenuGuerrierSith2()
-		}
-	}
-}
-
-func MenuGuerrierSith2() {
-	choice_1 := game.Menu()
-	switch choice_1 {
-	case "1":
-		game.ClearScreen()
-		game.DisplayCharacter()
-		MenuGuerrierSith1()
-	case "2":
-		game.ClearScreen()
-		game.DisplayInventaire()
-		MenuGuerrierSith1()
-	case "3":
-		game.ClearScreen()
-		MenuGuerrierSith1()
-	case "4":
-		game.ClearScreen()
-		MenuGuerrierSith1()
-	case "5":
 
 	}
 }

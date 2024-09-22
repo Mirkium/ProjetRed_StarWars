@@ -1,11 +1,12 @@
 package jeux
 
+
 import (
 	"fmt"
 	"time"
 )
 
-func Menu() string {
+func Menu() {
 	choix := " "
 	fmt.Println("/===============================\\")
 	fmt.Println("")
@@ -27,18 +28,29 @@ func Menu() string {
 	fmt.Scanln(&choix)
 	switch choix {
 	case "1":
-		return "1"
+		clearScreen()
+		DisplayCharacter()
+		clearScreen()
+		Menu()
 	case "2":
-		return "2"
+		clearScreen()
+		DisplayInventaire()
+		clearScreen()
+		Menu()
 	case "3":
-		return "3"
+		clearScreen()
+		Marchantchoice()
+		clearScreen()
+		Menu()
 	case "4":
-		return "4"
+		
 	case "5":
-		return "5"
+		break
 	case "0":
-		return "0"
+		clearScreen()
+		CreatePerso()
 	default:
-		return "0"
+		clearScreen()
+		Menu()
 	}
 }
