@@ -23,6 +23,6 @@ Prérequis :
     -Suivez les instruction du terminal et _que la force soit avec vous_.
 
 **Auteurs**
-    -Allexandre Petitfrère (> Chef de projet)
-    -Adrien Lecomte
-    -Thibaut Messina-Paulmyer 
+    - Allexandre Petitfrère (>Chef de projet)
+    - Adrien Lecomte
+    - Thibaut Messina-Paulmyer 
