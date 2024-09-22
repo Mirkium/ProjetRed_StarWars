@@ -18,6 +18,7 @@ func main() {
 		game.Personnage.CoteForce += game.Arrive_2()
 		game.Arrive_3()
 		WayClasseSithWarrior()
+		game.Menu()
 	case "Sith Assassin":
 		game.SithAssassin()
 
@@ -91,58 +92,7 @@ func ChoixClasse() {
 			Ok = false
 		}
 	}
-	Menu()
-
+	game.Menu()
 }
 
-func Menu() {
-	var choix string
-	Ok := false
-	for !Ok {
-		fmt.Println("/===============================\\")
-		fmt.Println("")
-		fmt.Println("           1. character")
-		fmt.Println("")
-		fmt.Println("           2. Inventory")
-		fmt.Println("")
-		fmt.Println("           3. Marchand")
-		fmt.Println("")
-		fmt.Println("           4. Forgeron")
-		fmt.Println("")
-		fmt.Println("           5. continue")
-		fmt.Println("")
-		fmt.Println("           0. exit")
-		fmt.Println("")
-		fmt.Println("\\===============================/")
-		fmt.Print("Your choise : ")
-		fmt.Scanln(&choix)
-		switch choix {
-		case "1":
-			Ok = true
-			game.DisplayCharacter()
-		case "2":
-			game.DisplayInventaire()
-		case "3":
-			game.Merchantchoice()
-		case "4":
-			Ok = true
-		case "5":
-			if game.Quete == 0 {
-				game.Quete1(&game.Personnage)
-				Menu()
-			} else if game.Quete == 1 {
-				game.Quete2(&game.Personnage)
-				Menu()
-			} else {
-				game.Final()
-				return
-			}
-		case "0":
-			return
-		default:
-			Menu()
-		}
-	}
-	Menu()
-}
 
