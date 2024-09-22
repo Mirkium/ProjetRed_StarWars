@@ -42,7 +42,7 @@ func MenuGuerrierSith1() {
 		MenuGuerrierSith1()
 	case "4":
 		game.ClearScreen()
-	
+
 		MenuGuerrierSith1()
 	case "5":
 		game.ClearScreen()
@@ -52,7 +52,6 @@ func MenuGuerrierSith1() {
 		}
 	}
 }
-
 
 func MenuGuerrierSith2() {
 	choice_1 := game.Menu()
@@ -197,4 +196,3 @@ func Menu() {
 	}
 	Menu()
 }
-
