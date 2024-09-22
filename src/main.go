@@ -7,11 +7,12 @@ import (
 )
 
 func main() {
-	game.PlayMusic(7)
+	//game.PlayMusic(3)
+
 	game.CreatePerso()
 	switch game.Campagne.Name {
 	case "Jedi Knight":
-		game.JediKnight()
+		JediKnight()
 	case "Jedi Consular":
 		JediConsular()
 	case "Sith Warrior":
@@ -19,60 +20,9 @@ func main() {
 		game.Personnage.CoteForce += game.Arrive_2()
 		game.Arrive_3()
 		WayClasseSithWarrior()
-		MenuGuerrierSith1()
+		game.Menu()
 	case "Sith Assassin":
 		game.SithAssassin()
-
-	}
-}
-
-func MenuGuerrierSith1() {
-	choice_1 := game.Menu()
-	switch choice_1 {
-	case "1":
-		game.ClearScreen()
-		game.DisplayCharacter()
-		MenuGuerrierSith1()
-	case "2":
-		game.ClearScreen()
-		game.DisplayInventaire()
-		MenuGuerrierSith1()
-	case "3":
-		game.ClearScreen()
-		game.Marchantchoice()
-		MenuGuerrierSith1()
-	case "4":
-		game.ClearScreen()
-
-		MenuGuerrierSith1()
-	case "5":
-		game.ClearScreen()
-		if game.Fight(&game.Personnage, &game.LimaceKor_Rang1, true) {
-			fmt.Println("")
-			MenuGuerrierSith2()
-		}
-	}
-}
-
-func MenuGuerrierSith2() {
-	choice_1 := game.Menu()
-	switch choice_1 {
-	case "1":
-		game.ClearScreen()
-		game.DisplayCharacter()
-		MenuGuerrierSith1()
-	case "2":
-		game.ClearScreen()
-		game.DisplayInventaire()
-		MenuGuerrierSith1()
-	case "3":
-		game.ClearScreen()
-		MenuGuerrierSith1()
-	case "4":
-		game.ClearScreen()
-		MenuGuerrierSith1()
-	case "5":
-
 	}
 }
 
@@ -143,57 +93,70 @@ func ChoixClasse() {
 			Ok = false
 		}
 	}
-	Menu()
-
+	game.Menu()
+	game.QueteConsulaireJedi_1(&game.Personnage)
+	game.Menu()
+	game.QueteConsulaireJedi_2(&game.Personnage)
+	game.Menu()
+	game.Final()
 }
 
-func Menu() {
+//Jedi
+
+func JediKnight() {
+	var choix_Intro string
+	fmt.Println("Do you want skip Intro ?")
+	fmt.Println(" (1) yes     (2) no")
+	fmt.Scanln(&choix_Intro)
+	switch choix_Intro {
+	case "1":
+		ChoixClassejedi()
+	case "2":
+		game.IntroJedi()
+		ChoixClassejedi()
+
+	default:
+		fmt.Println("Bad Input")
+		time.Sleep(2 * time.Second)
+		game.ClearScreen()
+		JediKnight()
+	}
+}
+
+func ChoixClassejedi() {
+	game.ClearScreen()
+	for i, element := range game.ClasseJediList {
+		fmt.Printf("%s (%d): \n\tEnergie : %d\n\tAbilite : \n", element.Name, i+1, element.Energie)
+		for _, ele := range element.Abilite {
+			fmt.Printf("\t\t - %s, Cost Energie : %d, Dammage : %d, Heal : %d, Dot duartion : %d, Dot dammage : %d.\n", ele.Name, ele.EnergieCost, ele.Dammage, ele.Heal, ele.DotCompteur, ele.DotDammage)
+		}
+	}
+	time.Sleep(2 * time.Second)
+	fmt.Printf("Which class do you want to chosse ?")
 	var choix string
 	Ok := false
 	for !Ok {
-		fmt.Println("/===============================\\")
-		fmt.Println("")
-		fmt.Println("           1. character")
-		fmt.Println("")
-		fmt.Println("           2. Inventory")
-		fmt.Println("")
-		fmt.Println("           3. Marchand")
-		fmt.Println("")
-		fmt.Println("           4. Forgeron")
-		fmt.Println("")
-		fmt.Println("           5. continue")
-		fmt.Println("")
-		fmt.Println("           0. exit")
-		fmt.Println("")
-		fmt.Println("\\===============================/")
-		fmt.Print("Your choise : ")
-		fmt.Scanln(&choix)
+		fmt.Scan(&choix)
 		switch choix {
 		case "1":
+			game.Personnage.Classe = game.ClasseJediList[0]
 			Ok = true
-			game.DisplayCharacter()
 		case "2":
-			game.DisplayInventaire()
-		case "3":
-			game.Marchantchoice()
-		case "4":
+			game.Personnage.Classe = game.ClasseJediList[1]
 			Ok = true
-		case "5":
-			if game.Quete == 0 {
-				game.Quete1(&game.Personnage)
-				Menu()
-			} else if game.Quete == 1 {
-				game.Quete2(&game.Personnage)
-				Menu()
-			} else {
-				game.Final()
-				return
-			}
-		case "0":
-			return
+		case "3":
+			game.Personnage.Classe = game.ClasseJediList[2]
+			Ok = true
 		default:
-			Menu()
+			Ok = false
 		}
 	}
-	Menu()
+	game.Menu()
+	game.Quete1(&game.Personnage)
+	game.Menu()
+	game.Quete2(&game.Personnage)
+	game.Menu()
+	game.End(&game.Personnage)
+	game.Menu()
+	game.Final()
 }

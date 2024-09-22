@@ -46,7 +46,7 @@ func AskInt(min int, max int) int {
 	return a
 }
 
-func DisplayAbilite(AbilitieList []Abilite, P Perso) {
+func DisplayAbilite(AbilitieList []Ability, P Perso) {
 	fmt.Println(" ============================================Abilite======================================")
 	fmt.Println("|" + Formatage("Name", 20) + "|" + Formatage("Energie", 8) + "|" + Formatage("Dammage", 8) + "|" + Formatage("Dot duration", 14) + "|" + Formatage(" Dot dammage", 14) + "|  index   |")
 	for in, element := range AbilitieList {
@@ -86,7 +86,7 @@ func Fight(P *Perso, mob *Mob, PlayerStart bool) bool {
 			fmt.Println("You have " + strconv.Itoa(P.PV_actuelle) + " / " + strconv.Itoa(P.PV_max) + " and " + strconv.Itoa(P.Classe.Energie) + " energie.")
 			fmt.Println(mob.Name + " have " + strconv.Itoa(mob.PV_actuelle) + " / " + strconv.Itoa(mob.PV_max))
 			time.Sleep(1 * time.Second)
-			AbilitieList := []Abilite{}
+			AbilitieList := []Ability{}
 			AbilitieList = append(AbilitieList, P.AbilitieDefault...)
 			AbilitieList = append(AbilitieList, P.Classe.Abilite...)
 			DisplayAbilite(AbilitieList, *P)

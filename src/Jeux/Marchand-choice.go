@@ -29,14 +29,24 @@ func Marchantchoice() {
 		clearScreen()
 		Marchantchoice()
 	case "2":
-
+		clearScreen()
+		AbilityShop()
+		clearScreen()
+		Marchantchoice()
 	case "3":
-
+		clearScreen()
+		ArmorShop()
+		clearScreen()
+		Marchantchoice()
 	case "4":
-
+		clearScreen()
+		ItemShop()
+		clearScreen()
+		Marchantchoice()
 	case "0":
 		break
 	default:
-
+		clearScreen()
+		Marchantchoice()
 	}
 }

@@ -3,19 +3,38 @@ package jeux
 import (
 	"fmt"
 	"os"
+	"os/exec"
 	"path/filepath"
-	"time"
-
-	"github.com/faiface/beep"
-	"github.com/faiface/beep/mp3"
-	"github.com/faiface/beep/speaker"
 )
 
-// Variable globale pour contrôler la musique
-var control *beep.Ctrl
-var done chan bool
+//music non fonctionnel
+//music non fonctionnel
+//music non fonctionnel
+//music non fonctionnel
+//music non fonctionnel
+//music non fonctionnel
+//music non fonctionnel
+//music non fonctionnel
+//music non fonctionnel
+//music non fonctionnel
+//music non fonctionnel
+//music non fonctionnel
+//music non fonctionnel
+//music non fonctionnel
+//music non fonctionnel
+//music non fonctionnel
+//music non fonctionnel
+//music non fonctionnel
+//music non fonctionnel
+//music non fonctionnel
+//music non fonctionnel
+//music non fonctionnel
+//music non fonctionnel
+//music non fonctionnel
+//music non fonctionnel
 
-// Fonction pour lancer la musique
+var cmd *exec.Cmd
+
 func PlayMusic(track int) {
 	var fileName string
 	path, _ := os.Getwd()
@@ -38,30 +57,21 @@ func PlayMusic(track int) {
 		fmt.Println("Numéro de piste non valide")
 		return
 	}
-	f, err := os.Open(fileName)
+	cmd := exec.Command("ffplay", "-nodisp", fileName)
+	err := cmd.Start()
 	if err != nil {
-		fmt.Println("Erreur lors de l'ouverture du fichier:", err)
 		return
 	}
-	defer f.Close()
-	streamer, format, err := mp3.Decode(f)
-	if err != nil {
-		fmt.Println("Erreur lors du décodage:", err)
-		return
-	}
-	defer streamer.Close()
-	speaker.Init(format.SampleRate, format.SampleRate.N(time.Second/10))
-	control = &beep.Ctrl{Streamer: streamer, Paused: false}
-	done = make(chan bool)
-	speaker.Play(beep.Seq(control, beep.Callback(func() {
-		done <- true
-	})))
-	CreatePerso()
 }
-func StopMusic() {
-	if control != nil {
-		speaker.Lock()
-		control.Paused = true
-		speaker.Unlock()
+
+func StopMusic() error {
+	if cmd != nil && cmd.Process != nil {
+		err := cmd.Process.Kill()
+		if err != nil {
+			return err
+		}
+		fmt.Println("Musique arrêtée")
+		cmd = nil
 	}
+	return nil
 }

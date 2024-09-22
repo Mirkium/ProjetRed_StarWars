@@ -9,7 +9,7 @@ type Perso struct {
 	CoteForce         int
 	Credit            int
 	Xp_Actu           int
-	AbilitieDefault   []Abilite
+	AbilitieDefault   []Ability
 	Weapon            Weapon
 	IsSecondaryWeapon bool
 	IsDoubleBlade     bool
@@ -35,7 +35,7 @@ type Armor struct {
 type Classe struct {
 	Name       string
 	Energie    int
-	Abilite    []Abilite
+	Abilite    []Ability
 	EnergieMax int
 }
 
@@ -43,7 +43,7 @@ type Classe struct {
 
 //=========================================Abilite<=================================
 
-type Abilite struct {
+type Ability struct {
 	Name        string
 	EnergieCost int
 	Dammage     int
@@ -63,12 +63,13 @@ type Mob struct {
 	PV_max      int
 	PV_actuelle int
 	Armor       int
-	Abilitie    []Abilite
+	Abilitie    []Ability
 	Drop        map[Item]int
 	XpDrop      int
 }
 
-//========================================INVENTAIRE======================================
+//========================================Marchand======================================
+
 
 
 //var test ItemPacket

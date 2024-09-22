@@ -136,7 +136,7 @@ func ChooseWeapon() {
 		Personnage.PV_actuelle = 1000 + Arme.PvBonus + Armors.PvBonus + ArmeSecondaire.PvBonus
 		Personnage.Force = 20 + Arme.DamageBonus + Armors.DamageBonus + ArmeSecondaire.DamageBonus
 		Personnage.IsSecondaryWeapon = true
-		Personnage.AbilitieDefault = append(Personnage.AbilitieDefault, Abilite{"Basic hit", 0, Personnage.Force, 0, 1, 0, 0, "Basic hit", 0, 0})
+		Personnage.AbilitieDefault = append(Personnage.AbilitieDefault, Ability{"Basic hit", 0, Personnage.Force, 0, 1, 0, 0, "Basic hit", 0, 0})
 	case "3":
 		Arme.Name = "electric training stick"
 		Arme.DamageBonus = 10
@@ -146,6 +146,6 @@ func ChooseWeapon() {
 		Personnage.PV_max = 1000 + Arme.PvBonus + Armors.PvBonus
 		Personnage.PV_actuelle = 1000 + Arme.PvBonus + Armors.PvBonus
 		Personnage.Force = 20 + Arme.DamageBonus + Armors.DamageBonus
-		Personnage.AbilitieDefault = append(Personnage.AbilitieDefault, Abilite{"Basic hit", 0, Personnage.Force, 0, 1, 0, 0, "Basic hit", 0, 0})
+		Personnage.AbilitieDefault = append(Personnage.AbilitieDefault, Ability{"Basic hit", 0, Personnage.Force, 0, 1, 0, 0, "Basic hit", 0, 0})
 	}
 }
