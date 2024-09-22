@@ -1,4 +1,4 @@
-package Sauvegarde
+package jeux
 
 import (
 	"fmt"
@@ -76,9 +76,9 @@ func SithEmpire() {
 		Armors.StatArmor = 3
 		Personnage.Level = 1
 		Personnage.CoteForce = 0
-		Personnage.Credit = 0
+		Personnage.Credit = 1000
 		Personnage.Classe = Campagne
-		
+
 	case "2":
 		Campagne.Name = "Sith Assassin"
 		Campagne.Energie = 10
@@ -94,7 +94,7 @@ func SithEmpire() {
 		ClearScreen()
 		SithEmpire()
 	}
-	
+
 	ChooseWeapon()
 
 }

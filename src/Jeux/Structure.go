@@ -1,4 +1,4 @@
-package Sauvegarde
+package jeux
 
 type Perso struct {
 	Name              string
@@ -18,40 +18,6 @@ type Perso struct {
 	Classe            Classe
 }
 
-type Lightsaber struct {
-	Name        string
-	DamageBonus int
-	PvBonus     int
-	Type        int
-	Color       Cristal
-	Quantity    int
-	Price       int
-	CoteForce   int
-	Description string
-}
-
-type SecondaryLightsaber struct {
-	Name        string
-	DamageBonus int
-	PvBonus     int
-	Type        int
-	Color       Cristal
-	Quantity    int
-	Price       int
-	CoteForce   int
-	Description string
-}
-
-type Weapon struct {
-	Name        string
-	DamageBonus int
-	PvBonus     int
-	Type        int
-	Quantity    int
-	Price       int
-	CoteForce   int
-	Description string
-}
 
 //============================================================================================================
 
@@ -73,17 +39,7 @@ type Classe struct {
 	EnergieMax int
 }
 
-type Objects struct {
-	Name          string
-	PvBonus       int
-	DamageBonus   int
-	Color         string
-	Quantity      int
-	Price         int
-	CoteForce     int
-	Description   string
-	RequiredItems string
-}
+
 
 //=========================================Abilite<=================================
 
@@ -113,13 +69,6 @@ type Mob struct {
 }
 
 //========================================INVENTAIRE======================================
-
-type Item struct {
-	Name        string
-	Valeur      int
-	Description string
-	Quantite    int
-}
 
 type Cristal struct {
 	Name  string

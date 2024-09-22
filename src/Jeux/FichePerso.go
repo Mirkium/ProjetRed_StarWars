@@ -1,4 +1,4 @@
-package Sauvegarde
+package jeux
 
 import (
 	"fmt"
@@ -15,7 +15,7 @@ func DisplayCharacter() {
 	fmt.Println(Yellow, "        Force     : ", Cyan, Personnage.Force)
 	fmt.Println(Yellow, "        Way Force : ", Cyan, Personnage.CoteForce)
 	fmt.Println("     _________________________________")
-	fmt.Println(Yellow, "             (1)", Cyan, " Abiliti")
+	fmt.Println(Yellow, "             (1)", Cyan, " Ability")
 	fmt.Println("")
 	fmt.Println(Yellow, "             (2)", Cyan, " Weapon")
 	fmt.Println("")
@@ -44,16 +44,16 @@ func DisplayCharacter() {
 func MenuAbilitie() {
 	var choix int
 	fmt.Println("/======================================\\")
-	fmt.Println(Cyan, "                Abiliti")
+	fmt.Println(Cyan, "                Ability")
 	for _, k := range Personnage.AbilitieDefault {
 		fmt.Println("/= ", k.Name)
 		fmt.Println("|   Energie : ", k.EnergieCost)
-		fmt.Println("\\= Damage : ",k.Dammage," | Heal",k.Heal)
+		fmt.Println("\\= Damage : ", k.Dammage, " | Heal", k.Heal)
 	}
 	for _, k := range Personnage.Classe.Abilite {
 		fmt.Println("/= ", k.Name)
 		fmt.Println("|   Energie : ", k.EnergieCost)
-		fmt.Println("\\= Damage : ",k.Dammage," | Heal",k.Heal)
+		fmt.Println("\\= Damage : ", k.Dammage, " | Heal", k.Heal)
 	}
 	fmt.Println(Yellow, "              (0)", Cyan, " Exit", Reset)
 	fmt.Println("\\======================================/")
@@ -80,18 +80,18 @@ func MenuWeapon() {
 	fmt.Println(Yellow, "   Damage Bonus : ", Cyan, Arme.DamageBonus)
 	fmt.Println("")
 	if Personnage.IsDoubleBlade {
-		fmt.Println(Arme.Color, "<===========================================", gray, "]#####[]#####[", Arme.Color, "===========================================>", Reset)
+		fmt.Println(Arme.Color.Color, "<===========================================", gray, "]#####[]#####[", Arme.Color.Color, "===========================================>", Reset)
 	} else if Personnage.IsSecondaryWeapon {
-		fmt.Println(gray, "[]####[", Arme.Color, "===========================================>", Reset)
+		fmt.Println(gray, "[]####[", Arme.Color.Color, "===========================================>", Reset)
 		fmt.Println("")
 		fmt.Println("       Secondary Weapon")
 		fmt.Println(Yellow, "   Name         : ", Cyan, ArmeSecondaire.Name)
 		fmt.Println(Yellow, "   Pv Bonus     : ", Cyan, ArmeSecondaire.PvBonus)
 		fmt.Println(Yellow, "   Damage Bonus : ", Cyan, ArmeSecondaire.DamageBonus)
 		fmt.Println("")
-		fmt.Println(ArmeSecondaire.Color, "<===========================================", gray, "]####[]", Reset)
+		fmt.Println(ArmeSecondaire.Color.Color, "<===========================================", gray, "]####[]", Reset)
 	} else {
-		fmt.Println(gray, "[]####[", Arme.Color, "===========================================>", Reset)
+		fmt.Println(gray, "[]####[", Arme.Color.Color, "===========================================>", Reset)
 	}
 	fmt.Println("")
 	fmt.Println(Yellow, "               (1)", Cyan, " Modified Armor")
@@ -374,6 +374,9 @@ func MenuArmor() {
 	case "1":
 		ClearScreen()
 		ChangeArmor()
+	case "0":
+		ClearScreen()
+		DisplayCharacter()
 	default:
 		ClearScreen()
 		MenuArmor()
@@ -405,7 +408,7 @@ func ChangeArmor() {
 				Personnage.Armure = armor
 			case "2":
 				ClearScreen()
-				ChangeWeapon()
+				ChangeArmor()
 			}
 		}
 	}

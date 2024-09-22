@@ -1,4 +1,4 @@
-package Sauvegarde
+package jeux
 
 import (
 	"encoding/json"

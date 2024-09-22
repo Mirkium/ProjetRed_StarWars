@@ -1,4 +1,4 @@
-package guerriersith
+package jeux
 
 import (
 	"fmt"

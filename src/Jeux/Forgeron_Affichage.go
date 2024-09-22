@@ -1,7 +1,7 @@
-package forgeron
+package jeux
 
+/*
 import (
-	save "Game/Jeux/Sauvegarde"
 	"fmt"
 )
 
@@ -32,7 +32,8 @@ func SmithchoiceAffichage() {
 		break
 	default:
 		fmt.Println("Invalid choice. Please choose a number between 1 and 3.")
-		save.ClearScreen()
+		ClearScreen()
 		SmithchoiceAffichage()
 	}
 }
+*/
