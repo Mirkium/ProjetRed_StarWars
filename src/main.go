@@ -109,7 +109,6 @@ func JediConsular() {
 	case "2":
 		consulaireJedi.IntroConsulaire()
 		ChoixClasse()
-
 	default:
 		fmt.Println("Bad Input")
 		time.Sleep(2 * time.Second)
@@ -147,7 +146,6 @@ func ChoixClasse() {
 		}
 	}
 	Menu()
-
 }
 
 func Menu() {
@@ -169,7 +167,7 @@ func Menu() {
 		fmt.Println("           0. exit")
 		fmt.Println("")
 		fmt.Println("\\===============================/")
-		fmt.Print("Your choise : ")
+		fmt.Print("Your choise : \n")
 		fmt.Scanln(&choix)
 		switch choix {
 		case "1":
@@ -184,10 +182,8 @@ func Menu() {
 		case "5":
 			if consulaireJedi.Quete == 0 {
 				consulaireJedi.Quete1(&save.Personnage)
-				Menu()
 			} else if consulaireJedi.Quete == 1 {
 				consulaireJedi.Quete2(&save.Personnage)
-				Menu()
 			} else {
 				consulaireJedi.Final()
 				return
