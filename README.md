@@ -7,8 +7,8 @@ un jeu en console où l'on écris dans le terminal les instructions
 que l'on nous demande.
 
 ## Prérequis : 
-    - Avoir goland ([Télécharger Goland](https://go.dev/dl))
-    - Compatible avec Linux, MacOS et Windows
+- Avoir goland ([Télécharger Goland](https://go.dev/dl))
+- Compatible avec Linux, MacOS et Windows
 
 ## Instructions de jeu
 - **Instalation**
