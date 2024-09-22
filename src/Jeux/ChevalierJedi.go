@@ -21,9 +21,9 @@ const (
 )
 
 // Les differentes classes pour le jedi
-var classeJedi1 Classe = Classe{"Way of the spirit", 100, []Abilite{Abilite{"Meditation", 10, 0, 30, 1, 0, 0, "An Abilite for rest a litle bit during a ", 0, 0}, Abilite{"Force Attack", 15, 20, 0, 1, 0, 0, "A Force Attack who project the ennemie on the wall", 0, 0}}, 100}
-var classeJedi2 Classe = Classe{"Way of the training", 150, []Abilite{Abilite{"Hissatsu Majishirīzu", 20, 30, 0, 1, 0, 0, "A serie of punch", 0, 0}, Abilite{"right hook", 40, 40, 0, 1, 0, 0, "A right hook on the face of the ennemie", 0, 0}}, 150}
-var classeJedi3 Classe = Classe{"Way of the instinct", 120, []Abilite{Abilite{"Charge of the Jedi", 20, 35, 0, 1, 0, 0, "Charge on the enemie", 0, 0}, Abilite{"Dot of the jedi", 40, 10, 0, 1, 0, 0, "A dot build in Jedi laboratory", 3, 10}}, 120}
+var classeJedi1 Classe = Classe{"Way of the spirit", 100, []Ability{Ability{"Meditation", 10, 0, 30, 1, 0, 0, "An Abilite for rest a litle bit during a ", 0, 0}, Ability{"Force Attack", 15, 20, 0, 1, 0, 0, "A Force Attack who project the ennemie on the wall", 0, 0}}, 100}
+var classeJedi2 Classe = Classe{"Way of the training", 150, []Ability{Ability{"Hissatsu Majishirīzu", 20, 30, 0, 1, 0, 0, "A serie of punch", 0, 0}, Ability{"right hook", 40, 40, 0, 1, 0, 0, "A right hook on the face of the ennemie", 0, 0}}, 150}
+var classeJedi3 Classe = Classe{"Way of the instinct", 120, []Ability{Ability{"Charge of the Jedi", 20, 35, 0, 1, 0, 0, "Charge on the enemie", 0, 0}, Ability{"Dot of the jedi", 40, 10, 0, 1, 0, 0, "A dot build in Jedi laboratory", 3, 10}}, 120}
 
 var ClasseJediList [3]Classe = [3]Classe{classeJedi1, classeJedi2, classeJedi3}
 
@@ -901,7 +901,7 @@ func Quete1(MC *Perso) {
 	fmt.Println("The chief of the brignands takes you aside and decide to fight you")
 	time.Sleep(3 * time.Second)
 	ClearScreen()
-	BrignandsChief := Mob{"Brignands's chief", 200, 200, 10, []Abilite{Abilite{"punch", 0, 10, 0, 0, 0, 0, "Just a punch", 0, 0}, Abilite{"Blaster", 0, 20, 0, 0, 0, 0, "A classic Blaster", 0, 0}}, map[Item]int{}, 0}
+	BrignandsChief := Mob{"Brignands's chief", 200, 200, 10, []Ability{Ability{"punch", 0, 10, 0, 0, 0, 0, "Just a punch", 0, 0}, Ability{"Blaster", 0, 20, 0, 0, 0, 0, "A classic Blaster", 0, 0}}, map[Item]int{}, 0}
 	if !Fight(MC, &BrignandsChief, true) {
 		ClearScreen()
 		fmt.Println("Do you want to restart Yes(1) or No(2) ?")
@@ -958,7 +958,7 @@ func Quete2(MC *Perso) {
 	time.Sleep(2 * time.Second)
 	fmt.Printf("Bounty hunter : Certainly not.")
 	ClearScreen()
-	BountyHunter := Mob{"Bounty hunter", 300, 300, 20, []Abilite{Abilite{"Grenade", 0, 30, 0, 1, 0, 0, "A grenade who explose.", 2, 5}, Abilite{"Self-Healing", 0, 0, 20, 1, 0, 0, "Self heal", 0, 0}, Abilite{"Sniper shot", 0, 30, 0, 1, 0, 0, "Sniper shot abilite", 0, 0}}, map[Item]int{}, 500}
+	BountyHunter := Mob{"Bounty hunter", 300, 300, 20, []Ability{Ability{"Grenade", 0, 30, 0, 1, 0, 0, "A grenade who explose.", 2, 5}, Ability{"Self-Healing", 0, 0, 20, 1, 0, 0, "Self heal", 0, 0}, Ability{"Sniper shot", 0, 30, 0, 1, 0, 0, "Sniper shot abilite", 0, 0}}, map[Item]int{}, 500}
 	if !Fight(MC, &BountyHunter, true) {
 		MC.PV_actuelle = MC.PV_actuelle * 3 / 4
 		Quete2(MC)
@@ -975,7 +975,7 @@ func End(MC *Perso) {
 	fmt.Printf("\n\nDooku : I'm not a traitor like tou say, I have just see than the Jedi High Council is corupted by the Galactic Senate.")
 	time.Sleep(2 * time.Second)
 	fmt.Printf("\n\nYou : You are a liar.")
-	Dooku1 := Mob{"Dooku", 500, 500, 90, []Abilite{Abilite{"lightning", 0, 150, 0, 1, 0, 0, "Lightning of the dark Side", 0, 0}, Abilite{"Lighsaber", 0, 210, 0, 1, 0, 0, "Lighsaber technique", 0, 0}}, map[Item]int{}, 1000}
+	Dooku1 := Mob{"Dooku", 500, 500, 90, []Ability{Ability{"lightning", 0, 150, 0, 1, 0, 0, "Lightning of the dark Side", 0, 0}, Ability{"Lighsaber", 0, 210, 0, 1, 0, 0, "Lighsaber technique", 0, 0}}, map[Item]int{}, 1000}
 	res := Fight(MC, &Dooku1, true)
 	if !res {
 		ClearScreen()
@@ -1004,7 +1004,7 @@ func End(MC *Perso) {
 	ClearScreen()
 	fmt.Printf("Dooku : But you must do better if you want ot win")
 	time.Sleep(2 * time.Second)
-	Dooku2 := Mob{"Dooku", 600, 500, 70, []Abilite{Abilite{"lightning", 0, 150, 0, 1, 0, 0, "Lightning of the dark Side", 2, 15}, Abilite{"Lighsaber", 0, 210, 0, 1, 0, 0, "Lighsaber technique", 0, 0}, Abilite{"Self-Healing", 0, 0, 70, 1, 0, 0, "Self heal", 0, 0}}, map[Item]int{}, 1000}
+	Dooku2 := Mob{"Dooku", 600, 500, 70, []Ability{Ability{"lightning", 0, 150, 0, 1, 0, 0, "Lightning of the dark Side", 2, 15}, Ability{"Lighsaber", 0, 210, 0, 1, 0, 0, "Lighsaber technique", 0, 0}, Ability{"Self-Healing", 0, 0, 70, 1, 0, 0, "Self heal", 0, 0}}, map[Item]int{}, 1000}
 	res = Fight(MC, &Dooku2, false)
 	if !res {
 		ClearScreen()

@@ -10,7 +10,7 @@ var Arme Lightsaber
 var ArmeSecondaire SecondaryLightsaber
 var Armors Armor
 var Campagne Classe
-var Capacite Abilite
+var Capacite Ability
 
 func CreatePerso() {
 	var choix string
