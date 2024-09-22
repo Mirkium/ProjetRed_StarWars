@@ -1,7 +1,7 @@
-package forgeron
+package jeux
 
 import (
-	save "Game/Jeux/Sauvegarde"
+
 )
 
 type Forgeron_Weapon struct {
@@ -10,8 +10,8 @@ type Forgeron_Weapon struct {
 	DamageBonus  int
 	Valeur       int
 	Type         int
-	ItemValeur_1 save.Cristal
-	ItemValeur_2 save.Item
+	ItemValeur_1 Cristal
+	ItemValeur_2 Item
 	CoteForce    int
 	Description  string
 }
@@ -22,8 +22,8 @@ type Forgeron_Armor struct {
 	DamageBonus  int
 	StatArmor    int
 	Valeur       int
-	ItemValeur_1 save.Item
-	ItemValeur_2 save.Item
+	ItemValeur_1 Item
+	ItemValeur_2 Item
 	CoteForce    int
 	Description  string
 }

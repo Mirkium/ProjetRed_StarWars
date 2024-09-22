@@ -1,4 +1,4 @@
-package Sauvegarde
+package jeux
 
 import (
 	"fmt"
@@ -23,7 +23,7 @@ func Ajout_Item(Objet Item, quantite int) {
 	for _, ele := range Inventaire_Item {
 		if Objet.Name == ele.Name {
 			AlreadyExiste = true
-			ele.Quantite += Objet.Quantite
+			ele.Quantity += Objet.Quantity
 			return
 		}
 	}
@@ -42,11 +42,11 @@ func Enlever_Item(Objet Item, Quantite int) {
 	*/
 	for index, element := range Inventaire_Item {
 		if element.Name == Objet.Name {
-			if element.Quantite-Objet.Quantite <= 0 {
+			if element.Quantity-Objet.Quantity <= 0 {
 				Inventaire_Item = append(Inventaire_Item[:index], Inventaire_Item[index+1:]...)
 				return
 			} else {
-				element.Quantite -= Objet.Quantite
+				element.Quantity -= Objet.Quantity
 				return
 			}
 		}
@@ -62,6 +62,68 @@ func Stats(Objet Item) string {
 }
 
 func DisplayInventaire() {
+	var choix string
+	fmt.Println("/====================Inventory====================\\")
+	fmt.Println("")
+	fmt.Println("                1. Item inventory")
+	fmt.Println("")
+	fmt.Println("                2. Lightsaber inventory")
+	fmt.Println("")
+	fmt.Println("                3. Weapon inventory")
+	fmt.Println("")
+	fmt.Println("                4. Armor inventory")
+	fmt.Println("")
+	fmt.Println("                5. Cristal inventory")
+	fmt.Println("")
+	fmt.Println("                6. KitPack inventory")
+	fmt.Println("")
+	fmt.Println("                0. Exit")
+	fmt.Println("")
+	fmt.Println("\\=================================================/")
+	fmt.Println("")
+	fmt.Print("Your choice : ")
+	fmt.Scanln(&choix)
+	switch choix {
+	case "1" :
+		clearScreen()
+		DisplayInventaireItem()
+		clearScreen()
+		DisplayInventaire()
+	case "2" :
+		clearScreen()
+		DisplayInventaireLightSaber()
+		clearScreen()
+		DisplayInventaire()
+	case "3" :
+		clearScreen()
+		DisplayInventaire_Weapon()
+		clearScreen()
+		DisplayInventaire()
+	case "4" :
+		clearScreen()
+		DisplayInventaire_Armor()
+		clearScreen()
+		DisplayInventaire()
+	case "5" :
+		clearScreen()
+		DisplayInventaireCristal()
+		clearScreen()
+		DisplayInventaire()
+	case "6" :
+		clearScreen()
+		//DisplayInventaireKitPack
+		clearScreen()
+		DisplayInventaire()
+	case "0" :
+		break
+	default :
+		clearScreen()
+		DisplayInventaire()
+		
+	}
+}
+
+func DisplayInventaireItem() {
 	var Exit string
 	/*
 		Affiche les diiferents item
@@ -70,7 +132,7 @@ func DisplayInventaire() {
 	i := 1
 	fmt.Println(" ========================Inventaire_Item=========================")
 	for _, element := range Inventaire_Item {
-		fmt.Printf("|Index : %d | Item :  %s | Quantité : %s |\n", i, Formatage(element.Name, 16), Formatage(strconv.Itoa(element.Quantite), 4))
+		fmt.Printf("|Index : %d | Item :  %s | Quantité : %s |\n", i, Formatage(element.Name, 16), Formatage(strconv.Itoa(element.Quantity), 4))
 		i++
 	}
 	fmt.Println("                         (0)  Exit")
@@ -126,11 +188,11 @@ func DisplayInventaireIndex(index1 int) {
 				fmt.Println("|                                                           |")
 				fmt.Println("---------------------------Prix-----------------------------|")
 				fmt.Println("|                                                           |")
-				fmt.Println("|                     " + formatagePrix(element.Valeur) + "                    |")
+				fmt.Println("|                     " + formatagePrix(element.Price) + "                    |")
 				fmt.Println("|                                                           |")
 				fmt.Println("|------------------------Quantites--------------------------|")
 				fmt.Println("|                                                           |")
-				fmt.Println("|                          " + Formatage(strconv.Itoa(element.Quantite), 3) + "                           |")
+				fmt.Println("|                          " + Formatage(strconv.Itoa(element.Quantity), 3) + "                           |")
 				fmt.Println("|                                                           |")
 				fmt.Println(" ===========================================================")
 				//fmt.Printf("Item :  %s, Quantité : %d\n", index.Objet.Name, element)

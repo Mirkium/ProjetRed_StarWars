@@ -1,4 +1,4 @@
-package assassinsith
+package jeux
 
 func SithAssassin() {
 	

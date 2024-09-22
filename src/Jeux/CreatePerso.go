@@ -1,23 +1,9 @@
-package Sauvegarde
+package jeux
 
 import (
 	"fmt"
-	"os"
-	"os/exec"
-	"runtime"
 )
 
-const (
-	Reset   = "\033[0m"
-	Red     = "\033[91m"
-	Green   = "\033[32m"
-	Yellow  = "\033[93m"
-	Blue    = "\033[34m"
-	Magenta = "\033[35m"
-	Cyan    = "\033[96m"
-	White   = "\033[37m"
-	gray    = "\033[90m"
-)
 
 var Personnage Perso
 var Arme Lightsaber
@@ -98,20 +84,4 @@ func CaracteristiquePerso() {
 		CaracteristiquePerso()
 	}
 
-}
-
-func ClearScreen() {
-	var cmd *exec.Cmd
-	// Détecter le système d'exploitation
-	switch runtime.GOOS {
-	case "windows":
-		// Commande pour Windows
-		cmd = exec.Command("cmd", "/c", "cls")
-	default:
-		// Commande pour les systèmes Unix-like
-		cmd = exec.Command("clear")
-	}
-	// Définir la sortie de la commande sur Stdout
-	cmd.Stdout = os.Stdout
-	cmd.Run()
 }

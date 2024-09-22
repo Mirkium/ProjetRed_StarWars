@@ -1,8 +1,6 @@
-package chevalierjedi
+package jeux
 
 import (
-	fight "Game/Jeux/GamePlay/Fight"
-	save "Game/Jeux/Sauvegarde"
 	"fmt"
 	"os"
 	"os/exec"
@@ -24,11 +22,11 @@ const (
 )
 
 // Les differentes classes pour le jedi
-var classeJedi1 save.Classe = save.Classe{"Way of the spirit", 100, []save.Abilite{save.Abilite{"Meditation", 10, 0, 30, 1, 0, 0, "An Abilite for rest a litle bit during a fight.", 0, 0}, save.Abilite{"Force Attack", 15, 20, 0, 1, 0, 0, "A Force Attack who project the ennemie on the wall", 0, 0}}, 100}
-var classeJedi2 save.Classe = save.Classe{"Way of the training", 150, []save.Abilite{save.Abilite{"Hissatsu Majishirīzu", 20, 30, 0, 1, 0, 0, "A serie of punch", 0, 0}, save.Abilite{"right hook", 40, 40, 0, 1, 0, 0, "A right hook on the face of the ennemie", 0, 0}}, 150}
-var classeJedi3 save.Classe = save.Classe{"Way of the instinct", 120, []save.Abilite{save.Abilite{"Charge of the Jedi", 20, 35, 0, 1, 0, 0, "Charge on the enemie", 0, 0}, save.Abilite{"Dot of the jedi", 40, 10, 0, 1, 0, 0, "A dot build in Jedi laboratory", 3, 10}}, 120}
+var classeJedi1 Classe = Classe{"Way of the spirit", 100, []Abilite{Abilite{"Meditation", 10, 0, 30, 1, 0, 0, "An Abilite for rest a litle bit during a ", 0, 0}, Abilite{"Force Attack", 15, 20, 0, 1, 0, 0, "A Force Attack who project the ennemie on the wall", 0, 0}}, 100}
+var classeJedi2 Classe = Classe{"Way of the training", 150, []Abilite{Abilite{"Hissatsu Majishirīzu", 20, 30, 0, 1, 0, 0, "A serie of punch", 0, 0}, Abilite{"right hook", 40, 40, 0, 1, 0, 0, "A right hook on the face of the ennemie", 0, 0}}, 150}
+var classeJedi3 Classe = Classe{"Way of the instinct", 120, []Abilite{Abilite{"Charge of the Jedi", 20, 35, 0, 1, 0, 0, "Charge on the enemie", 0, 0}, Abilite{"Dot of the jedi", 40, 10, 0, 1, 0, 0, "A dot build in Jedi laboratory", 3, 10}}, 120}
 
-var ClasseJediList [3]save.Classe = [3]save.Classe{classeJedi1, classeJedi2, classeJedi3}
+var ClasseJediList [3]Classe = [3]Classe{classeJedi1, classeJedi2, classeJedi3}
 
 func JediKnight() {
 	ClearScreen()
@@ -813,7 +811,7 @@ func JediKnight() {
 	fmt.Println(" ")
 	time.Sleep(time.Second * 2)
 	ClearScreen()
-	Quete1(&save.Personnage)
+	Quete1(&Personnage)
 }
 
 func ClearScreen() {
@@ -832,11 +830,11 @@ func ClearScreen() {
 	cmd.Run()
 }
 
-func CampaingJediKnight(MC *save.Perso) {
+func CampaingJediKnight(MC *Perso) {
 	Quete1(MC)
 }
 
-func Quete1(MC *save.Perso) {
+func Quete1(MC *Perso) {
 	//Prologue
 	ClearScreen()
 	fmt.Println("Clone : Are you okay general?")
@@ -848,25 +846,25 @@ func Quete1(MC *save.Perso) {
 	fmt.Println("\nYou : Yes please")
 	time.Sleep(3 * time.Second)
 	fmt.Println("\n Clone : Okay")
-	save.ClearScreen()
+	ClearScreen()
 	time.Sleep(3 * time.Second)
 	fmt.Println("Clone : We are on Coruscant, on the floor minus 32.")
 	time.Sleep(3 * time.Second)
-	save.ClearScreen()
+	ClearScreen()
 	fmt.Println("Clone : Our mission is to bring criminals who are in relation with the head of black march.")
 	time.Sleep(3 * time.Second)
-	save.ClearScreen()
+	ClearScreen()
 	fmt.Println("Clone : WARNING")
 	time.Sleep(3 * time.Second)
-	save.ClearScreen()
+	ClearScreen()
 	fmt.Println("Unknown : You are lucky " + MC.Name + ".")
 	time.Sleep(2 * time.Second)
 	fmt.Println("\nYou : Oh, you think, so we will see.")
 	time.Sleep(4 * time.Second)
-	save.ClearScreen()
+	ClearScreen()
 	fmt.Println("You decide to fight this unknown enemy.")
-	//unknown := save.Mob{"Brigand", 100, 100, 0, []save.Abilite{save.Abilite{"punch", 0, 10, 0, 0, 0, 0, "Just a punch"}}, map[save.Item]int{}, 100}
-	//Fight.Fight(MC, &unknown, true)
+	//unknown := Mob{"Brigand", 100, 100, 0, []Abilite{Abilite{"punch", 0, 10, 0, 0, 0, 0, "Just a punch"}}, map[Item]int{}, 100}
+	//Fight(MC, &unknown, true)
 	//fin du premier combat imperdable pour le joueur
 	ClearScreen()
 	fmt.Println("Brigands : I didn't expect a jedi, I must contact the chef.")
@@ -904,8 +902,8 @@ func Quete1(MC *save.Perso) {
 	fmt.Println("The chief of the brignands takes you aside and decide to fight you")
 	time.Sleep(3 * time.Second)
 	ClearScreen()
-	BrignandsChief := save.Mob{"Brignands's chief", 200, 200, 10, []save.Abilite{save.Abilite{"punch", 0, 10, 0, 0, 0, 0, "Just a punch", 0, 0}, save.Abilite{"Blaster", 0, 20, 0, 0, 0, 0, "A classic Blaster", 0, 0}}, map[save.Item]int{}, 0}
-	if !fight.Fight(MC, &BrignandsChief, true) {
+	BrignandsChief := Mob{"Brignands's chief", 200, 200, 10, []Abilite{Abilite{"punch", 0, 10, 0, 0, 0, 0, "Just a punch", 0, 0}, Abilite{"Blaster", 0, 20, 0, 0, 0, 0, "A classic Blaster", 0, 0}}, map[Item]int{}, 0}
+	if !Fight(MC, &BrignandsChief, true) {
 		ClearScreen()
 		fmt.Println("Do you want to restart Yes(1) or No(2) ?")
 		fmt.Scan(&choix)
@@ -930,7 +928,7 @@ func Quete1(MC *save.Perso) {
 	time.Sleep(3 * time.Second)
 }
 
-func Quete2(MC *save.Perso) {
+func Quete2(MC *Perso) {
 	//quete ou on doit escorter un senateur
 	fmt.Printf("Sheev Palpatine : Hi %s, I'll send you to escort the senator Bail Organa to an appointment.\n\n", MC.Name)
 	time.Sleep(2 * time.Second)
@@ -961,8 +959,8 @@ func Quete2(MC *save.Perso) {
 	time.Sleep(2 * time.Second)
 	fmt.Printf("Bounty hunter : Certainly not.")
 	ClearScreen()
-	BountyHunter := save.Mob{"Bounty hunter", 300, 300, 20, []save.Abilite{save.Abilite{"Grenade", 0, 30, 0, 1, 0, 0, "A grenade who explose.", 2, 5}, save.Abilite{"Self-Healing", 0, 0, 20, 1, 0, 0, "Self heal", 0, 0}, save.Abilite{"Sniper shot", 0, 30, 0, 1, 0, 0, "Sniper shot abilite", 0, 0}}, map[save.Item]int{}, 500}
-	if !fight.Fight(MC, &BountyHunter, true) {
+	BountyHunter := Mob{"Bounty hunter", 300, 300, 20, []Abilite{Abilite{"Grenade", 0, 30, 0, 1, 0, 0, "A grenade who explose.", 2, 5}, Abilite{"Self-Healing", 0, 0, 20, 1, 0, 0, "Self heal", 0, 0}, Abilite{"Sniper shot", 0, 30, 0, 1, 0, 0, "Sniper shot abilite", 0, 0}}, map[Item]int{}, 500}
+	if !Fight(MC, &BountyHunter, true) {
 		MC.PV_actuelle = MC.PV_actuelle * 3 / 4
 		Quete2(MC)
 	}
@@ -970,7 +968,7 @@ func Quete2(MC *save.Perso) {
 	fmt.Printf("Congratulation")
 }
 
-func End(MC *save.Perso) {
+func End(MC *Perso) {
 	fmt.Println("Dooku : Welcomme young Jedi")
 	time.Sleep(2 * time.Second)
 	fmt.Printf("\nYou : Hello traitor")
@@ -978,8 +976,8 @@ func End(MC *save.Perso) {
 	fmt.Printf("\n\nDooku : I'm not a traitor like tou say, I have just see than the Jedi High Council is corupted by the Galactic Senate.")
 	time.Sleep(2 * time.Second)
 	fmt.Printf("\n\nYou : You are a liar.")
-	Dooku1 := save.Mob{"Dooku", 500, 500, 90, []save.Abilite{save.Abilite{"lightning", 0, 150, 0, 1, 0, 0, "Lightning of the dark Side", 0, 0}, save.Abilite{"Lighsaber", 0, 210, 0, 1, 0, 0, "Lighsaber technique", 0, 0}}, map[save.Item]int{}, 1000}
-	res := fight.Fight(MC, &Dooku1, true)
+	Dooku1 := Mob{"Dooku", 500, 500, 90, []Abilite{Abilite{"lightning", 0, 150, 0, 1, 0, 0, "Lightning of the dark Side", 0, 0}, Abilite{"Lighsaber", 0, 210, 0, 1, 0, 0, "Lighsaber technique", 0, 0}}, map[Item]int{}, 1000}
+	res := Fight(MC, &Dooku1, true)
 	if !res {
 		ClearScreen()
 		var choix string
@@ -1007,8 +1005,8 @@ func End(MC *save.Perso) {
 	ClearScreen()
 	fmt.Printf("Dooku : But you must do better if you want ot win")
 	time.Sleep(2 * time.Second)
-	Dooku2 := save.Mob{"Dooku", 600, 500, 70, []save.Abilite{save.Abilite{"lightning", 0, 150, 0, 1, 0, 0, "Lightning of the dark Side", 2, 15}, save.Abilite{"Lighsaber", 0, 210, 0, 1, 0, 0, "Lighsaber technique", 0, 0}, save.Abilite{"Self-Healing", 0, 0, 70, 1, 0, 0, "Self heal", 0, 0}}, map[save.Item]int{}, 1000}
-	res = fight.Fight(MC, &Dooku2, false)
+	Dooku2 := Mob{"Dooku", 600, 500, 70, []Abilite{Abilite{"lightning", 0, 150, 0, 1, 0, 0, "Lightning of the dark Side", 2, 15}, Abilite{"Lighsaber", 0, 210, 0, 1, 0, 0, "Lighsaber technique", 0, 0}, Abilite{"Self-Healing", 0, 0, 70, 1, 0, 0, "Self heal", 0, 0}}, map[Item]int{}, 1000}
+	res = Fight(MC, &Dooku2, false)
 	if !res {
 		ClearScreen()
 		var choix string

@@ -1,7 +1,7 @@
-package Fight
+package jeux
 
 import (
-	save "Game/Jeux/Sauvegarde"
+	
 	"fmt"
 	"math/rand"
 	"strconv"
@@ -13,7 +13,7 @@ var DDP int = 0 //DotDammagePerso
 var DcM int = 0 //DotCompteurMob
 var DDM int = 0 //DotDammageMob
 
-func ChangeLevel(P *save.Perso, mobKilled save.Mob) {
+func ChangeLevel(P *Perso, mobKilled Mob) {
 	P.Xp_Actu += mobKilled.XpDrop
 	if P.Xp_Actu > 1000*P.Level {
 		P.Xp_Actu -= 1000 * P.Level
@@ -27,7 +27,7 @@ func Ask() int {
 	fmt.Scan(&choix)
 	answer, verification := strconv.Atoi(choix)
 	for verification != nil {
-		save.ClearScreen()
+		ClearScreen()
 		choix = ""
 		//refaire l'affichage des abilité
 		fmt.Println("Bad input")
@@ -46,47 +46,47 @@ func AskInt(min int, max int) int {
 	return a
 }
 
-func DisplayAbilite(AbilitieList []save.Abilite, P save.Perso) {
+func DisplayAbilite(AbilitieList []Abilite, P Perso) {
 	fmt.Println(" ============================================Abilite======================================")
-	fmt.Println("|" + save.Formatage("Name", 20) + "|" + save.Formatage("Energie", 8) + "|" + save.Formatage("Dammage", 8) + "|" + save.Formatage("Dot duration", 14) + "|" + save.Formatage(" Dot dammage", 14) + "|  index   |")
+	fmt.Println("|" + Formatage("Name", 20) + "|" + Formatage("Energie", 8) + "|" + Formatage("Dammage", 8) + "|" + Formatage("Dot duration", 14) + "|" + Formatage(" Dot dammage", 14) + "|  index   |")
 	for in, element := range AbilitieList {
 		d := element.Dammage + P.Weapon.DamageBonus - P.Armure.StatArmor
 		if d <= 0 {
 			d = 1
 		}
-		fmt.Println("|" + save.Formatage(element.Name, 20) + "|" + save.Formatage(strconv.Itoa(element.EnergieCost), 8) + "|" + save.Formatage(strconv.Itoa(d), 8) + "|" + save.Formatage(strconv.Itoa(element.DotCompteur), 14) + "|" + save.Formatage(strconv.Itoa(element.DotDammage), 14) + "|" + save.Formatage(strconv.Itoa(in+1), 7) + "|")
+		fmt.Println("|" + Formatage(element.Name, 20) + "|" + Formatage(strconv.Itoa(element.EnergieCost), 8) + "|" + Formatage(strconv.Itoa(d), 8) + "|" + Formatage(strconv.Itoa(element.DotCompteur), 14) + "|" + Formatage(strconv.Itoa(element.DotDammage), 14) + "|" + Formatage(strconv.Itoa(in+1), 7) + "|")
 	}
 	fmt.Println(" =========================================================================================")
 	time.Sleep(3 * time.Second)
 }
 
-func Fight(P *save.Perso, mob *save.Mob, PlayerStart bool) bool {
+func Fight(P *Perso, mob *Mob, PlayerStart bool) bool {
 	rand.Seed(time.Now().UnixNano())
-	save.ClearScreen()
+	ClearScreen()
 	//affichage du debut de combat
 	fmt.Println("You decide to fight " + mob.Name)
 	fmt.Println("The fight will start in 3")
 	fmt.Printf("\nStats : \n\t-Pv : %d\n\t-Armor : %d\n", mob.PV_max, mob.Armor)
 	time.Sleep(1 * time.Second)
-	save.ClearScreen()
+	ClearScreen()
 	fmt.Println("You decide to fight " + mob.Name)
 	fmt.Println("The fight will start in 2")
 	fmt.Printf("\nStats : \n\t-Pv : %d\n\t-Armor : %d\n", mob.PV_max, mob.Armor)
 	time.Sleep(1 * time.Second)
-	save.ClearScreen()
+	ClearScreen()
 	fmt.Println("You decide to fight " + mob.Name)
 	fmt.Println("The fight will start in 1")
 	fmt.Printf("\nStats : \n\t-Pv : %d\n\t-Armor : %d\n", mob.PV_max, mob.Armor)
 	time.Sleep(1 * time.Second)
-	save.ClearScreen()
+	ClearScreen()
 	for {
 		if PlayerStart {
 			//affichage
-			save.ClearScreen()
+			ClearScreen()
 			fmt.Println("You have " + strconv.Itoa(P.PV_actuelle) + " / " + strconv.Itoa(P.PV_max) + " and " + strconv.Itoa(P.Classe.Energie) + " energie.")
 			fmt.Println(mob.Name + " have " + strconv.Itoa(mob.PV_actuelle) + " / " + strconv.Itoa(mob.PV_max))
 			time.Sleep(1 * time.Second)
-			AbilitieList := []save.Abilite{}
+			AbilitieList := []Abilite{}
 			AbilitieList = append(AbilitieList, P.AbilitieDefault...)
 			AbilitieList = append(AbilitieList, P.Classe.Abilite...)
 			DisplayAbilite(AbilitieList, *P)
@@ -141,7 +141,7 @@ func Fight(P *save.Perso, mob *save.Mob, PlayerStart bool) bool {
 			PlayerStart = false
 		}
 		if !PlayerStart {
-			save.ClearScreen()
+			ClearScreen()
 			fmt.Println("Ennemis : " + mob.Name)
 			randomInt := rand.Intn(len(mob.Abilitie))
 			fmt.Println(mob.Name + " decide to use " + mob.Abilitie[randomInt].Name)
@@ -171,7 +171,7 @@ func Fight(P *save.Perso, mob *save.Mob, PlayerStart bool) bool {
 			fmt.Println("You have " + strconv.Itoa(P.PV_actuelle) + " / " + strconv.Itoa(P.PV_max))
 			time.Sleep(2 * time.Second)
 			if P.PV_actuelle <= 0 {
-				save.ClearScreen()
+				ClearScreen()
 				fmt.Println("you have been defeated.")
 				return true
 			} else {

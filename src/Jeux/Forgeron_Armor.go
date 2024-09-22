@@ -1,7 +1,7 @@
-package forgeron
+package jeux
 
+/*
 import (
-	save "Game/Jeux/Sauvegarde"
 	"fmt"
 	//"time"
 )
@@ -13,21 +13,21 @@ func MenuFArmor() {
 
 func ForgeronArmor() {
 	var choix string
-	var Item1 save.Item
-	var Item2 save.Item
+	var Item1 Item
+	var Item2 Item
 	armor1 := Forgeron_Armor{
 		"Mandalorian armor",
 		300,
 		100,
 		1000,
 		50,
-		save.Item{
+		Item{
 			"Beskar alloy",
 			0,
 			"Beskar, also called Mandalorian iron, was an alloy used in particular in the making of Mandalorian armor and its component parts.",
 			1,
 		},
-		save.Item{
+		Item{
 			"Durasteel Alloy",
 			0,
 			"Durasteel was a very resistant alloy created from different ores including zersium. Stronger than steel, it was used in the manufacture of armor and protection of ships.",
@@ -42,13 +42,13 @@ func ForgeronArmor() {
 		100,
 		20,
 		444,
-		save.Item{
+		Item{
 			"Plastic composite",
 			0,
 			"plastics reinforced with fibers, fillers, particles, powders and other matrix reinforcements to provide improved strength and/or rigidity.",
 			1,
 		},
-		save.Item{
+		Item{
 			"iron",
 			0,
 			"a strong, hard magnetic silvery-grey metal, the chemical element of atomic number 26, much used as a material for construction and manufacturing, especially in the form of steel.",
@@ -63,13 +63,13 @@ func ForgeronArmor() {
 		100,
 		40,
 		400,
-		save.Item{
+		Item{
 			"leather",
 			0,
 			"Animal skin separated from the flesh, tanned and prepared.",
 			1,
 		},
-		save.Item{
+		Item{
 			"iron",
 			0,
 			"a strong, hard magnetic silvery-grey metal, the chemical element of atomic number 26, much used as a material for construction and manufacturing, especially in the form of steel.",
@@ -83,71 +83,71 @@ func ForgeronArmor() {
 	fmt.Println("1- ", armor1.Name)
 	fmt.Println("   HP Bonus : ", armor1.PvBonus, " | Damage Bonus : ", armor1.DamageBonus)
 	fmt.Println("Price :")
-	fmt.Println("   credit : ", save.Personnage.Credit, " | ", armor1.ItemValeur_1.Name, " | ", armor1.ItemValeur_2.Name, " | way Force : ", save.Personnage.CoteForce)
+	fmt.Println("   credit : ", Personnage.Credit, " | ", armor1.ItemValeur_1.Name, " | ", armor1.ItemValeur_2.Name, " | way Force : ", Personnage.CoteForce)
 	fmt.Println("____________________________________")
 	fmt.Println("Armorsmith")
 	fmt.Println("2- ", armor2.Name)
 	fmt.Println("   HP Bonus : ", armor2.PvBonus, " | Damage Bonus : ", armor2.DamageBonus)
 	fmt.Println("Price :")
-	fmt.Println("   credit : ", save.Personnage.Credit, " | ", armor2.ItemValeur_1.Name, " | ", armor2.ItemValeur_2.Name, " | way Force : ", save.Personnage.CoteForce)
+	fmt.Println("   credit : ", Personnage.Credit, " | ", armor2.ItemValeur_1.Name, " | ", armor2.ItemValeur_2.Name, " | way Force : ", Personnage.CoteForce)
 	fmt.Println("____________________________________")
 	fmt.Println("Armorsmith")
 	fmt.Println("3- ", armor3.Name)
 	fmt.Println("   HP Bonus : ", armor3.PvBonus, " | Damage Bonus : ", armor3.DamageBonus)
 	fmt.Println("Price :")
-	fmt.Println("   credit : ", save.Personnage.Credit, " | ", armor3.ItemValeur_1.Name, " | ", armor3.ItemValeur_2.Name, " | way Force : ", save.Personnage.CoteForce)
+	fmt.Println("   credit : ", Personnage.Credit, " | ", armor3.ItemValeur_1.Name, " | ", armor3.ItemValeur_2.Name, " | way Force : ", Personnage.CoteForce)
 	fmt.Println("____________________________________")
 	fmt.Scanln(&choix) //input qui va prendre en considération l'objet voulu
 	if choix == "1" {
-		for _, Item := range save.Inventaire_Item {
-			if Item.Name == armor1.ItemValeur_2.Name && save.Personnage.CoteForce <= armor1.CoteForce && save.Personnage.Credit >= armor1.Valeur {
+		for _, Item := range Inventaire_Item {
+			if Item.Name == armor1.ItemValeur_2.Name && Personnage.CoteForce <= armor1.CoteForce && Personnage.Credit >= armor1.Valeur {
 				Item2 = armor1.ItemValeur_2
 				break
 			}
 		}
-		for _, Item := range save.Inventaire_Item {
-			if Item.Name == armor1.ItemValeur_1.Name && save.Personnage.CoteForce <= armor1.CoteForce && save.Personnage.Credit >= armor1.Valeur {
+		for _, Item := range Inventaire_Item {
+			if Item.Name == armor1.ItemValeur_1.Name && Personnage.CoteForce <= armor1.CoteForce && Personnage.Credit >= armor1.Valeur {
 				Item1 = armor1.ItemValeur_1
 				break
 			}
 		}
-		if Item1 == armor1.ItemValeur_1 && Item2 == armor1.ItemValeur_2 && armor1.Valeur <= save.Personnage.Credit {
+		if Item1 == armor1.ItemValeur_1 && Item2 == armor1.ItemValeur_2 && armor1.Valeur <= Personnage.Credit {
 			CraftArmor(armor1, armor1.ItemValeur_1, armor1.ItemValeur_2)
 		}
 	}
 
 	if choix == "2" {
-		for _, Item := range save.Inventaire_Item {
-			if Item.Name == armor2.ItemValeur_2.Name && save.Personnage.CoteForce <= armor2.CoteForce && save.Personnage.Credit >= armor2.Valeur {
+		for _, Item := range Inventaire_Item {
+			if Item.Name == armor2.ItemValeur_2.Name && Personnage.CoteForce <= armor2.CoteForce && Personnage.Credit >= armor2.Valeur {
 				Item2 = armor1.ItemValeur_2
 				break
 			}
 		}
-		for _, Item := range save.Inventaire_Item {
-			if Item.Name == armor2.ItemValeur_1.Name && save.Personnage.CoteForce <= armor2.CoteForce && save.Personnage.Credit >= armor2.Valeur {
+		for _, Item := range Inventaire_Item {
+			if Item.Name == armor2.ItemValeur_1.Name && Personnage.CoteForce <= armor2.CoteForce && Personnage.Credit >= armor2.Valeur {
 				Item1 = armor2.ItemValeur_1
 				break
 			}
 		}
-		if Item1 == armor2.ItemValeur_1 && Item2 == armor2.ItemValeur_2 && armor2.Valeur <= save.Personnage.Credit {
+		if Item1 == armor2.ItemValeur_1 && Item2 == armor2.ItemValeur_2 && armor2.Valeur <= Personnage.Credit {
 			CraftArmor(armor2, armor2.ItemValeur_1, armor2.ItemValeur_2)
 		}
 	}
 
 	if choix == "3" {
-		for _, Item := range save.Inventaire_Item {
-			if Item.Name == armor3.ItemValeur_2.Name && save.Personnage.CoteForce <= armor3.CoteForce && save.Personnage.Credit >= armor3.Valeur {
+		for _, Item := range Inventaire_Item {
+			if Item.Name == armor3.ItemValeur_2.Name && Personnage.CoteForce <= armor3.CoteForce && Personnage.Credit >= armor3.Valeur {
 				Item2 = armor3.ItemValeur_2
 				break
 			}
 		}
-		for _, Item := range save.Inventaire_Item {
-			if Item.Name == armor3.ItemValeur_1.Name && save.Personnage.CoteForce <= armor3.CoteForce && save.Personnage.Credit >= armor3.Valeur {
+		for _, Item := range Inventaire_Item {
+			if Item.Name == armor3.ItemValeur_1.Name && Personnage.CoteForce <= armor3.CoteForce && Personnage.Credit >= armor3.Valeur {
 				Item1 = armor3.ItemValeur_1
 				break
 			}
 		}
-		if Item1 == armor3.ItemValeur_1 && Item2 == armor3.ItemValeur_2 && armor3.Valeur <= save.Personnage.Credit {
+		if Item1 == armor3.ItemValeur_1 && Item2 == armor3.ItemValeur_2 && armor3.Valeur <= Personnage.Credit {
 			CraftArmor(armor2, armor3.ItemValeur_1, armor3.ItemValeur_2)
 		}
 	} else if choix == "0" {
@@ -159,9 +159,9 @@ func ForgeronArmor() {
 }
 
 /*
-	func AchatWeapon1(BuyItem Forgeron_Weapon, Item2 save.Item, Item1 save.Cristal) {
+	func AchatWeapon1(BuyItem Forgeron_Weapon, Item2 Item, Item1 Cristal) {
 		var choix string
-		NewWeapon := save.Weapon{
+		NewWeapon := Weapon{
 			BuyItem.Name,
 			BuyItem.PvBonus,
 			BuyItem.DamageBonus,
@@ -177,28 +177,28 @@ func ForgeronArmor() {
 		fmt.Scanln(&choix)
 		switch choix {
 		case "1":
-			save.Personnage.Credit -= BuyItem.Valeur
-			save.Enlever_Item(Item2, 1)
-			save.Ajout_Weapon(NewWeapon, 1)
+			Personnage.Credit -= BuyItem.Valeur
+			Enlever_Item(Item2, 1)
+			Ajout_Weapon(NewWeapon, 1)
 		case "2":
-			save.ClearScreen()
+			ClearScreen()
 			ForgeronWeapon1()
 		default:
-			save.ClearScreen()
+			ClearScreen()
 			AchatWeapon1(BuyItem, Item2, Item1)
 		}
 	}
 
 	func ForgeronWeapon3() {
 		var choix string
-		var Item1 save.Cristal
-		var Item2 save.Item
+		var Item1 Cristal
+		var Item2 Item
 
 
 		fmt.Scanln(&choix) //input qui va prendre en considération l'objet voulu
 		if choix == "1" {
-			for _, Item := range save.Inventaire_Item {
-				if Item.Name == weapon3.ItemValeur_2.Name && save.Personnage.CoteForce <= weapon3.CoteForce && save.Personnage.Credit >= weapon3.Valeur {
+			for _, Item := range Inventaire_Item {
+				if Item.Name == weapon3.ItemValeur_2.Name && Personnage.CoteForce <= weapon3.CoteForce && Personnage.Credit >= weapon3.Valeur {
 					Item2 = weapon3.ItemValeur_2
 					break
 				}
@@ -210,9 +210,9 @@ func ForgeronArmor() {
 		MenuFWeapon()
 	}
 
-	func AchatWeapon3(BuyItem Forgeron_Weapon, Item2 save.Item, Item1 save.Cristal) {
+	func AchatWeapon3(BuyItem Forgeron_Weapon, Item2 Item, Item1 Cristal) {
 		var choix string
-		NewWeapon := save.Weapon{
+		NewWeapon := Weapon{
 			BuyItem.Name,
 			BuyItem.DamageBonus,
 			BuyItem.PvBonus,
@@ -228,21 +228,21 @@ func ForgeronArmor() {
 		fmt.Scanln(&choix)
 		switch choix {
 		case "1":
-			save.Personnage.Credit -= BuyItem.Valeur
-			save.Enlever_Item(Item2, 1)
-			save.Ajout_Weapon(NewWeapon, 1)
+			Personnage.Credit -= BuyItem.Valeur
+			Enlever_Item(Item2, 1)
+			Ajout_Weapon(NewWeapon, 1)
 		case "2":
-			save.ClearScreen()
+			ClearScreen()
 			ForgeronWeapon2()
 		default:
-			save.ClearScreen()
+			ClearScreen()
 			AchatWeapon3(BuyItem, Item2, Item1)
 		}
 	}
-*/
-func CraftArmor(BuyItem Forgeron_Armor, Item1 save.Item, Item2 save.Item) {
+
+func CraftArmor(BuyItem Forgeron_Armor, Item1 Item, Item2 Item) {
 	var choix string
-	NewArmor := save.Armor{
+	NewArmor := Armor{
 		BuyItem.Name,
 		BuyItem.DamageBonus,
 		BuyItem.PvBonus,
@@ -257,27 +257,27 @@ func CraftArmor(BuyItem Forgeron_Armor, Item1 save.Item, Item2 save.Item) {
 	fmt.Scanln(&choix)
 	switch choix {
 	case "1":
-		save.Personnage.Credit -= BuyItem.Valeur
-		save.Enlever_Item(Item2, 1)
-		save.Ajout_Armur(NewArmor, 1)
+		Personnage.Credit -= BuyItem.Valeur
+		Enlever_Item(Item2, 1)
+		Ajout_Armur(NewArmor, 1)
 	case "2":
-		save.ClearScreen()
+		ClearScreen()
 		ForgeronArmor()
 	default:
-		save.ClearScreen()
+		ClearScreen()
 		CraftArmor(BuyItem, Item1, Item2)
 	}
 }
 
-/*func ForgeronTest() {
-	Sword := save.Item{"Sword", 100, "sedfgujhch,;u,nyubgkjvfj", 1}
+func ForgeronTest() {
+	Sword := Item{"Sword", 100, "sedfgujhch,;u,nyubgkjvfj", 1}
 	fmt.Println("épée : lingot de fer + baton de bois")
 	fmt.Println("100€")
 	//Tu choisis l'épée
 	price := 100
-	var Item1 save.Item
-	var Item2 save.Item
-	for _, Item := range save.Inventaire_Weapon {
+	var Item1 Item
+	var Item2 Item
+	for _, Item := range Inventaire_Weapon {
 		if Item.Name == "lingot de fer" {
 			Item1 =
 		}
@@ -285,10 +285,10 @@ func CraftArmor(BuyItem Forgeron_Armor, Item1 save.Item, Item2 save.Item) {
 			Item2 =
 		}
 	}
-	if save.Personnage.Credit >= price && Item1.Name == "lingot de fer" && Item2.Name == "baton de bois" {
-		save.Enlever_Item(Item1, 1)
-		save.Enlever_Item(Item2, 1)
-		save.Personnage.Credit -= price
-		save.Ajout_Item(Sword, 1)
+	if Personnage.Credit >= price && Item1.Name == "lingot de fer" && Item2.Name == "baton de bois" {
+		Enlever_Item(Item1, 1)
+		Enlever_Item(Item2, 1)
+		Personnage.Credit -= price
+		Ajout_Item(Sword, 1)
 	}
 }*/

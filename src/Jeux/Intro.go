@@ -1,4 +1,4 @@
-package guerriersith
+package jeux
 
 import (
 	"fmt"
@@ -26,7 +26,7 @@ func Intro() {
 	fmt.Println("    █       █ █       █   █    ▄▄▄▄▄    █    █   █▀▄     ▀▄▄▄▄▄▄▄▄█▄    ▀▄")
 	fmt.Println("     █     █   █     █   █    █     █    █   █   █  ▀▄                    █")
 	fmt.Println("      █▄▄▄█     █▄▄▄█   █▄▄▄▄█       █▄▄▄▄█  █▄▄▄█    ▀▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▀")
-	time.Sleep(time.Second * 5)
+	time.Sleep(time.Second * 2)
 	clearScreen()
 	fmt.Println("")
 	fmt.Println("")
