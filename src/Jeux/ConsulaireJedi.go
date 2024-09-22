@@ -6,8 +6,6 @@ import (
 	"time"
 )
 
-
-
 var Quete int = 0
 
 var ClasseConsulaire1 Classe = Classe{"Guardian", 110, []Abilite{Abilite{"Meditation", 10, 0, 30, 1, 0, 0, "An Abilite for rest a litle bit during a ", 0, 0}, Abilite{"Force wave", 30, 25, 0, 1, 0, 0, "A projection of the force who atack the ennemie", 0, 0}}, 110}
@@ -1290,7 +1288,6 @@ func IntroConsulaire() {
 	time.Sleep(time.Second * 2)
 	ClearScreen()
 }
-
 
 func QueteConsulaireJedi_1(MC *Perso) {
 	fmt.Printf("Librarian : So you want the simulate the fight betwen you and Obi-wan Kenobi?")
