@@ -7,6 +7,7 @@ import (
 )
 
 func main() {
+	game.PlayMusic(5)
 	game.CreatePerso()
 	switch game.Campagne.Name {
 	case "Jedi Knight":

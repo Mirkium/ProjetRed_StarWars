@@ -10,6 +10,7 @@ var Inventaire_Weapon []Weapon
 var Inventaire_Armor []Armor
 var Inventaire_Crystal []Cristal
 var Inventaire_LightSaber []Lightsaber
+var Inventaire_kit []Kit
 
 //Inventaire des Item
 
@@ -84,42 +85,42 @@ func DisplayInventaire() {
 	fmt.Print("Your choice : ")
 	fmt.Scanln(&choix)
 	switch choix {
-	case "1" :
+	case "1":
 		clearScreen()
 		DisplayInventaireItem()
 		clearScreen()
 		DisplayInventaire()
-	case "2" :
+	case "2":
 		clearScreen()
 		DisplayInventaireLightSaber()
 		clearScreen()
 		DisplayInventaire()
-	case "3" :
+	case "3":
 		clearScreen()
 		DisplayInventaire_Weapon()
 		clearScreen()
 		DisplayInventaire()
-	case "4" :
+	case "4":
 		clearScreen()
 		DisplayInventaire_Armor()
 		clearScreen()
 		DisplayInventaire()
-	case "5" :
+	case "5":
 		clearScreen()
 		DisplayInventaireCristal()
 		clearScreen()
 		DisplayInventaire()
-	case "6" :
+	case "6":
 		clearScreen()
 		//DisplayInventaireKitPack
 		clearScreen()
 		DisplayInventaire()
-	case "0" :
+	case "0":
 		break
-	default :
+	default:
 		clearScreen()
 		DisplayInventaire()
-		
+
 	}
 }
 
@@ -652,6 +653,97 @@ func VendreLightSaber(index int, quantite int) {
 			for _, key := range Inventaire_Armor {
 				if index == i {
 					Enlever_Armor(key, quantite)
+					//return value * quantite
+				}
+				i++
+			}
+		} else {
+			fmt.Println("on t'a demandé un chiffre pas autre chose.")
+		}
+	}
+}
+
+//Inventaire Kit================================================================================
+
+func Ajout_Kit(Objet Kit, quantite int) {
+	/*
+		Rajoute un item si il n'existe pas déja
+		sinon rajoute la quantite.
+		Verifie si l'Inventaire_Item est complet egalement
+	*/
+	AlreadyExiste := false
+	for _, ele := range Inventaire_kit {
+		if Objet.Name == ele.Name {
+			AlreadyExiste = true
+			ele.Quantity += Objet.Quantity
+			return
+		}
+	}
+	if len(Inventaire_kit) >= 9 && !AlreadyExiste {
+		fmt.Println("L'Inventaire_kit est complet")
+		return
+	} else {
+		Inventaire_kit = append(Inventaire_kit, Objet)
+	}
+}
+
+func Enlever_Kit(Objet Kit, Quantite int) {
+	/*
+		Retire la quantite d'item demande et le supprime si <= 0
+		Ne fais rien si l'item n'existe pas.
+	*/
+	for index, element := range Inventaire_kit {
+		if element.Name == Objet.Name {
+			if element.Quantity-Objet.Quantity <= 0 {
+				Inventaire_kit = append(Inventaire_kit[:index], Inventaire_kit[index+1:]...)
+				return
+			} else {
+				element.Quantity -= Objet.Quantity
+				return
+			}
+		}
+	}
+	fmt.Println("L'item n'a pas été trouvé")
+}
+
+func DisplayInventaireKit() {
+	var Exit string
+	/*
+		Affiche les diiferents item
+	*/
+	ClearScreen()
+	i := 1
+	fmt.Println(" ======================== LightSaber =========================")
+	for _, element := range Inventaire_kit {
+		fmt.Printf("|Index : %d | Item :  %s | Quantité : %s |\n", i, Formatage(element.Name, 16), Formatage(strconv.Itoa(element.Quantity), 4))
+		i++
+	}
+	fmt.Println("                         (0)  Exit")
+	fmt.Println(" ===========================================================")
+	fmt.Scanln(&Exit)
+	switch Exit {
+	case "0":
+		break
+	default:
+		ClearScreen()
+		DisplayInventaire()
+	}
+}
+func VendreKit(index int, quantite int) {
+	var choix string
+	DisplayInventaireKit()
+	fmt.Println("Quel item veut tu vendre ?")
+	fmt.Scanln(&choix)
+	if len(choix) != 1 {
+		fmt.Println("error 404 : pas le bon input")
+	}
+	for _, let := range choix {
+		if let >= '0' && let <= '9' {
+			//DisplayInventaire_ItemIndex(int(let - 48))
+			i := 1
+			for _, key := range Inventaire_kit {
+				if index == i {
+					Enlever_Kit(key, quantite)
 					//return value * quantite
 				}
 				i++
