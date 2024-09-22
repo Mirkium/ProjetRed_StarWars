@@ -70,9 +70,5 @@ type Mob struct {
 
 //========================================INVENTAIRE======================================
 
-type Cristal struct {
-	Name  string
-	Color string
-}
 
 //var test ItemPacket

@@ -9,20 +9,24 @@ func WeaponShop() {
 		Name:        "LaserSaber Sith",
 		PvBonus:     50,
 		DamageBonus: 0,
-		Color:       Cristal{"Cristal rouge", "\033[91m"},
+		Type:        1,
+		Color:       Cristal{"Cristal rouge", Red, 666},
 		Quantity:    5,
-		Price:       45,
+		Price:       666,
 		CoteForce:   -50,
-		Description: "melee weapon, This weapon requires training and its use is greatly improved when its user uses the Force."}
+		Description: "melee weapon, This weapon requires training and its use is greatly improved when its user uses the Force.",
+	}
 	item02 := Lightsaber{
 		Name:        "Light Saber Jedi",
 		PvBonus:     50,
 		DamageBonus: 10,
-		Color:       Cristal{"Cristal Bleue", "\033[34m"},
+		Type:        1,
+		Color:       Cristal{"Cristal Bleue", Cyan, 66},
 		Quantity:    1,
-		Price:       45,
+		Price:       66,
 		CoteForce:   50,
-		Description: " melee weapon, this weapon requires training and its use is greatly improved when its user uses the Force."}
+		Description: " melee weapon, this weapon requires training and its use is greatly improved when its user uses the Force.",
+	}
 	item03 := Weapon{
 		Name:        "E-11 Blaster Rifle",
 		PvBonus:     30,
@@ -30,7 +34,8 @@ func WeaponShop() {
 		Quantity:    1,
 		Price:       30,
 		CoteForce:   0,
-		Description: "A powerful, light and compact weapon, the E-11 was used widely throughout the galaxy for nearly a century and a half."}
+		Description: "A powerful, light and compact weapon, the E-11 was used widely throughout the galaxy for nearly a century and a half.",
+	}
 	item04 := Weapon{
 		Name:        "Electro-Proton Bomb",
 		PvBonus:     100,
@@ -38,61 +43,76 @@ func WeaponShop() {
 		Quantity:    3,
 		Price:       20000,
 		CoteForce:   0,
-		Description: "Invented on behalf of the Grand Army of the Republic by Doctor Sionver Boll, the Electro-Proton Bomb released upon its explosion an electromagnetic pulse capable of destroying hundreds of Battle Droids in a few seconds.."}
+		Description: "Invented on behalf of the Grand Army of the Republic by Doctor Sionver Boll, the Electro-Proton Bomb released upon its explosion an electromagnetic pulse capable of destroying hundreds of Battle Droids in a few seconds..",
+	}
+	item05 := Cristal{
+		Name:  "violet",
+		Color: Violet,
+		Price: 200,
+	}
 
 	fmt.Println("/=================WEAPON SHOP=================\\")
 	fmt.Println("")
-	fmt.Println(" 1. ",item01.Name)
-	fmt.Println("   Damage Bonus :", item01.DamageBonus," | Pv Bonus : ",item01.PvBonus)
-	fmt.Println("   Price : ",item01.Price,"  |  Way Force : ", item01.CoteForce)
+	fmt.Println(Yellow, " 1. ", Cyan, item01.Name)
+	fmt.Println(gray, "   []####[", item01.Color.Color, "===========================================>", Reset)
+	fmt.Println(Yellow, "   Damage Bonus :", item01.DamageBonus, " |", Yellow, " Pv Bonus : ", Cyan, item01.PvBonus)
+	fmt.Println(Yellow, "   Price : ", item01.Price, "  |", Yellow, "  Way Force : ", Cyan, item01.CoteForce)
 	fmt.Println(" ____________________________________________")
 	fmt.Println("")
-	fmt.Println(" 1. ",item02.Name)
-	fmt.Println("   Damage Bonus :", item02.DamageBonus," | Pv Bonus : ",item02.PvBonus)
-	fmt.Println("   Price : ",item02.Price,"  |  Way Force : ", item02.CoteForce)
+	fmt.Println(Yellow, " 2. ", Cyan, item02.Name)
+	fmt.Println(gray, "   []####[", item02.Color.Color, "===========================================>", Reset)
+	fmt.Println(Yellow, "   Damage Bonus :", item02.DamageBonus, " |", Yellow, " Pv Bonus : ", Cyan, item02.PvBonus)
+	fmt.Println(Yellow, "   Price : ", item02.Price, "  |", Yellow, "  Way Force : ", Cyan, item02.CoteForce, Reset)
 	fmt.Println(" ____________________________________________")
 	fmt.Println("")
-	fmt.Println(" 1. ",item03.Name)
-	fmt.Println("   Damage Bonus :", item03.DamageBonus," | Pv Bonus : ",item03.PvBonus)
-	fmt.Println("   Price : ",item03.Price,"  |  Way Force : ", item03.CoteForce)
+	fmt.Println(Yellow, " 3. ", Cyan, item03.Name)
+	fmt.Println(Yellow, "   Damage Bonus :", Cyan, item03.DamageBonus, " |", Yellow, " Pv Bonus : ", Cyan, item03.PvBonus)
+	fmt.Println(Yellow, "   Price : ", Cyan, item03.Price, "  |", Yellow, "  Way Force : ", Cyan, item03.CoteForce, Reset)
 	fmt.Println(" ____________________________________________")
 	fmt.Println("")
-	fmt.Println(" 1. ",item04.Name)
-	fmt.Println("   Damage Bonus :", item04.DamageBonus," | Pv Bonus : ",item04.PvBonus)
-	fmt.Println("   Price : ",item04.Price,"  |  Way Force : ", item04.CoteForce)
+	fmt.Println(Yellow, " 4. ", item04.Name)
+	fmt.Println(Yellow, "   Damage Bonus :", Cyan, item04.DamageBonus, " |", Yellow, " Pv Bonus : ", Cyan, item04.PvBonus)
+	fmt.Println(Yellow, "   Price : ", Cyan, item04.Price, "  |", Yellow, "  Way Force : ", Cyan, item04.CoteForce, Reset)
 	fmt.Println(" ____________________________________________")
 	fmt.Println("")
-	fmt.Println("                 (0) Exit")
+	fmt.Println(Yellow, " 5. ", Cyan, item05.Name)
+	fmt.Println(Yellow, "   Price : ", Cyan, item05.Price, Reset)
+	fmt.Println(" ____________________________________________")
+	fmt.Println("")
+	fmt.Println(Yellow, "                 (0)", Cyan, " Exit")
 	fmt.Println("")
 	fmt.Println("\\=============================================/")
 	fmt.Println("")
 	fmt.Print("Your choice : ")
 	fmt.Scanln(&choix)
 	switch choix {
-	case "1" :
+	case "1":
 		if Personnage.CoteForce <= item01.CoteForce {
 			clearScreen()
 			item01.BuyLightSaber()
 		}
-	case "2" :
+	case "2":
 		if Personnage.CoteForce <= item02.CoteForce {
 			clearScreen()
 			item02.BuyLightSaber()
 		}
 
-	case "3" :
+	case "3":
 		if Personnage.CoteForce <= item03.CoteForce {
 			clearScreen()
 			item03.BuyWeapon()
 		}
-	case "4" :
+	case "4":
 		if Personnage.CoteForce <= item04.CoteForce {
 			clearScreen()
 			item04.BuyWeapon()
 		}
-	case "0" :
+	case "5":
+		ClearScreen()
+		item05.BuyCristal()
+	case "0":
 		break
-	default :
+	default:
 		clearScreen()
 		WeaponShop()
 	}
@@ -109,5 +129,12 @@ func (sabreLaser Lightsaber) BuyLightSaber() {
 	if Personnage.Credit >= sabreLaser.Price {
 		Personnage.Credit -= sabreLaser.Price
 		Ajout_LightSaber(sabreLaser, 1)
+	}
+}
+
+func (cristaux Cristal) BuyCristal() {
+	if Personnage.Credit >= cristaux.Price {
+		Personnage.Credit -= cristaux.Price
+		Ajout_Crystal(cristaux)
 	}
 }

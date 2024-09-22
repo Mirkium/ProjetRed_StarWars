@@ -14,6 +14,7 @@ func DisplayCharacter() {
 	fmt.Println(Yellow, "        PV        : ", Cyan, Personnage.PV_actuelle, "/", Personnage.PV_max)
 	fmt.Println(Yellow, "        Force     : ", Cyan, Personnage.Force)
 	fmt.Println(Yellow, "        Way Force : ", Cyan, Personnage.CoteForce)
+	fmt.Println(Yellow, "        Credit    : ", Green, Personnage.Credit, Reset)
 	fmt.Println("     _________________________________")
 	fmt.Println(Yellow, "             (1)", Cyan, " Ability")
 	fmt.Println("")
@@ -120,7 +121,7 @@ func ModdiefWeapon() {
 	fmt.Println("/======================================\\")
 	fmt.Println("                Weapon")
 	if Personnage.IsDoubleBlade {
-		fmt.Println(Arme.Color, "<===========================================", Reset, "]#####[]#####[", Arme.Color, "===========================================>", Reset)
+		fmt.Println(Arme.Color.Color, "<===========================================", Reset, "]#####[]#####[", Arme.Color.Color, "===========================================>", Reset)
 		fmt.Println("")
 		fmt.Println(Yellow, "          1.", Cyan, " Change Weapon")
 		fmt.Println("")
@@ -147,9 +148,9 @@ func ModdiefWeapon() {
 		}
 	} else if Personnage.IsSecondaryWeapon {
 		fmt.Println("Primary Weapon :")
-		fmt.Println(gray, "[]####[", Arme.Color, "===========================================>", Reset)
+		fmt.Println(gray, "[]####[", Arme.Color.Color, "===========================================>", Reset)
 		fmt.Println("Secondary Weapon :")
-		fmt.Println(ArmeSecondaire.Color, "<===========================================", gray, "]####[]")
+		fmt.Println(ArmeSecondaire.Color.Color, "<===========================================", gray, "]####[]")
 		fmt.Println("")
 		fmt.Println(Yellow, "          1.", Cyan, " Change primary weapon")
 		fmt.Println("")
@@ -185,7 +186,7 @@ func ModdiefWeapon() {
 			ModdiefWeapon()
 		}
 	} else {
-		fmt.Println("[]####[", Arme.Color, "===========================================>", Reset)
+		fmt.Println("[]####[", Arme.Color.Color, "===========================================>", Reset)
 		fmt.Println("")
 		fmt.Println(Yellow, "          1.", Cyan, " Change Weapon")
 		fmt.Println("")
@@ -220,13 +221,13 @@ func ChangeWeapon() {
 	for i, k := range Inventaire_LightSaber {
 		fmt.Println("/= ", k.Name)
 		if k.Type == 1 {
-			fmt.Println(i, "  ", gray, "[]####[", k.Color, "===========================================>", Reset)
+			fmt.Println(i, "  ", gray, "[]####[", k.Color.Color, "===========================================>", Reset)
 		} else if k.Type == 2 {
-			fmt.Println(i, "  ", k.Color, "<===========================================", Reset, "]#####[]#####[", k.Color, "===========================================>", Reset)
+			fmt.Println(i, "  ", k.Color.Color, "<===========================================", Reset, "]#####[]#####[", k.Color.Color, "===========================================>", Reset)
 		}
 		fmt.Println("\\= Pv Bonus : ", k.PvBonus, " | Damage Bonus : ", k.DamageBonus)
 	}
-	fmt.Println("                        (0) Exit")
+	fmt.Println("                        (",len(Inventaire_LightSaber)+1,") Exit")
 	fmt.Println("\\===========================================================/")
 	fmt.Print("Your choice : ")
 	fmt.Scanln(&choix)
@@ -288,9 +289,9 @@ func ChangeSecondaryWeapon() {
 	for i, k := range Inventaire_LightSaber {
 		fmt.Println("/= ", k.Name)
 		if k.Type == 1 {
-			fmt.Println(i, "  ", gray, "[]####[", k.Color, "===========================================>", Reset)
+			fmt.Println(i, "  ", gray, "[]####[", k.Color.Color, "===========================================>", Reset)
 		} else if k.Type == 2 {
-			fmt.Println(i, "  ", k.Color, "<===========================================", Reset, "]#####[]#####[", k.Color, "===========================================>", Reset)
+			fmt.Println(i, "  ", k.Color.Color, "<===========================================", Reset, "]#####[]#####[", k.Color.Color, "===========================================>", Reset)
 		}
 		fmt.Println("\\= Pv Bonus : ", k.PvBonus, " | Damage Bonus : ", k.DamageBonus)
 	}

@@ -66,7 +66,7 @@ func ChargeGame() {
 	}
 
 	ClearScreen()
-	fmt.Println(Blue, "      SAUVEGARDE", Reset)
+	fmt.Println("      SAUVEGARDE", Reset)
 	fmt.Println("_________________________")
 	var table []int
 	var choixSauvegarde int

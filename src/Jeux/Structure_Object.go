@@ -44,8 +44,14 @@ type Kit struct {
 }
 
 type Item struct {
-	Name     string
-	Quantity int
-	Price    int
+	Name        string
+	Quantity    int
+	Price       int
 	Description string
+}
+
+type Cristal struct {
+	Name     string
+	Color    string
+	Price    int
 }
