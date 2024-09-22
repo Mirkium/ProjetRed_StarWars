@@ -3,6 +3,7 @@ package jeux
 import (
 	"fmt"
 	"os"
+	"path/filepath"
 	"time"
 
 	"github.com/faiface/beep"
@@ -17,22 +18,22 @@ var done chan bool
 // Fonction pour lancer la musique
 func PlayMusic(track int) {
 	var fileName string
-
+	path, _ := os.Getwd()
 	switch track {
 	case 1: //batle of the heroes
-		fileName = "C:\\Users\\adrie\\Documents\\Ynov\\Ymersion\\ProjetRed_StarWars\\src\\Jeux\\Music\\John Williams - Battle of the Heroes (Audio).mp3"
+		fileName = filepath.Join(path, "Jeux", "Music", "John Williams - Battle of the Heroes (Audio).mp3")
 	case 2: // Duel of the Fates
-		fileName = "C:\\Users\\adrie\\Documents\\Ynov\\Ymersion\\ProjetRed_StarWars\\src\\Jeux\\Music\\John Williams - Duel of the Fates (Star Wars Soundtrack) [HQ].mp3"
+		fileName = filepath.Join(path, "Jeux", "Music", "John Williams - Duel of the Fates (Star Wars Soundtrack) [HQ].mp3")
 	case 3: //The Imperial Suite
-		fileName = "C:\\Users\\adrie\\Documents\\Ynov\\Ymersion\\ProjetRed_StarWars\\src\\Jeux\\Music\\Michael Giacchino - The Imperial Suite (From Rogue One A Star Wars StoryAudio Only).mp3"
+		fileName = filepath.Join(path, "Jeux", "Music", "Michael Giacchino - The Imperial Suite (From Rogue One A Star Wars StoryAudio Only).mp3")
 	case 4: //Dark maul theme
-		fileName = "C:\\Users\\adrie\\Documents\\Ynov\\Ymersion\\ProjetRed_StarWars\\src\\Jeux\\Music\\Star Wars Battlefront II Soundtrack - Darth Maul Theme.mp3"
+		fileName = filepath.Join(path, "Jeux", "Music", "Star Wars Battlefront II Soundtrack - Darth Maul Theme.mp3")
 	case 5: //Intro
-		fileName = "C:\\Users\\adrie\\Documents\\Ynov\\Ymersion\\ProjetRed_StarWars\\src\\Jeux\\Music\\Star Wars Intro HD 1080p.mp3"
+		fileName = filepath.Join(path, "Jeux", "Music", "Star Wars Intro HD 1080p.mp3")
 	case 6: //Anakin vs Obi wan
-		fileName = "C:\\Users\\adrie\\Documents\\Ynov\\Ymersion\\ProjetRed_StarWars\\src\\Jeux\\Music\\Star Wars Revenge of the Sith Soundtrack  Anakin vs Obi-Wan, the great duel.mp3"
+		fileName = filepath.Join(path, "Jeux", "Music", "Star Wars Revenge of the Sith Soundtrack  Anakin vs Obi-Wan, the great duel.mp3")
 	case 7: //Imperial march
-		fileName = "C:\\Users\\adrie\\Documents\\Ynov\\Ymersion\\ProjetRed_StarWars\\src\\Jeux\\Music\\Star Wars- The Imperial March (Darth Vaders Theme).mp3"
+		fileName = filepath.Join(path, "Jeux", "Music", "Star Wars- The Imperial March (Darth Vaders Theme).mp3")
 	default:
 		fmt.Println("Numéro de piste non valide")
 		return
