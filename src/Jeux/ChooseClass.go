@@ -148,4 +148,5 @@ func ChooseWeapon() {
 		Personnage.Force = 20 + Arme.DamageBonus + Armors.DamageBonus
 		Personnage.AbilitieDefault = append(Personnage.AbilitieDefault, Ability{"Basic hit", 0, Personnage.Force, 0, 1, 0, 0, "Basic hit", 0, 0})
 	}
+	StopMusic()
 }

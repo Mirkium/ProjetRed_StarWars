@@ -1,39 +1,32 @@
 package jeux
 
-/*
 import (
 	"fmt"
 )
 
-func SmithchoiceAffichage() {
-	fmt.Println("Which blacksmith do you want to meet?")
-	fmt.Println("1 - Weaponsmith")
-	fmt.Println("2 - Armorsmith")
-	fmt.Println("3 - Exit")
+func MenuForgeron() {
 	var choix string
-
-	fmt.Print("Enter the number corresponding to your choice: ")
-	_, err := fmt.Scan(&choix)
-
-	if err != nil {
-		fmt.Println("Error during entry. Please enter a number.")
-		return
-	}
-
+	fmt.Println("/===================FORGE===================\\")
+	fmt.Println("")
+	fmt.Println("             1. Weapon Forge")
+	fmt.Println("")
+	fmt.Println("             2. Armor Forge")
+	fmt.Println("")
+	fmt.Println("             0. Exit")
+	fmt.Println("")
+	fmt.Println("\\===========================================/")
+	fmt.Println("")
+	fmt.Print("Your choice : ")
+	fmt.Scanln(&choix)
 	switch choix {
-	case "1":
-		fmt.Println("You have chosen to meet the weaponsmith")
-		MenuFWeapon()
-	case "2":
+	case "1" :
 
-		fmt.Println("You have chosen to meet the armorsmith")
-		MenuFArmor()
-	case "3":
+	case "2" :
+
+	case "0" :
 		break
-	default:
-		fmt.Println("Invalid choice. Please choose a number between 1 and 3.")
-		ClearScreen()
-		SmithchoiceAffichage()
+	default :
+		clearScreen()
+		MenuForgeron()
 	}
 }
-*/

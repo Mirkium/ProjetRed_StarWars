@@ -1,187 +1,126 @@
 package jeux
 
-/*
 import (
-	
 	"fmt"
-	//"time"
 )
 
-
-
-func MenuFWeapon() {
-	ForgeronWeapon()
-	return
+var Weapon_1 = Forgeron_Weapon{
+	Name:         "Vador Lightsaber",
+	DamageBonus:  500,
+	PvBonus:      500,
+	Price:        500,
+	Type:         1,
+	Color:        Cristal{"Red Crystal", Red, 200},
+	ItemValeur_1: Item{"Sith Holocron", 1, 300, "A sith holocron"},
+	ItemValeur_2: Lightsaber{Name: "LightSaber Jedi", PvBonus: 50, DamageBonus: 10, Type: 1, Color: Cristal{"Cristal Bleue", Cyan, 66}, Quantity: 1, Price: 66, CoteForce: 50, Description: " melee weapon, this weapon requires training and its use is greatly improved when its user uses the Force."},
+	CoteForce:    -100,
+	Description:  "Vador lightsaber",
+}
+var Weapon_2 = Forgeron_Weapon{
+	Name:         "Vador Lightsaber",
+	DamageBonus:  500,
+	PvBonus:      500,
+	Price:        500,
+	Type:         1,
+	Color:        Cristal{"Red Crystal", Red, 200},
+	ItemValeur_1: Item{"Sith Holocron", 1, 300, "A sith holocron"},
+	ItemValeur_2: Lightsaber{
+		Name:        "LightSaber Sith",
+		PvBonus:     50,
+		DamageBonus: 0,
+		Type:        1,
+		Color:       Cristal{"Cristal rouge", Red, 666},
+		Quantity:    5,
+		Price:       666,
+		CoteForce:   -50,
+		Description: "melee weapon, This weapon requires training and its use is greatly improved when its user uses the Force.",
+	},
+	CoteForce:   -100,
+	Description: "Vador lightsaber",
 }
 
-func ForgeronWeapon() {
+func WeaponForge() {
 	var choix string
-	var Item1 Cristal
-	var Item2 Item
-	weapon1 := Forgeron_Weapon{
-		"Light Saber Vador",
-		500,
-		100,
-		666,
-		1,
-		Cristal{
-			"Red Crystal",
-			"\033[91m",
-		},
-		Item{
-			"Saber handle",
-			200,
-			"It's a saber handle",
-			1,
-		},
-		-100,
-		"It's Vader's saber",
-	}
-	weapon2 := Forgeron_Weapon{
-		"Light Saber Obiwan",
-		500,
-		100,
-		444,
-		1,
-		Cristal{
-			"Blue Crystal",
-			"\033[91m",
-		},
-		Item{
-			"Saer handle",
-			200,
-			"It's Vader's saber",
-			1,
-		},
-		100,
-		"This is Obiwan's saber",
-	}
-	weapon3 := Forgeron_Weapon{
-		"Lightsaber count dooku",
-		500,
-		100,
-		666,
-		1,
-		Cristal{
-			"Red Crystal",
-			"\033[91m",
-		},
-		Item{
-			"Saber handle",
-			200,
-			"It's a curved saber handle",
-			1,
-		},
-		-100,
-		"This is Count Dooku's saber",
-	}
-
-	fmt.Println(Reset, "Weaponsmith")
-	fmt.Println("1- ", weapon1.Name)
-	fmt.Println("   HP Bonus : ", weapon1.PvBonus, " | Damage Bonus : ", weapon1.DamageBonus)
-	fmt.Println("Price :")
-	fmt.Println("   credit : ", Personnage.Credit, " | ", weapon1.ItemValeur_1.Name, " | ", weapon1.ItemValeur_2.Name, " | way Force : ", Personnage.CoteForce)
-	fmt.Println("____________________________________")
-	fmt.Println("Weaponsmith")
-	fmt.Println("2- ", weapon2.Name)
-	fmt.Println("   HP Bonus : ", weapon2.PvBonus, " | Damage Bonus : ", weapon2.DamageBonus)
-	fmt.Println("Price :")
-	fmt.Println("   credit : ", Personnage.Credit, " | ", weapon2.ItemValeur_1.Name, " | ", weapon2.ItemValeur_2.Name, " | way Force : ", Personnage.CoteForce)
-	fmt.Println("____________________________________")
-	fmt.Println("Weaponsmith")
-	fmt.Println("3- ", weapon3.Name)
-	fmt.Println("   HP Bonus : ", weapon3.PvBonus, " | Damage Bonus : ", weapon3.DamageBonus)
-	fmt.Println("Price :")
-	fmt.Println("   credit : ", Personnage.Credit, " | ", weapon3.ItemValeur_1.Name, " | ", weapon3.ItemValeur_2.Name, " | way Force : ", Personnage.CoteForce)
-	fmt.Println("____________________________________")
-	fmt.Scanln(&choix) //input qui va prendre en considération l'objet voulu
-	if choix == "1" {
-		for _, Item := range Inventaire_Item {
-			if Item.Name == weapon1.ItemValeur_2.Name && Personnage.CoteForce <= weapon1.CoteForce && Personnage.Credit >= weapon1.Valeur {
-				Item2 = weapon1.ItemValeur_2
-				break
-			}
-		}
-		for _, Item := range Inventaire_Crystal {
-			if Item.Name == weapon1.ItemValeur_1.Name && Personnage.CoteForce <= weapon1.CoteForce && Personnage.Credit >= weapon1.Valeur {
-				Item1 = weapon1.ItemValeur_1
-				break
-			}
-		}
-		if Item1 == weapon1.ItemValeur_1 && Item2 == weapon1.ItemValeur_2 && weapon1.Valeur <= Personnage.Credit {
-			Craft(weapon1, weapon1.ItemValeur_1, weapon1.ItemValeur_2)
-		}
-	}
-
-	if choix == "2" {
-		for _, Item := range Inventaire_Item {
-			if Item.Name == weapon2.ItemValeur_2.Name && Personnage.CoteForce <= weapon2.CoteForce && Personnage.Credit >= weapon2.Valeur {
-				Item2 = weapon2.ItemValeur_2
-				break
-			}
-		}
-		for _, Item := range Inventaire_Crystal {
-			if Item.Name == weapon2.ItemValeur_1.Name && Personnage.CoteForce <= weapon2.CoteForce && Personnage.Credit >= weapon2.Valeur {
-				Item1 = weapon2.ItemValeur_1
-				break
-			}
-		}
-		if Item1 == weapon2.ItemValeur_1 && Item2 == weapon2.ItemValeur_2 && weapon2.Valeur <= Personnage.Credit {
-			Craft(weapon2, weapon1.ItemValeur_1, weapon2.ItemValeur_2)
-		}
-	}
-
-	if choix == "3" {
-		for _, Item := range Inventaire_Item {
-			if Item.Name == weapon3.ItemValeur_2.Name && Personnage.CoteForce <= weapon3.CoteForce && Personnage.Credit >= weapon3.Valeur {
-				Item2 = weapon3.ItemValeur_2
-				break
-			}
-		}
-		for _, Item := range Inventaire_Crystal {
-			if Item.Name == weapon3.ItemValeur_1.Name && Personnage.CoteForce <= weapon3.CoteForce && Personnage.Credit >= weapon3.Valeur {
-				Item1 = weapon3.ItemValeur_1
-				break
-			}
-		}
-		if Item1 == weapon3.ItemValeur_1 && Item2 == weapon3.ItemValeur_2 && weapon3.Valeur <= Personnage.Credit {
-			Craft(weapon1, weapon3.ItemValeur_1, weapon3.ItemValeur_2)
-		}
-	} else if choix == "0" {
-		SmithchoiceAffichage()
-	} else {
-		ForgeronArmor()
-		return
-	}
-}
-
-func Craft(BuyItem Forgeron_Weapon, Item1 Cristal, Item2 Item) {
-	var choix string
-	NewWeapon := Lightsaber{
-		BuyItem.Name,
-		BuyItem.DamageBonus,
-		BuyItem.PvBonus,
-		BuyItem.Type,
-		BuyItem.ItemValeur_1,
-		1,
-		BuyItem.Valeur,
-		BuyItem.CoteForce,
-		BuyItem.Description,
-	}
-	fmt.Println("Are you sure to buy ", BuyItem.Name)
-	fmt.Println(" (1) yes   (2) no")
+	var Item1 Item
+	var Item2 Lightsaber
+	fmt.Println("Credit    : ", Personnage.Credit)
+	fmt.Println("Way Force : ", Personnage.CoteForce)
+	fmt.Println("/=================WEAPON FORGE=================\\")
+	fmt.Println("")
+	fmt.Println(Yellow, " 1. ", Cyan, Weapon_1.Name)
+	fmt.Println(gray, "   []####[", Weapon_1.Color.Color, "===========================================>", Reset)
+	fmt.Println(Yellow, "   Damage Bonus :", Weapon_1.DamageBonus, " |", Yellow, " Pv Bonus : ", Cyan, Weapon_1.PvBonus)
+	fmt.Println(Yellow, "   Price : ", Green, Weapon_1.Price, "  |", Yellow, "  Way Force : ", Cyan, Weapon_1.CoteForce, Reset, " | ", Cyan, Weapon_1.ItemValeur_1.Name, Reset, " | ", Cyan, Weapon_2.ItemValeur_2.Name, Reset)
+	fmt.Println(" ____________________________________________")
+	fmt.Println("")
+	fmt.Println(Yellow, " 1. ", Cyan, Weapon_2.Name)
+	fmt.Println(Weapon_2.Color.Color, "<===========================================", Reset, gray, "]#####[]#####[", Weapon_2.Color.Color, "===========================================>", Reset)
+	fmt.Println(Yellow, "   Damage Bonus :", Weapon_2.DamageBonus, " |", Yellow, " Pv Bonus : ", Cyan, Weapon_2.PvBonus)
+	fmt.Println(Yellow, "   Price : ", Green, Weapon_2.Price, "  |", Yellow, "  Way Force : ", Cyan, Weapon_2.CoteForce, Reset, " | ", Cyan, Weapon_2.ItemValeur_1.Name, Reset, " | ", Cyan, Weapon_2.ItemValeur_2.Name, Reset)
+	fmt.Println(" ____________________________________________")
+	fmt.Println("")
+	fmt.Println(Yellow, "                 (0)", Cyan, " Exit", Reset)
+	fmt.Println("")
+	fmt.Println("\\=============================================/")
+	fmt.Println("")
+	fmt.Print("Your choice : ")
 	fmt.Scanln(&choix)
 	switch choix {
 	case "1":
-		Personnage.Credit -= BuyItem.Valeur
-		Enlever_Item(Item2, 1)
-		Ajout_LightSaber(NewWeapon, 1)
+		for _, K := range Inventaire_Item {
+			if K == Weapon_1.ItemValeur_1 {
+				Item1 = K
+			}
+		}
+		for _, L := range Inventaire_LightSaber {
+			if L == Weapon_1.ItemValeur_2 {
+				Item2 = L
+			}
+		}
+		if Item1 == Weapon_1.ItemValeur_1 && Item2 == Weapon_1.ItemValeur_2 {
+			Weapon_1.CraftWeapon(Item1, Item2)
+		}
 	case "2":
-		ClearScreen()
-		ForgeronWeapon()
+		for _, K := range Inventaire_Item {
+			if K == Weapon_2.ItemValeur_1 {
+				Item1 = K
+			}
+		}
+		for _, L := range Inventaire_LightSaber {
+			if L == Weapon_2.ItemValeur_2 {
+				Item2 = L
+			}
+		}
+		if Item1 == Weapon_2.ItemValeur_1 && Item2 == Weapon_2.ItemValeur_2 {
+			Weapon_1.CraftWeapon(Item1, Item2)
+		}
+	case "0":
+		break
 	default:
-		ClearScreen()
-		Craft(BuyItem, Item1, Item2)
+		clearScreen()
+		WeaponForge()
 	}
 }
-*/
+
+func (arme Forgeron_Weapon) CraftWeapon(Item1 Item, Item2 Lightsaber) {
+	NewSaber := Lightsaber{
+		Name:        arme.Name,
+		DamageBonus: arme.DamageBonus,
+		PvBonus:     arme.PvBonus,
+		Type:        arme.Type,
+		Color:       arme.Color,
+		Quantity:    1,
+		Price:       arme.Price,
+		CoteForce:   arme.CoteForce,
+		Description: arme.Description,
+	}
+	if Personnage.Credit >= arme.Price {
+		Enlever_Item(Item1, 1)
+		Enlever_LightSaber(Item2, 1)
+		Ajout_LightSaber(NewSaber, 1)
+		Personnage.Credit -= arme.Price
+	} else {
+		clearScreen()
+		WeaponForge()
+	}
+}

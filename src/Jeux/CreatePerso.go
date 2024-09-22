@@ -4,7 +4,6 @@ import (
 	"fmt"
 )
 
-
 var Personnage Perso
 var Arme Lightsaber
 var ArmeSecondaire SecondaryLightsaber
@@ -13,6 +12,7 @@ var Campagne Classe
 var Capacite Ability
 
 func CreatePerso() {
+	
 	var choix string
 	fmt.Println(Yellow, "        ▄▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀█     █▀▀▀▀▀█        █▀▀▀▀▀▀▀▀▀▄         █▀▀▀▀█     █▀▀▀█     █▀▀▀▀█   █▀▀▀▀▀█        █▀▀▀▀▀▀▀▀▀▄      ▄▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀█")
 	fmt.Println(Yellow, "       █                            █    █   ▄   █       █   █▀▀▄   █         █    █   █     █   █    █   █   ▄   █       █   █▀▀▄   █    █                █")

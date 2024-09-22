@@ -43,7 +43,10 @@ func Menu() {
 		clearScreen()
 		Menu()
 	case "4":
-		
+		clearScreen()
+		MenuForgeron()
+		clearScreen()
+		Menu()
 	case "5":
 		break
 	case "0":

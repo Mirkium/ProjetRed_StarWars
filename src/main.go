@@ -7,7 +7,6 @@ import (
 )
 
 func main() {
-	game.PlayMusic(7)
 	game.CreatePerso()
 	switch game.Campagne.Name {
 	case "Jedi Knight":
@@ -19,7 +18,6 @@ func main() {
 		game.Personnage.CoteForce += game.Arrive_2()
 		game.Arrive_3()
 		WayClasseSithWarrior()
-		Menu()
 	case "Sith Assassin":
 		game.SithAssassin()
 
@@ -125,7 +123,7 @@ func Menu() {
 		case "2":
 			game.DisplayInventaire()
 		case "3":
-			game.Marchantchoice()
+			game.Merchantchoice()
 		case "4":
 			Ok = true
 		case "5":
@@ -147,3 +145,4 @@ func Menu() {
 	}
 	Menu()
 }
+

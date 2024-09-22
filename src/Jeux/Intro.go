@@ -6,6 +6,7 @@ import (
 )
 
 func Intro() {
+	PlayMusic(5)
 	clearScreen()
 	fmt.Println("                      ", Cyan, "LONG TIME AGO IN A GALAXY FAR,")
 	fmt.Println("                      FAR AWAY...", Reset)
@@ -437,4 +438,5 @@ func Intro() {
 	fmt.Println("                        sooner than expected....", Reset)
 	time.Sleep(time.Second * 2)
 	clearScreen()
+	StopMusic()
 }

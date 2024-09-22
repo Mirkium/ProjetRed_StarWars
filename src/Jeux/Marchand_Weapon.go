@@ -6,7 +6,7 @@ func WeaponShop() {
 	var choix string
 
 	item01 := Lightsaber{
-		Name:        "LaserSaber Sith",
+		Name:        "LightSaber Sith",
 		PvBonus:     50,
 		DamageBonus: 0,
 		Type:        1,
@@ -17,7 +17,7 @@ func WeaponShop() {
 		Description: "melee weapon, This weapon requires training and its use is greatly improved when its user uses the Force.",
 	}
 	item02 := Lightsaber{
-		Name:        "Light Saber Jedi",
+		Name:        "LightSaber Jedi",
 		PvBonus:     50,
 		DamageBonus: 10,
 		Type:        1,

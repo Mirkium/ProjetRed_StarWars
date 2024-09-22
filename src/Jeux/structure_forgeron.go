@@ -6,12 +6,13 @@ import (
 
 type Forgeron_Weapon struct {
 	Name         string
-	PvBonus      int
 	DamageBonus  int
-	Valeur       int
+	PvBonus      int
+	Price       int
 	Type         int
-	ItemValeur_1 Cristal
-	ItemValeur_2 Item
+	Color        Cristal
+	ItemValeur_1 Item
+	ItemValeur_2 Lightsaber
 	CoteForce    int
 	Description  string
 }
@@ -21,7 +22,7 @@ type Forgeron_Armor struct {
 	PvBonus      int
 	DamageBonus  int
 	StatArmor    int
-	Valeur       int
+	Price       int
 	ItemValeur_1 Item
 	ItemValeur_2 Item
 	CoteForce    int
