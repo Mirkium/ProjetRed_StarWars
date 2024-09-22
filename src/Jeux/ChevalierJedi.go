@@ -10,14 +10,14 @@ import (
 )
 
 const (
-	Reset   = "\033[0m"
-	Red     = "\033[91m"
-	Green   = "\033[32m"
-	Yellow  = "\033[93m"
-	Violet  = "\033[95m"
-	Cyan    = "\033[96m"
-	White   = "\033[37m"
-	gray    = "\033[90m"
+	Reset  = "\033[0m"
+	Red    = "\033[91m"
+	Green  = "\033[32m"
+	Yellow = "\033[93m"
+	Violet = "\033[95m"
+	Cyan   = "\033[96m"
+	White  = "\033[37m"
+	gray   = "\033[90m"
 )
 
 // Les differentes classes pour le jedi
@@ -27,7 +27,9 @@ var classeJedi3 Classe = Classe{"Way of the instinct", 120, []Ability{Ability{"C
 
 var ClasseJediList [3]Classe = [3]Classe{classeJedi1, classeJedi2, classeJedi3}
 
-func JediKnight() {
+func IntroJedi() {
+	//StopMusic()
+	//PlayMusic(5)
 	ClearScreen()
 	fmt.Println("                      ", Cyan, "LONG TIME AGO IN A GALAXY FAR,")
 	fmt.Println("                      FAR AWAY...", Reset)
@@ -810,7 +812,6 @@ func JediKnight() {
 	fmt.Println(" ")
 	time.Sleep(time.Second * 2)
 	ClearScreen()
-	Quete1(&Personnage)
 }
 
 func ClearScreen() {

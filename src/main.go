@@ -10,7 +10,7 @@ func main() {
 	game.CreatePerso()
 	switch game.Campagne.Name {
 	case "Jedi Knight":
-		game.JediKnight()
+		game.CampaingJediKnight(&game.Personnage)
 	case "Jedi Consular":
 		JediConsular()
 	case "Sith Warrior":
@@ -21,7 +21,6 @@ func main() {
 		game.Menu()
 	case "Sith Assassin":
 		game.SithAssassin()
-
 	}
 }
 
