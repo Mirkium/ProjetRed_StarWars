@@ -15,10 +15,14 @@ func main() {
 		JediConsular()
 	case "Sith Warrior":
 		game.SithWarrior()
+		game.Arrive_1()
 		game.Personnage.CoteForce += game.Arrive_2()
 		game.Arrive_3()
 		WayClasseSithWarrior()
 		game.Menu()
+		if game.Fight(&game.Personnage, &game.LimaceKor_Rang1, true) {
+			game.Menu()
+		}
 	case "Sith Assassin":
 		game.SithAssassin()
 	}
@@ -93,5 +97,3 @@ func ChoixClasse() {
 	}
 	game.Menu()
 }
-
-
