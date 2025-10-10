@@ -1,5 +1,0 @@
-package jeux
-
-func SithAssassin() {
-	
-}
